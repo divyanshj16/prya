@@ -1,0 +1,21 @@
+- if user_signed_in?
+	%li
+		= link_to root_path, class: "profile-btn" do
+			%img.hide-on-med-and-down{src: "http://via.placeholder.com/32x32"}
+			%i.material-icons.hide-on-large-only person
+			%span.hide-on-med-and-down= current_user.username
+	%li
+		%a.dropdown-trigger{href:"#", data_target: "setting_dropdown"}
+			%i.material-icons settings
+- else 
+	%li
+		%a{:href => "/users/sign_up"} Sign Up
+	%li
+		%a{:href => "/users/sign_in"} Login
+
+-# Dropdown
+%ul.dropdown-content#settings_dropdown
+	%li
+		= link_to "Account Settings",edit_user_registration_path
+		= link_to "Logout",destroy_user_session_path,{method: :delete}
+
