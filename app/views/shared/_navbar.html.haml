@@ -1,0 +1,12 @@
+%nav
+  .nav-wrapper
+    %a.brand-logo{:href => "/"} Logo
+    %a.sidenav-trigger{"data-target" => "mobile-demo", :href => "#"}
+      %i.material-icons menu
+    %ul.right.hide-on-med-and-down
+      = render "shared/navbarLinks"
+
+%ul#mobile-demo.sidenav
+  = render "shared/navbarLinks"
+
+      
