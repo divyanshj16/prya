@@ -21,7 +21,13 @@
     %br/
     = f.password_field :password_confirmation, autocomplete: "off"
   .field
-    Founder#{f.check_box :isinvestor}Investor
+    .switch
+      %label
+        Founder
+        =f.check_box :isinvestor,id: "mySwitch",value: "isInvestor"
+        -# %input#mySwitch{:type => "checkbox"}
+        %span.lever
+        Investor
   .actions
     = f.submit "Sign up"
 = render "devise/shared/links"
