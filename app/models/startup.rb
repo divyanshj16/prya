@@ -1,0 +1,2 @@
+class Startup < ApplicationRecord
+end
