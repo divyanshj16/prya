@@ -53,3 +53,12 @@ p {
 footer.page-footer {
   margin: 0;
 }
+
+
+.bg-im{
+  background-image: url("/assets/background1.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
