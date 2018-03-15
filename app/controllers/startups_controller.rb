@@ -7,4 +7,8 @@ class StartupsController < ApplicationController
 
   def edit
   end
+
+  def create
+  end
+  
 end
