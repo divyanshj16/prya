@@ -9,4 +9,5 @@ $(function () {
       stopPropagation: false // Stops event propagation
     }
   );
+  $('select').material_select();
 })
