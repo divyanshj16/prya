@@ -8,6 +8,11 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render "shared/navbar"
-    %p.notice= notice
-    %p.alert= alert
+    - if notice
+      :javascript
+        Materialize.toast('#{notice}', 2000)
+    - if alert
+      :javascript
+        Materialize.toast('#{alert}', 2000)
+
     = yield
