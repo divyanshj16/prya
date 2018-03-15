@@ -1,6 +1,6 @@
 - if user_signed_in?
 	%li
-		= link_to root_path, class: "profile-btn" do
+		= link_to users_show_path, class: "profile-btn" do
 			%img.hide-on-med-and-down{src: "http://via.placeholder.com/32x32"}
 			%i.material-icons.hide-on-large-only person
 			%span.hide-on-med-and-down= current_user.username
