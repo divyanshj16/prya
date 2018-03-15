@@ -5,17 +5,16 @@
 			%i.material-icons.hide-on-large-only person
 			%span.hide-on-med-and-down= current_user.username
 	%li
-		%a.dropdown-trigger{href:"#", data_target: "setting_dropdown"}
+		%a.dropdown-trigger{href:"#", "data-activates": "settings_dropdown"}
 			%i.material-icons settings
+		%ul.dropdown-content#settings_dropdown
+			%li
+				= link_to "Account Settings",edit_user_registration_path
+			%li
+				= link_to "Logout",destroy_user_session_path,{method: :delete}
+
 - else 
 	%li
 		%a{:href => "/users/sign_up"} Sign Up
 	%li
 		%a{:href => "/users/sign_in"} Login
-
--# Dropdown
-%ul.dropdown-content#settings_dropdown
-	%li
-		= link_to "Account Settings",edit_user_registration_path
-		= link_to "Logout",destroy_user_session_path,{method: :delete}
-
