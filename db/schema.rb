@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20180316082138) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sustage_id"
+    t.index ["sustage_id"], name: "index_startups_on_sustage_id"
   end
 
   create_table "sustages", force: :cascade do |t|

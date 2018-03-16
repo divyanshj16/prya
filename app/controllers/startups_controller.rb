@@ -9,6 +9,7 @@ class StartupsController < ApplicationController
   end
 
   def new
+    @startup = Startup.new
   end
 
   def create

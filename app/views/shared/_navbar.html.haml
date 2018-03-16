@@ -1,6 +1,6 @@
 %nav
   .nav-wrapper
-    %a.brand-logo.left{:href => "/"} Logo
+    = link_to "Logo",root_path,{class: "brand-logo"}
     %ul.right
       = render "shared/navbarLinks"
 
