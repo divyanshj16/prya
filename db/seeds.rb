@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Sustage.create(stage: 'idea')
+Sustage.create(stage: 'prototype_ready')
+Sustage.create(stage: 'inmarket')
