@@ -1,0 +1,41 @@
+.card
+	.card-header
+		font-weight: medium
+		font-size: 1.4rem
+
+.post-container
+	@media only screen and (min-width: 993px)
+		width: 60%
+	  
+
+.post
+	.post-header
+		padding: 10px
+		display: flex
+		.profile-thumb
+			height: 40px
+			width: 40px
+			border-radius: 5px
+			margin-right: 20px
+		.post-by
+			flex: 1
+			color: $primary-text-color
+			&:hover
+				text-decoration: underline
+	.card-content
+		color: $secondary-text-color
+	.post-text
+		font-size: 1.2rem
+	.post-image
+		img
+			max-height: 400px
+	.post-timestamp
+		position: absolute
+		right: 24px
+	.post-footer
+		display: flex
+		justify-content: center
+		span,a
+			flex: 1
+			text-align: center
+
