@@ -1,1 +1,71 @@
-%h1 Feed page
+:css
+	body{
+		background: #f1f1f1;
+	}
+%section.primary-color.page-header
+	.container.center
+		%div.medium
+			Welcome to
+		%div.big
+			%span.white-text
+				Praya - 
+			Make your First Pitch Deck
+		%div
+			%a.white-text{:href => "/help",style: "margin: 20px;"}
+				Learn More
+		= link_to new_startup_path,{class: "btn btn-floating btn-large right tooltipped ml-1 green", "data-position": "top", "data-tooltip":"Add your Pitch Deck"}do
+			%i.material-icons add
+		= link_to new_startup_path,{class: "btn btn-floating btn-large right tooltipped ml-1", "data-position": "top", "data-tooltip":"Make your Startup"}do
+			%i.material-icons business
+
+%section{style: "padding-top: 50px;"}
+	.section
+		.container.post-container
+			.row
+				.col.m4.l3.hide-on-small-only
+					.card
+						.card-content
+							.row
+								.col.s3.center
+									%img.profile-thumb{src: "http://via.placeholder.com/32x32"}
+								.col.s9
+									.row
+										.s12
+											%p.medium-weight.medium= current_user.username
+										.s12
+											= link_to "View Your Profile",current_user,class: "secondary-text-color"
+							.divider
+							.row
+								%span.text-muted You are founder in
+								%br/
+								%span.medium-weight.medium 0
+								%span startups
+							.row
+								%span.medium-weight.medium 0
+								%span investors 
+								%br/
+								%span.text-muted viewed your profile
+							.row
+								%span.medium-weight.medium 0
+								%span investors 
+								%br/
+								%span.text-muted contacted you
+
+				.col.s12.m8.l9
+					.card.post
+						.card-header.post-header
+							%img.profile-thumb{:src => "http://via.placeholder.com/32x32", :alt => ""}/
+							= link_to "Startup Name, Guy Name",'#',class: 'post-by'
+						.card-image.post-image
+							%img{:src => "http://via.placeholder.com/400x400/FF5252/FFFFFF"}/
+							%span.card-title Card Title
+						.card-content
+							%p.post-text Rob Stark right now hahah
+							%span.post-timestamp 13 hours ago
+						.card-action.post-footer
+							%a{href: ""}
+								%i.material-icons arrow_upward
+								Upvote
+							%a{href: ""}
+								%i.material-icons phone
+								Contact Startup
