@@ -1,38 +1,39 @@
 %nav
   .nav-wrapper
-    %a.sidemenu-trigger{"data-activates" => "mobile-demo", :href => "#"}
-      %i.material-icons menu
+    - if user_signed_in?
+      %a.sidemenu-trigger{"data-activates" => "mobile-demo", :href => "#"}
+        %i.material-icons menu
     %a.brand-logo.hide-on-small-only{:href => "#!"} Logo
     %ul.right
       = render 'shared/navbarLinks'
-
-    %ul#mobile-demo.side-nav
-      %li
-        .user-view
-          .background
-            %img{:src => "/assets/material_background.jpg"}/
-          = link_to current_user do
-            %img.circle{:src => "http://via.placeholder.com/256x256"}/
-          = link_to current_user do
-            %span.white-text.name= current_user.username
-          = link_to current_user do
-            %span.white-text.email= current_user.email
+    - if user_signed_in?
+      %ul#mobile-demo.side-nav
         %li
-          = link_to new_startup_path do
-            %i.material-icons add_circle
-            Create a Startup
-            
-        %li
-          = link_to '#' do
-            %i.material-icons description
-            Blog
-        %li
-          .divider
-        %li
-          %a.waves-effect{:href => "#!"}
-            %i.material-icons settings
-            Settings
-        %li
-          %a.waves-effect{:href => "#!"}
-            %i.material-icons help
-            Help
+          .user-view
+            .background
+              %img{:src => "/assets/material_background.jpg"}/
+            = link_to current_user do
+              %img.circle{:src => "http://via.placeholder.com/256x256"}/
+            = link_to current_user do
+              %span.white-text.name= current_user.username
+            = link_to current_user do
+              %span.white-text.email= current_user.email
+          %li
+            = link_to new_startup_path do
+              %i.material-icons add_circle
+              Create a Startup
+              
+          %li
+            = link_to '#' do
+              %i.material-icons description
+              Blog
+          %li
+            .divider
+          %li
+            %a.waves-effect{:href => "#!"}
+              %i.material-icons settings
+              Settings
+          %li
+            %a.waves-effect{:href => "#!"}
+              %i.material-icons help
+              Help
