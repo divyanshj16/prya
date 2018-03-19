@@ -1,1 +1,30 @@
-%h1 User#Show
+.container-fluid
+	%section.primary-color.page-header.startup-profile-section
+		
+		%img.responsive-img.cover{:src => "http://via.placeholder.com/400x400/00ffff", :alt => "", style: "height: 100%;"}/
+		%img.profile-pic{src: "http://via.placeholder.com/400x400"}
+		.container
+		%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
+		%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
+		%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
+
+	%section.section
+		.container
+			.row
+				.col.m4.l3.hide-on-small-only
+					.card
+						.card-content
+							.row
+								.col.s3.center
+									%img.profile-thumb{src: "http://via.placeholder.com/32x32"}
+								.col.s9
+									.row
+										.s12
+											%p.medium-weight.medium= "Good Name"
+											%p.text-muted= "Headline"
+							.divider.mb-1
+							.row
+								%span.text-muted= "Description"
+
+				.col.s12.m8.l7
+					= render "shared/user_startups"
