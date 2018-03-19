@@ -41,40 +41,36 @@
           = devise_error_messages!
           %h3.primary-text.center Sign Up
           %col.s12
-            .roww
-              .input-field.col.s12
-                / %input#email.validate{:type => "email"}/
-                / %label{:for => "email"} Email
-                = f.text_field :username, autofocus: true
-                = f.label :username
-            .roww
-              .input-field.col.s12
-                / %input#email.validate{:type => "email"}/
-                / %label{:for => "email"} Email
-                = f.email_field :email, autofocus: true, autocomplete: "email"
-                = f.label :email    
-            .roww      
-              .input-field.col.s12
-                = f.label :password
-                / - if @minimum_password_length
-                /   %em
-                /     (#{@minimum_password_length} characters minimum)
-                = f.password_field :password, autocomplete: "off"
-            .roww
-              .input-field.col.s12
-                / %input#confirm_password.validate{:type => "password"}/
-                = f.label :password_confirmation
-                / %label{:for => "confirm_password"} Confirm Password
-                = f.password_field :password_confirmation, autocomplete: "off"
-              .input-field.col.s12
-              .switch
-                %label
-                  Founder
-                  = f.check_box :isinvestor,id: "mySwitch",value: "isInvestor"
-                  / %input#mySwitch{:type => "checkbox"}
-                  %span.lever
-                  Investor
-              %br
+            .input-field.col.s12
+              / %input#email.validate{:type => "email"}/
+              / %label{:for => "email"} Email
+              = f.text_field :username, autofocus: true
+              = f.label :username
+            .input-field.col.s12
+              / %input#email.validate{:type => "email"}/
+              / %label{:for => "email"} Email
+              = f.email_field :email, autofocus: true, autocomplete: "email"
+              = f.label :email         
+            .input-field.col.s12
+              = f.label :password
+              / - if @minimum_password_length
+              /   %em
+              /     (#{@minimum_password_length} characters minimum)
+              = f.password_field :password, autocomplete: "off"
+            .input-field.col.s12
+              / %input#confirm_password.validate{:type => "password"}/
+              = f.label :password_confirmation
+              / %label{:for => "confirm_password"} Confirm Password
+              = f.password_field :password_confirmation, autocomplete: "off"
+            .input-field.col.s12
+            .switch
+              %label
+                Founder
+                = f.check_box :isinvestor,id: "mySwitch",value: "isInvestor"
+                / %input#mySwitch{:type => "checkbox"}
+                %span.lever
+                Investor
+            %br
             .row
               .actions.col.s12
                 = f.submit "Sign up",class:"col s12 btn"
