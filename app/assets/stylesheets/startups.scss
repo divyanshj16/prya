@@ -1,3 +1,25 @@
 // Place all the styles related to the startups controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.cover{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+.profile-pic{
+	position: relative;
+	height: 200px;
+	width: 200px;
+	border-radius: 50%;
+	top: 100px;
+	border: 5px solid white;
+}
+.startup-profile-section{
+	position: relative;
+	margin-bottom: 50px;
+	.btn{
+		margin-left: 10px;
+	}
+}
