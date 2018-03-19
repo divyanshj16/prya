@@ -6,7 +6,8 @@ class StartupsController < ApplicationController
   end
 
   def show
-    @post= Post.new({title: "Abc",description: "asdf"})
+    # for trial
+    @post= Post.first
   end
 
   def new
