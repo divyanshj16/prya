@@ -1,0 +1,10 @@
+- tags.each do |word|
+  %span.badge.tag
+    = word.name
+    - if current_user
+      - if @startup and can? :delete_tag, @startup
+        = link_to(tag_startup_path(tag: word.name), :method => :delete, :id => "remove-#{word.id}") do
+          %i.fa.fa-times{:style=>"color: #fff"}
+      - if @user and can? :remove_tag, @user
+        = link_to(tag_user_path(tag: word.name), :method => :delete, :id => "remove-#{word.id}") do
+          %i.fa.fa-times{:style=>"color: #fff"}
