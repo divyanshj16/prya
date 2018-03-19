@@ -8,4 +8,6 @@ class Startup < ApplicationRecord
   has_many :startup_interests
   has_many :tag, through: :startup_interests
 
+  has_many :posts
+
 end
