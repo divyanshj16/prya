@@ -1,0 +1,19 @@
+.row.d-flex
+  .col.s12.m4.m-auto
+    .card
+      .card-content.black-text.center
+        = simple_form_for @startup do |f|
+          %h3.primary-text.center Create Startup
+          %col.s12
+            .input-field.col.s12
+              = f.input :title, label: 'Startup Name', error: 'Name is mandatory, please specify one',wrapper_html: {class: 'input-field'}
+            .input-field.col.s12
+              = f.input :about,wrapper_html: {class: 'input-field'}
+            .input-field.col.s12
+              = f.input :description,input_html: {class: 'materialize-textarea'},wrapper_html: {class: 'input-field'}
+            .input-field.col.s12
+              / = f.label :stage
+              -# = f.input :sustage_id,as: :select,collection: Sustage.all.map{|stage| stage.stage}
+              = f.input :sustage_id,as: :select,collection: Sustage.all
+            .actions.col.s12
+            = f.button :submit,class: 'btn'

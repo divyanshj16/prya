@@ -1,12 +1,12 @@
 .container-fluid
-	%section.primary-color.page-header
+	%section.primary-color.page-header.startup-profile-section
 		
-		%img.responsive-img.cover{:src => "http://via.placeholder.com/400x400/00ffff", :alt => ""}/
+		%img.responsive-img.cover{:src => "http://via.placeholder.com/400x400/00ffff", :alt => "", style: "height: 100%;"}/
 		%img.profile-pic{src: "http://via.placeholder.com/400x400"}
 		.container
-		%a.btn.btn-floating.right{:href => ""}
-		%a.btn.btn-floating.right{:href => ""}
-		%a.btn.btn-floating.right{:href => ""}
+		%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
+		%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
+		%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
 
 	%section.section
 		.container
@@ -27,21 +27,4 @@
 								%span.text-muted= @startup.description
 
 				.col.s12.m8.l7
-					.card.post
-						.card-header.post-header
-							%img.profile-thumb{:src => "http://via.placeholder.com/32x32", :alt => ""}/
-							= link_to "Startup Name, Guy Name",'#',class: 'post-by'
-						.card-image.post-image
-							%img{:src => "http://via.placeholder.com/400x400/FF5252/FFFFFF"}/
-							%span.card-title Card Title
-							- if current_user
-						.card-content
-							%p.post-text Rob Stark right now hahah
-							%span.post-timestamp 13 hours ago
-						.card-action.post-footer
-							%a{href: ""}
-								%i.material-icons arrow_upward
-								Upvote
-							%a{href: ""}
-								%i.material-icons phone
-								Contact Startup
+					= render "shared/post"
