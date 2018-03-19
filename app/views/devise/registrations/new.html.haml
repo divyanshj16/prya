@@ -69,11 +69,12 @@
               .input-field.col.s12
               .switch
                 %label
-                Founder
-                = f.check_box :isinvestor,id: "mySwitch",value: "isInvestor"
-                -# %input#mySwitch{:type => "checkbox"}
-                %span.lever
-                Investor
+                  Founder
+                  = f.check_box :isinvestor,id: "mySwitch",value: "isInvestor"
+                  / %input#mySwitch{:type => "checkbox"}
+                  %span.lever
+                  Investor
+              %br
             .row
               .actions.col.s12
                 = f.submit "Sign up",class:"col s12 btn"
