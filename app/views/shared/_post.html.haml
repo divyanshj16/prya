@@ -2,7 +2,7 @@
 	.card-header.post-header
 		%img.profile-thumb{:src => "http://via.placeholder.com/32x32", :alt => ""}/
 		= link_to "#{post.startup.title}",@post.startup,class: 'post-by'
-		= link_to "#{post.user.username}",@post.user,class: "text-muted"
+		= link_to "@#{post.user.username}",@post.user,class: "text-muted normal"
 	.card-image.post-image
 		%img{:src => "http://via.placeholder.com/400x400/FF5252/FFFFFF"}/
 		%span.card-title= post.title
