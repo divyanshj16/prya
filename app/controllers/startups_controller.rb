@@ -6,6 +6,7 @@ class StartupsController < ApplicationController
   end
 
   def show
+    @post= Post.new({title: "Abc",description: "asdf"})
   end
 
   def new

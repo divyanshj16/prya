@@ -4,12 +4,12 @@
 		= link_to "Startup Name, Guy Name",'#',class: 'post-by'
 	.card-image.post-image
 		%img{:src => "http://via.placeholder.com/400x400/FF5252/FFFFFF"}/
-		%span.card-title Card Title
+		%span.card-title= post.title
 		-# TODO Link it to @post path
 		%a.btn.btn-floating.halfway-fab.amber.tooltipped{:href => "#","data-position": "bottom", "data-tooltip": "Edit this post"}
 			%i.material-icons create
 	.card-content
-		%p.post-text Rob Stark right now hahah
+		%p.post-text= post.description
 		%span.post-timestamp 13 hours ago
 	.card-action.post-footer
 		%span
