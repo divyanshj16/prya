@@ -8,17 +8,41 @@
       = render 'shared/navbarLinks'
     - if user_signed_in?
       %ul#mobile-demo.side-nav
+        .user-view
+          .background
+            %img{:src => "/assets/material_background.jpg"}/
+          = link_to current_user do
+            %img.circle{:src => "http://via.placeholder.com/256x256"}/
+          = link_to current_user do
+            %span.white-text.name= current_user.username
+          = link_to current_user do
+            %span.white-text.email= current_user.email
         %li
           = link_to new_startup_path do
             %i.material-icons add_circle
             Create a Startup
-
+        %li
+          .divider
+        %li
+          %ul.collapsible.collapsible-accordian#startup-collapsible
+            %li.bold
+              %a.collapsible-header
+                %i.material-icons business
+                Your Startups
+              .collapsible-body.startup-link
+                %ul
+                  %li
+                    -# TODO
+                    = link_to "/startups/location" do
+                      %img.profile-thumb{:src => "http://via.placeholder.com/32x32", :alt => ""}/
+                      %span Startup Name
+                    
+        %li
+          .divider
         %li
           = link_to '#' do
             %i.material-icons description
             Blog
-        %li
-          .divider
         %li
           %a.waves-effect{:href => "#!"}
             %i.material-icons settings
@@ -27,31 +51,3 @@
           %a.waves-effect{:href => "#!"}
             %i.material-icons help
             Help
-          .user-view
-            .background
-              %img{:src => "/assets/material_background.jpg"}/
-            = link_to current_user do
-              %img.circle{:src => "http://via.placeholder.com/256x256"}/
-            = link_to current_user do
-              %span.white-text.name= current_user.username
-            = link_to current_user do
-              %span.white-text.email= current_user.email
-          %li
-            = link_to new_startup_path do
-              %i.material-icons add_circle
-              Create a Startup
-
-          %li
-            = link_to '#' do
-              %i.material-icons description
-              Blog
-          %li
-            .divider
-          %li
-            %a.waves-effect{:href => "#!"}
-              %i.material-icons settings
-              Settings
-          %li
-            %a.waves-effect{:href => "#!"}
-              %i.material-icons help
-              Help
