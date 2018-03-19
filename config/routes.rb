@@ -15,8 +15,8 @@ Rails.application.routes.draw do
      member do
        get :action
        put :action
-       post 'tag', to: "projects#add_tag"
-       delete 'tag', to: "projects#delete_tag", constraints: { tag: /[^\/]+/ }
+       post 'tag', to: "startups#add_tag"
+       delete 'tag', to: "startups#delete_tag", constraints: { tag: /[^\/]+/ }
      end
   end
 
@@ -24,4 +24,5 @@ Rails.application.routes.draw do
 
   resources :founderships
   resources :users
+  get "tag/tokens"
 end

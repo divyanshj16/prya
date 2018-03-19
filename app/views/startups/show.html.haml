@@ -1,6 +1,6 @@
 .container-fluid
 	%section.primary-color.page-header.startup-profile-section
-		
+
 		%img.responsive-img.cover{:src => "http://via.placeholder.com/400x400/00ffff", :alt => "", style: "height: 100%;"}/
 		%img.profile-pic{src: "http://via.placeholder.com/400x400"}
 		.container
@@ -25,6 +25,12 @@
 							.divider.mb-1
 							.row
 								%span.text-muted= @startup.description
-
+								%p
+									- if @startup.tags.empty?
+										Nothing? Add some tags!
+									- else
+										= render :partial => "tags/show", :locals => {:tags =>  @startup.tags }
+									- if  @startup.founder_ids.include? current_user.id
+										= render :partial => "tags/new", :locals => {:what => @startup }
 				.col.s12.m8.l7
 					= render "shared/post"

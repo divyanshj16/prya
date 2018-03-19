@@ -1,5 +1,6 @@
 class StartupsController < ApplicationController
-  before_action :find_startup, only: [:show, :edit, :update, :join]
+  before_action :find_startup, only: [:show, :edit, :update, :add_tag, :delete_tag]
+  skip_before_action :verify_authenticity_token, only: [:add_tag, :delete_tag ]
 
   def index
     #listing
@@ -34,7 +35,30 @@ class StartupsController < ApplicationController
     end
   end
 
+  def add_tag
+    tags = tag_params.split(',')
+    tags.each do |word|
+      @startup.add_tag! word, current_user
+    end
+
+    redirect_to startup_path(@startup), notice: "Added tags #{tags.join(', ')}"
+  end
+
+  def delete_tag
+    tags = tag_params.split(',')
+    tags.each do |word|
+      @startup.remove_tag! word, current_user
+    end
+
+    redirect_to startup_path(@startup), notice: "Removed tags #{tags.join(', ')}"
+    #code
+  end
+
   private
+
+  def tag_params
+      params.require(:tag)
+    end
 
   def find_startup
     @startup = Startup.find(params[:id]) if params[:id].present?
