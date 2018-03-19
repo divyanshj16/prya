@@ -6,6 +6,8 @@ class Startup < ApplicationRecord
   has_many :users, through: :founderships
 
   has_many :startup_interests
-  belongs_to :tag, through: :startup_interests
+  has_many :tag, through: :startup_interests
+
+  has_many :posts
   
 end
