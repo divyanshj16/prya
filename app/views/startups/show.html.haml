@@ -33,4 +33,4 @@
 									- if  @startup.founder_ids.include? current_user.id
 										= render :partial => "tags/new", :locals => {:what => @startup }
 				.col.s12.m8.l7
-					= render "shared/post"
+					= render "shared/post", post: @post

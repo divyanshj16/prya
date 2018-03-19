@@ -7,6 +7,8 @@ class StartupsController < ApplicationController
   end
 
   def show
+    # for trial
+    @post= Post.first
   end
 
   def new
