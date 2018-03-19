@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+%h1 Startups#new
+= render 'form'
+=======
 / = simple_form_for @startup do |f|
 /   = f.input :title, label: 'Your Startup Name please', error: 'Name is mandatory, please specify one',wrapper_html: {class: 'input-field'}
 /   = f.input :about,wrapper_html: {class: 'input-field'}
@@ -28,3 +32,4 @@
               = f.input :sustage_id,as: :select,collection: Sustage.all.map{|stage| stage.stage}
             .actions.col.s12
             = f.button :submit,class: 'btn'
+>>>>>>> a9d65dcce7e88842deb53cb82c1f40a637ed5b8c

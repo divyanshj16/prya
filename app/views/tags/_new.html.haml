@@ -1,0 +1,50 @@
+= form_tag :action => "add_tag", :id => what.id do |f|
+  .input-group
+    = text_field_tag :tag, nil, class: "form-control", id: "tokens", placeholder: "Tag"
+    %span.input-group-btn
+      = button_tag(type: 'submit', class: "btn btn-default") do
+        Save
+  %span.help-block
+    Separate tags by comma.
+
+:javascript
+  $(document).ready(function() {
+    $('#tokens').selectize({
+      delimiter: ',',
+      persist: false,
+      valueField: 'name',
+      labelField: 'name',
+      searchField: 'name',
+      options: [],
+      create: true,
+      render: {
+        option: function(item, escape) {
+          return '<p>' +
+          escape(item.name) +
+          '</p>';
+        }
+      },
+      load: function(query, callback) {
+        console.log("load function");
+        if (!query.length) return callback();
+        $.ajax({
+          url: "#{tag_tokens_path}.json",
+          type: 'GET',
+          dataType: 'json',
+          data: {
+            q: query,
+          },
+          error: function(res) {
+            console.log("error");
+            console.log(res);
+            callback();
+          },
+          success: function(res) {
+            console.log("success");
+            console.log(res);
+            callback(res.tags);
+          }
+        });
+      }
+    });
+  });
