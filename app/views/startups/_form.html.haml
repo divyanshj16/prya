@@ -1,10 +1,18 @@
-= simple_form_for @startup do |f|
-	= f.input :title, label: 'Your Startup Name please', error: 'Name is mandatory, please specify one',wrapper_html: {class: 'input-field'}
-	= f.input :about,wrapper_html: {class: 'input-field'}
-	= f.input :description, placeholder: 'Some description about yourself.',input_html: {class: 'materialize-textarea'},wrapper_html: {class: 'input-field'}
-	= f.input :sustage_id,as: :select, collection: Sustage.all
-	%div
-		%label
-			%input.filled-in{type: 'checkbox',id: 'user_remember_me',name: 'user[remember_me]'}
-			%span Remember Me
-	= f.button :submit, class: 'btn'
+.row.d-flex
+  .col.s12.m4.m-auto
+    .card
+      .card-content.black-text.center
+        = simple_form_for @startup do |f|
+          %h3.primary-text.center Create Startup
+          %col.s12
+            .input-field.col.s12
+              = f.input :title, label: 'Startup Name', error: 'Name is mandatory, please specify one',wrapper_html: {class: 'input-field'}
+            .input-field.col.s12
+              = f.input :about,wrapper_html: {class: 'input-field'}
+            .input-field.col.s12
+              = f.input :description,input_html: {class: 'materialize-textarea'},wrapper_html: {class: 'input-field'}
+            .input-field.col.s12
+              / = f.label :stage
+              = f.input :sustage_id,as: :select,collection: Sustage.all.map{|stage| stage.stage}
+            .actions.col.s12
+            = f.button :submit,class: 'btn'
