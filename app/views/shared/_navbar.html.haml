@@ -3,7 +3,7 @@
     - if user_signed_in?
       %a.sidemenu-trigger{"data-activates" => "mobile-demo", :href => "#"}
         %i.material-icons menu
-    %a.brand-logo.hide-on-small-only{:href => "#!"} Logo
+    %a.brand-logo.hide-on-small-only{:href => '/'} Logo
     %ul.right
       = render 'shared/navbarLinks'
     - if user_signed_in?
