@@ -41,7 +41,7 @@ class StartupsController < ApplicationController
   end
 
   def startup_params
-    params.require(:startup).permit(:title, :about, :description)
+    params.require(:startup).permit(:title, :about, :description, :sustage_id)
   end
 
 end

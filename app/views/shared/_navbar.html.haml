@@ -21,13 +21,28 @@
           = link_to new_startup_path do
             %i.material-icons add_circle
             Create a Startup
-            
+        %li
+          .divider
+        %li
+          %ul.collapsible.collapsible-accordian#startup-collapsible
+            %li.bold
+              %a.collapsible-header
+                %i.material-icons business
+                Your Startups
+              .collapsible-body.startup-link
+                %ul
+                  %li
+                    -# TODO
+                    = link_to "/startups/location" do
+                      %img.profile-thumb{:src => "http://via.placeholder.com/32x32", :alt => ""}/
+                      %span Startup Name
+                    
+        %li
+          .divider
         %li
           = link_to '#' do
             %i.material-icons description
             Blog
-        %li
-          .divider
         %li
           %a.waves-effect{:href => "#!"}
             %i.material-icons settings
