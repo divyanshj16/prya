@@ -1,7 +1,7 @@
 - if user_signed_in?
 	%li
 		%a#settings_dropdown_trigger.dropdown-trigger{href:"#", "data-activates": "settings_dropdown"}
-			%img#nav_profile_icon{src: "http://via.placeholder.com/32x32"}
+			%i.material-icons more_vert
 		%ul.dropdown-content#settings_dropdown
 			%li
 				= link_to edit_user_registration_path do

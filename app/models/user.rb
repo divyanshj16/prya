@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
   has_many :founderships
-  has_many :startups, through: :foundership  
+  has_many :startups, through: :foundership
 end
