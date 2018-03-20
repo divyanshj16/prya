@@ -1,46 +1,38 @@
 .container-fluid
-	%section.primary-color.page-header.startup-profile-section
-		
-		%img.responsive-img.cover{:src => "http://via.placeholder.com/400x400/00ffff", :alt => "", style: "height: 100%;"}/
-		.container
-			%img.profile-pic{src: "http://via.placeholder.com/400x400"}
-			.container
-			%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
-			%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
-			%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
+	%section.primary-color.page-header
+		-if current_user == @user
+			%a.btn.btn-floating.right{:href => ""}
+				%i.material-icons create
+
+	.container.user-container
+		.row
+			.col.s12.m3
+				%img.user-profile-image{src: "http://via.placeholder.com/200x200"}
+			.col.s12.m6
+				.user-details
+					.row								
+						.col.s12
+							.medium-weight.medium= @user.username
+						.col.s12																	
+							-if @user.isinvestor
+								.light-weight.text-muted Investor
+							-else
+								.light-weight.text-muted Founder
+						.col.s12
+							.small= "Email : #{@user.email}"
+					.divider.mb-1
+					.row
+						.col.s12
+							%span.medium.secondary-text-color= Startup.find(@user.founderships.pluck(:id)).count
+							%span.text-muted= ": Startups"
+						.col.s12
+							%span.medium.secondary-text-color= Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:id))).pluck(:user_id).uniq.count								
+							%span.text-muted= ": Co-Founders"
 			
 	%section.section
 		.container
+			%span.primary-text-color.medium
+				Your Startups
 			.row
-				.col.m4.l3.hide-on-small-only
-					.card
-						.card-content
-							.row								
-								.col.s12
-									.medium-weight.medium= @user.username
-								.col.s12																	
-									-if @user.isinvestor
-										.light-weight.small Investor
-									-else
-										.light-weight.small Founder
-							.divider.mb-1
-							.row
-								.col.s12
-									.small= "Headline:ad # {@user.headline}"
-								.col.s12
-									.small= "Email : #{@user.email}"
-										
-									
-							.divider.mb-1
-							.row
-								.col.s8
-									%span.text-muted= "Startups :"
-								.col.s4
-									%span.text-muted= Startup.find(@user.founderships.pluck(:id)).count
-								.col.s8
-									%span.text-muted= "Co-Founders :"
-								.col.s4
-									%span.text-muted= Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:id))).pluck(:user_id).uniq.count-1									
-
-				.col.s12.m8.l7
+				.col.s12
 					= render "shared/user_startups"
