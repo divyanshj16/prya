@@ -1,7 +1,7 @@
 - tags.each do |word|
   %span.chip
     = word.name
-    - if current_user
+    - if current_user and @startup.founder_ids.include? current_user.id
       - if @startup
         = link_to(tag_startup_path(tag: word.name), :method => :delete, :id => "remove-#{word.id}", style: "position: relative; top: 5px;") do
           %i.material-icons{style: 'color: grey'} close
