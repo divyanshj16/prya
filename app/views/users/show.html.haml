@@ -17,19 +17,24 @@
 						.card-content
 							.row								
 								.col.s12
-									.medium-weight.medium= "Hiro Piro"
-								.col.s12
-									.light-weight.small= "Founder"
+									.medium-weight.medium= @user.username
+								.col.s12																	
+									-if @user.isinvestor
+										.light-weight.small Investor
+									-else
+										.light-weight.small Founder
 							.divider.mb-1
 							.row
 								.col.s12
-									.small= "Headline: Co-Founder at Baymax"
+									.small= "Headline:ad # {@user.headline}"
 								.col.s12
-									.small= "Email : d@d.com"
+									.small= "Email : #{@user.email}"
+										
+									
 							.divider.mb-1
 							.row
 								.col.s12
-									%span.text-muted= "I upgraded baymax for better and lorem ipsum and more lorem ipsum"
+									%span.text-muted= "add # {@user.description}"
 
 				.col.s12.m8.l7
 					= render "shared/user_startups"
