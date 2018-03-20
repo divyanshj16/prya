@@ -2,12 +2,13 @@
 	%section.primary-color.page-header.startup-profile-section
 		
 		%img.responsive-img.cover{:src => "http://via.placeholder.com/400x400/00ffff", :alt => "", style: "height: 100%;"}/
-		%img.profile-pic{src: "http://via.placeholder.com/400x400"}
 		.container
-		%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
-		%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
-		%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
-
+			%img.profile-pic{src: "http://via.placeholder.com/400x400"}
+			.container
+			%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
+			%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
+			%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
+			
 	%section.section
 		.container
 			.row
@@ -16,19 +17,30 @@
 						.card-content
 							.row								
 								.col.s12
-									.medium-weight.medium= "Hiro Piro"
-								.col.s12
-									.light-weight.small= "Founder"
+									.medium-weight.medium= @user.username
+								.col.s12																	
+									-if @user.isinvestor
+										.light-weight.small Investor
+									-else
+										.light-weight.small Founder
 							.divider.mb-1
 							.row
 								.col.s12
-									.small= "Headline: Co-Founder at Baymax"
+									.small= "Headline:ad # {@user.headline}"
 								.col.s12
-									.small= "Email : d@d.com"
+									.small= "Email : #{@user.email}"
+										
+									
 							.divider.mb-1
 							.row
-								.col.s12
-									%span.text-muted= "I upgraded baymax for better and lorem ipsum and more lorem ipsum"
+								.col.s8
+									%span.text-muted= "Startups :"
+								.col.s4
+									%span.text-muted= Startup.find(@user.founderships.pluck(:id)).count
+								.col.s8
+									%span.text-muted= "Co-Founders :"
+								.col.s4
+									%span.text-muted= Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:id))).pluck(:user_id).uniq.count-1									
 
 				.col.s12.m8.l7
 					= render "shared/user_startups"
