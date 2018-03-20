@@ -36,4 +36,17 @@
 									- if current_user and @startup.founder_ids.include? current_user.id
 										= render :partial => "tags/new", :locals => {:what => @startup }
 				.col.s12.m8.l7
-					-# = render "shared/post", post: @post
+					= render "posts/post", post: @post
+					.fixed-action-btn.click-to-toggle
+						%a.btn-floating.btn-large.waves-effect.waves-light.modal-trigger{href: "#create_post_modal"}
+							%i.large.material-icons mode_edit
+					#create_post_modal.modal
+						.modal-content
+							%h4 Let the world know
+							= simple_form_for Post.create do |f|
+								.input-field
+									= f.input :title
+								.input-field
+									= f.input :description,:input_html => {:class => "materialize-textarea wysiwyg_textarea" }
+								= hidden_field_tag(:startup_id, @startup.id)
+								= f.button :submit,:value=>"post!",:class=>"btn right"

@@ -1,14 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show]
 
-  # GET /posts
-  # GET /posts.json
-  def index
-    @posts = Post.all
-  end
-
-  # GET /posts/1
-  # GET /posts/1.json
   def show
   end
 
@@ -24,17 +17,21 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if params[:startup_id]
+      @startup = Startup.find(params[:startup_id])
+      @post = @startup.posts.create(title: params[:post][:title], description: params[:post][:description],user_id: current_user.id )
     end
+    if @post.save
+      # format.html { redirect_to @post, notice: 'Post was successfully created.' }
+      # format.json { render :show, status: :created, location: @post }
+    else
+      # format.html { render :new }
+      @post.errors.full_messages.each do |message|
+        flash[:notice] = message
+      end
+      # format.json { render json: @post.errors, status: :unprocessable_entity }
+    end
+    redirect_back fallback_location: root_path
   end
 
   # PATCH/PUT /posts/1
@@ -69,6 +66,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :description)
+      params.require(:post).permit(:title, :description, :startup_id, :user_id)
     end
 end
