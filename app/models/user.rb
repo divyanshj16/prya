@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :founderships, dependent: :destroy
   has_many :startups, through: :foundership  
 
+  has_many :posts
 end
