@@ -1,34 +1,35 @@
 .container-fluid
 	%section.primary-color.page-header
 		-if current_user == @user
-			%a.btn.btn-floating.right{:href => ""}
+			= link_to edit_user_registration_path, class: "btn btn-floating right" do
 				%i.material-icons create
 
-	.container.user-container
-		.row
-			.col.s12.m3
-				%img.user-profile-image{src: "http://via.placeholder.com/200x200"}
-			.col.s12.m6
-				.user-details
-					.row								
-						.col.s12
-							.medium-weight.medium= @user.username
-						.col.s12																	
-							-if @user.isinvestor
-								.light-weight.text-muted Investor
-							-else
-								.light-weight.text-muted Founder
-						.col.s12
-							.small= "Email : #{@user.email}"
-					.divider.mb-1
-					.row
-						.col.s12
-							%span.medium.secondary-text-color= Startup.find(@user.founderships.pluck(:id)).count
-							%span.text-muted= ": Startups"
-						.col.s12
-							%span.medium.secondary-text-color= Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:id))).pluck(:user_id).uniq.count								
-							%span.text-muted= ": Co-Founders"
-			
+	.coverphoto
+		.container.user-container
+			.row
+				.col.s12.m3
+					= image_tag current_user.avatar.url, class: "user-profile-image responsive-img", style: "border: 15px solid white; border-radius:5%;"
+				.col.s12.m6
+					.user-details
+						.row
+							.col.s12
+								.medium-weight.medium= @user.username
+							.col.s12
+								-if @user.isinvestor
+									.light-weight.text-muted Investor
+								-else
+									.light-weight.text-muted Founder
+							.col.s12
+								.small= "Email : #{@user.email}"
+						.divider.mb-1
+						.row
+							.col.s12
+								%span.medium.secondary-text-color= Startup.find(@user.founderships.pluck(:id)).count
+								%span.text-muted= ": Startups"
+							.col.s12
+								%span.medium.secondary-text-color= Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:id))).pluck(:user_id).uniq.count
+								%span.text-muted= ": Co-Founders"
+
 	%section.section
 		.container
 			%span.primary-text-color.medium
