@@ -1,4 +1,4 @@
 class Post < ApplicationRecord
-	belongs_to :startup
 	belongs_to :user
+	belongs_to :startup
 end

@@ -1,20 +1,8 @@
 = form_tag :action => "add_tag", :id => what.id do |f|
   .input-group
-    = text_field_tag :tag, nil, class: "form-control chips-autocomplete", id: "tokens", placeholder: "Tag"
+    = text_field_tag :tag, nil, class: "form-control chips-autocomplete", id: "tokens", placeholder: "Add Tags here"
     %span.input-group-btn
       = button_tag(type: 'submit', class: "btn btn-default") do
         Save
   %span.help-block
     Separate tags by comma.
-%script(type="text/javascript")
-  $(document).ready(function(){
-  var data = {
-  - Tag.all do |tag|
-    '#{tag.name}' : null,
-  };
-  console.log(data);
-  });
-%script(type="text/javascript")
-  $(document).ready(function() {
-  $('.chips-autocomplete').material_chip();
-  });

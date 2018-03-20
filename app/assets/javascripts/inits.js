@@ -12,4 +12,5 @@ $(function () {
   $('select').material_select();
   $(".sidemenu-trigger").sideNav();
   $('.tooltipped').tooltip({delay: 50});
+	$('.chips-autocomplete').material_chip();
 })
