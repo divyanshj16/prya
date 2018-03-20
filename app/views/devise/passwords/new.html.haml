@@ -3,7 +3,11 @@
     .card.hoverable
       .card-content.black-text.center
         = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-          = devise_error_messages!
+          - if resource.errors
+            .alert.alert-danger.alert-dismissable
+              - if resource.errors
+                - resource.errors.full_messages.each do |message|
+                  - flash[:alert] = message
           %h3.primary-text.center Forgot password?
           %col.s12
             .input-field.col.s12

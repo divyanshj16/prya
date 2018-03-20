@@ -20,11 +20,14 @@
 								.col.s9
 									.row
 										.s12
-											%p.medium-weight.medium= @startup.title
-											%p.text-muted= @startup.about
+											%p.medium-weight.medium
+												= @startup.title
+											%p.text-muted
+												= @startup.about
 							.divider.mb-1
 							.row
-								%span.text-muted= @startup.description
+								%span.text-muted
+									= @startup.description
 								%p
 									- if @startup.tags.empty?
 										No tags right now.
@@ -33,4 +36,4 @@
 									- if current_user and @startup.founder_ids.include? current_user.id
 										= render :partial => "tags/new", :locals => {:what => @startup }
 				.col.s12.m8.l7
-					= render "shared/post", post: @post
+					-# = render "shared/post", post: @post
