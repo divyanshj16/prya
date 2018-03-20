@@ -9,7 +9,7 @@
 			Welcome to
 		%div.big
 			%span.white-text
-				Praya - 
+				Praya -
 			Make your First Pitch Deck
 		%div
 			%a.white-text{:href => "/help",style: "margin: 20px;"}
@@ -36,16 +36,17 @@
 										.s12
 											= link_to "View Your Profile",current_user,class: "secondary-text-color"
 							.divider.mb-1
-							.row
-								%span.text-muted You are founder in
-								%br/
-								%span.medium-weight.medium= @startups.count
-								%span startups
-							.row
-								%span.medium-weight.medium 0
-								%span investors 
-								%br/
-								%span.text-muted viewed your profile
+							- if @startups
+								.row
+									%span.text-muted You are founder in
+									%br/
+									%span.medium-weight.medium= @startups.count
+									%span startups
+								.row
+									%span.medium-weight.medium 0
+									%span investors
+									%br/
+									%span.text-muted viewed your profile
 
 				.col.s12.m8.l7
-					= render "posts/post",posts: @posts
+					= render @posts

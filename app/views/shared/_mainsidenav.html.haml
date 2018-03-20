@@ -42,12 +42,12 @@
                 .collapsible-body.startup-link
                   %ul
                     %li
-      - @mysu = Foundership.where(user_id: current_user.id).pluck(:id)
-      - @mysu.each do |su|
-        - if su
-          = link_to "/startups/#{su}" do
-            %img.profile-thumb{:src => "http://via.placeholder.com/32x32",class: 'responsive-img', style:'max-width: 2.75rem;', :alt => ""}/
-            = Startup.find(su).title
+                      - @mysu = Foundership.where(user_id: current_user.id).pluck(:id)
+                      - @mysu.each do |su|
+                        - if su
+                          = link_to "/startups/#{su}" do
+                            %img.profile-thumb{:src => "http://via.placeholder.com/32x32",class: 'responsive-img', style:'max-width: 2.75rem;', :alt => ""}/
+                            = Startup.find(su).title
           %li
             .divider{style:"margin: 0px;"}
         %li
