@@ -1,10 +1,10 @@
 - tags.each do |word|
-  %span.badge.tag
+  %span.chip
     = word.name
-    - if current_user
+    - if current_user and @startup.founder_ids.include? current_user.id
       - if @startup
-        = link_to(tag_startup_path(tag: word.name), :method => :delete, :id => "remove-#{word.id}") do
-          %i.fa.fa-times{:style=>"color: #fff"}
+        = link_to(tag_startup_path(tag: word.name), :method => :delete, :id => "remove-#{word.id}", style: "position: relative; top: 5px;") do
+          %i.material-icons{style: 'color: grey'} close
       - if @user
         = link_to(tag_user_path(tag: word.name), :method => :delete, :id => "remove-#{word.id}") do
-          %i.fa.fa-times{:style=>"color: #fff"}
+          %i.material-icons{style: 'color: grey'} close

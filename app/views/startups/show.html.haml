@@ -27,10 +27,10 @@
 								%span.text-muted= @startup.description
 								%p
 									- if @startup.tags.empty?
-										Nothing? Add some tags!
+										No tags right now.
 									- else
 										= render :partial => "tags/show", :locals => {:tags =>  @startup.tags }
-									- if  @startup.founder_ids.include? current_user.id
+									- if current_user and @startup.founder_ids.include? current_user.id
 										= render :partial => "tags/new", :locals => {:what => @startup }
 				.col.s12.m8.l7
 					= render "shared/post", post: @post

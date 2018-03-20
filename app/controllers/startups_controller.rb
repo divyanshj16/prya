@@ -43,7 +43,7 @@ class StartupsController < ApplicationController
       @startup.add_tag! word, current_user
     end
 
-    redirect_to startup_path(@startup), notice: "Added tags #{tags.join(', ')}"
+    redirect_to startup_path(@startup), notice: "Tags added successfully : #{tags.join(', ')}"
   end
 
   def delete_tag
@@ -52,7 +52,7 @@ class StartupsController < ApplicationController
       @startup.remove_tag! word, current_user
     end
 
-    redirect_to startup_path(@startup), notice: "Removed tags #{tags.join(', ')}"
+    redirect_to startup_path(@startup), notice: "Tag removed successfully : #{tags.join(', ')}"
     #code
   end
 
