@@ -12,11 +12,13 @@
           .background
             %img{:src => "/assets/material_background.jpg"}/
           = link_to current_user do
-            %img.circle{:src => "http://via.placeholder.com/256x256"}/
+            = image_tag current_user.avatar.url, style: "border: 1.5px solid white",class: "responsive-img circle"
           = link_to current_user do
-            %span.white-text.name= current_user.username
+            %span.white-text.name
+              = current_user.username
           = link_to current_user do
-            %span.white-text.email= current_user.email
+            %span.white-text.email
+              = current_user.email
         -if current_user.isinvestor
           %li
           -# TODO add bookmarks path
@@ -36,27 +38,27 @@
                 %a.collapsible-header
                   %i.material-icons business
                   Your Startups
+                  %i.material-icons.right arrow_drop_down
                 .collapsible-body.startup-link
                   %ul
                     %li
-                      -# - @startups = current_user_startups
-                      -@current_user_startups.each do |startup|
-                        -# TODO
-                        = link_to startup do
-                          %img.profile-thumb{:src => "http://via.placeholder.com/32x32", :alt => ""}/
-                          %span= startup.title
-                      
+      - @mysu = Foundership.where(user_id: current_user.id).pluck(:id)
+      - @mysu.each do |su|
+        - if su
+          = link_to "/startups/#{su}" do
+            %img.profile-thumb{:src => "http://via.placeholder.com/32x32",class: 'responsive-img', style:'max-width: 2.75rem;', :alt => ""}/
+            = Startup.find(su).title
           %li
-            .divider
+            .divider{style:"margin: 0px;"}
         %li
           = link_to '#' do
             %i.material-icons description
             Blog
         %li
-          %a.waves-effect{:href => "#!"}
+          = link_to edit_user_registration_path, class:'waves-effect' do
             %i.material-icons settings
             Settings
         %li
-          %a.waves-effect{:href => "#!"}
+          = link_to '#', class: "waves-effect" do
             %i.material-icons help
             Help

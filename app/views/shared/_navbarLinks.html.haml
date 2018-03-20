@@ -1,8 +1,11 @@
 - if user_signed_in?
 	%li
 		%a#settings_dropdown_trigger.dropdown-trigger{href:"#", "data-activates": "settings_dropdown"}
-			%i.material-icons more_vert
-		%ul.dropdown-content#settings_dropdown
+			= image_tag current_user.avatar.url, style: "border: 1.5px solid white"
+			&nbsp
+			= current_user.username
+			%i.material-icons arrow_drop_down
+		%ul.dropdown-content#settings_dropdown{style: 'min-width: 12.5%;'}
 			%li
 				= link_to edit_user_registration_path do
 					%i.material-icons settings

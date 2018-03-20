@@ -4,6 +4,11 @@
       .card-content.center
         %h2.primary-text Log in
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          - if resource.errors
+            .alert.alert-danger.alert-dismissable
+              - if resource.errors
+                - resource.errors.full_messages.each do |message|
+                  - flash[:alert] = message
           .row
             .input-field.col.s12
               = f.email_field :email, autofocus: true, autocomplete: "email"

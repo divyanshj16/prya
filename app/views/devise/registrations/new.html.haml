@@ -38,7 +38,11 @@
     .card.hoverable
       .card-content.black-text.center
         = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-          = devise_error_messages!
+          - if resource.errors
+            .alert.alert-danger.alert-dismissable
+              - if resource.errors
+                - resource.errors.full_messages.each do |message|
+                  - flash[:alert] = message
           %h3.primary-text.center Sign Up
           %col.s12
             .input-field.col.s12
@@ -50,7 +54,7 @@
               / %input#email.validate{:type => "email"}/
               / %label{:for => "email"} Email
               = f.email_field :email, autofocus: true, autocomplete: "email"
-              = f.label :email         
+              = f.label :email
             .input-field.col.s12
               = f.label :password
               / - if @minimum_password_length
