@@ -96,3 +96,17 @@ footer.page-footer {
 .mb-none{
   margin-bottom: 0px;
 }
+
+.hor-auto{
+  display:flex;
+  flex-direction: column;
+  span{
+    margin: auto;
+  }
+  img{
+    margin: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    /*border: 2px solid black;*/
+  }
+}

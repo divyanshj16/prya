@@ -1,22 +1,29 @@
-
-
-.card.horizontal
+.card.card-horizontal.hoverable
+  .card-header{style: "padding:24px"}
+    .col.s2.push
+      %img{:src => "http://via.placeholder.com/32x32"}/
+    .col.s3.push
+      .medium-weight.medium= "Baymax"  
   .card-stacked
     .row
-      .col.s3.offset-s1
-        %br/
-        %img{:src => "http://via.placeholder.com/32x32"}/
-      .col.s8
+      .col.s12
         .card-content
-          %p Description
-    .row
-      .col.s3
-        %img{:alt => 'founder image'}
-      .col.s3
-        %img{alt: 'founder image'}        
-      .col.s3
-        %img{alt: 'founder image'}
-      .col.s3
-        %img{alt: 'founder image'}                
+          .text-muted Description
+    .divider.mb-1
+    .card-content
+      .row
+        .col.s4.hor-auto
+          %img{:src => "http://via.placeholder.com/100x100"}
+          %span.small.text-muted= 'Founder Name'
+        .col.s4.hor-auto
+          %img{:src => "http://via.placeholder.com/100x100"} 
+          %span.small.text-muted= 'Founder Name'       
+        .col.s4.hor-auto
+          %img{:src => "http://via.placeholder.com/100x100"}
+          %span.small.text-muted= 'Founder Name'         
     .card-action
-      %a{:href => "#"} This is a link
+      %a{:href => "#"} View More
+
+
+
+
