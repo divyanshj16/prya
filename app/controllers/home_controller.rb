@@ -3,6 +3,6 @@ class HomeController < ApplicationController
   end
   def feed
     #testing
-    @post = Post.first
+    @posts = Post.all
   end
 end
