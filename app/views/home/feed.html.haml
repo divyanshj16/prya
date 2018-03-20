@@ -39,18 +39,13 @@
 							.row
 								%span.text-muted You are founder in
 								%br/
-								%span.medium-weight.medium 0
+								%span.medium-weight.medium= @startups.count
 								%span startups
 							.row
 								%span.medium-weight.medium 0
 								%span investors 
 								%br/
 								%span.text-muted viewed your profile
-							.row
-								%span.medium-weight.medium 0
-								%span investors 
-								%br/
-								%span.text-muted contacted you
 
 				.col.s12.m8.l7
 					= render "posts/post",posts: @posts
