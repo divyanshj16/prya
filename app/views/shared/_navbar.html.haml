@@ -39,7 +39,8 @@
                 .collapsible-body.startup-link
                   %ul
                     %li
-                      -@startups.each do |startup|
+                      -# - @startups = current_user_startups
+                      -@current_user_startups.each do |startup|
                         -# TODO
                         = link_to startup do
                           %img.profile-thumb{:src => "http://via.placeholder.com/32x32", :alt => ""}/
