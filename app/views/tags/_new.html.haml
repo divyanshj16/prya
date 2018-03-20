@@ -6,15 +6,3 @@
         Save
   %span.help-block
     Separate tags by comma.
-%script(type="text/javascript")
-  $(document).ready(function(){
-  var data = {
-  - Tag.all do |tag|
-    '#{tag.name}' : null,
-  };
-  console.log(data);
-  });
-%script(type="text/javascript")
-  $(document).ready(function() {
-  $('.chips-autocomplete').material_chip();
-  });
