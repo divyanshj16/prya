@@ -10,6 +10,8 @@ class Startup < ApplicationRecord
 
   has_many :posts
 
+  has_many :presentations
+
   def add_tag! name, user
     name.downcase!
     name.gsub!(/\s/, '')

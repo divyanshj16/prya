@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180321104547) do
+ActiveRecord::Schema.define(version: 20180321141304) do
 
   create_table "founderships", force: :cascade do |t|
     t.integer "user_id"
@@ -22,11 +22,10 @@ ActiveRecord::Schema.define(version: 20180321104547) do
   end
 
   create_table "palletes", force: :cascade do |t|
-    t.string "colors"
-    t.string "string"
+    t.string "name"
+    t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -41,13 +40,13 @@ ActiveRecord::Schema.define(version: 20180321104547) do
   end
 
   create_table "presentations", force: :cascade do |t|
-    t.string "startup"
-    t.string "references"
-    t.string "pallete"
+    t.integer "startup_id"
+    t.integer "pallete_id"
     t.string "content"
-    t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["pallete_id"], name: "index_presentations_on_pallete_id"
+    t.index ["startup_id"], name: "index_presentations_on_startup_id"
   end
 
   create_table "startup_interests", force: :cascade do |t|
