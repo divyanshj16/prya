@@ -24,10 +24,10 @@
 						.divider.mb-1
 						.row
 							.col.s12
-								%span.medium.secondary-text-color= Startup.find(@user.founderships.pluck(:id)).count
+								%span.medium.secondary-text-color= Startup.find(@user.founderships.pluck(:startup_id)).count
 								%span.text-muted= ": Startups"
 							.col.s12
-								%span.medium.secondary-text-color= Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:id))).pluck(:user_id).uniq.count
+								%span.medium.secondary-text-color= Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:startup_id))).pluck(:user_id).uniq.count
 								%span.text-muted= ": Co-Founders"
 
 	%section.section
