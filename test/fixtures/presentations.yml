@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  startup: MyString
+  references: MyString
+  pallete: MyString
+  references: MyString
+  content: MyString
+  text: MyString
+
+two:
+  startup: MyString
+  references: MyString
+  pallete: MyString
+  references: MyString
+  content: MyString
+  text: MyString

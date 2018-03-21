@@ -1,0 +1,2 @@
+class Pallete < ApplicationRecord
+end
