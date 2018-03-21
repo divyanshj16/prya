@@ -1,12 +1,11 @@
 .container-fluid
 	%section.primary-color.page-header.startup-profile-section
-
-		%img.responsive-img.cover{:src => "http://via.placeholder.com/400x400/00ffff", :alt => "", style: "height: 100%;"}/
-		%img.profile-pic{src: "http://via.placeholder.com/400x400"}
 		.container
-		%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
-		%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
-		%a.btn.btn-floating.btn-large.right.hide-on-small-only{:href => ""}
+			%img.responsive-img.cover{:src => "http://via.placeholder.com/400x400/00ffff", :alt => "", style: "height: 100%;"}/
+			%img.profile-pic{src: "http://via.placeholder.com/400x400"}
+		.container
+			=link_to edit_startup_path,{class: "btn btn-floating right hide-on-small-only tooltipped","data-tooltip": "Edit Startup info","data-position":"top"} do
+				%i.material-icons create
 
 	%section.section
 		.container
@@ -43,8 +42,8 @@
 							Sorry No New Posts to show
 					- if current_user and @startup.founder_ids.include? current_user.id
 						.fixed-action-btn.click-to-toggle
-							%a.btn-floating.btn-large.waves-effect.waves-light.modal-trigger{href: "#create_post_modal"}
-								%i.large.material-icons mode_edit
+							%a.btn-floating.btn-large.waves-effect.waves-light.modal-trigger.tooltipped{href: "#create_post_modal","data-tooltip": "Add Post","data-position":"top"}
+								%i.large.material-icons add
 						#create_post_modal.modal
 							.modal-content
 								%h4 Let the world know
