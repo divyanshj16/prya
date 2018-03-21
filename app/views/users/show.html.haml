@@ -25,15 +25,16 @@
 						.row
 							.col.s12
 								%span.medium.secondary-text-color= Startup.find(@user.founderships.pluck(:startup_id)).count
-								%span.text-muted= ": Startups"
+								%span.text-muted= " Startups"
 							.col.s12
 								%span.medium.secondary-text-color= Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:startup_id))).pluck(:user_id).uniq.count
-								%span.text-muted= ": Co-Founders"
+								%span.text-muted= " Co-Founders"
 
 	%section.section
 		.container
-			%span.primary-text-color.medium
-				Your Startups
+			.row{style: "margin-top:0px; margin-bottom:5px"}
+				.col.s12.primary-text-color.medium
+					Your Startups
 			.row
 				.col.s12
 					= render "shared/user_startups"
