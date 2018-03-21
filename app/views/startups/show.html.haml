@@ -4,8 +4,16 @@
 			%img.responsive-img.cover{:src => "http://via.placeholder.com/400x400/00ffff", :alt => "", style: "height: 100%;"}/
 			%img.profile-pic{src: "http://via.placeholder.com/400x400"}
 		.container
-			=link_to edit_startup_path,{class: "btn btn-floating right hide-on-small-only tooltipped","data-tooltip": "Edit Startup info","data-position":"top"} do
-				%i.material-icons create
+			-# =link_to edit_startup_path,{class: "btn btn-floating right hide-on-small-only tooltipped","data-tooltip": "Edit Startup info","data-position":"top"} do
+			-# 	%i.material-icons create
+			%a.modal-trigger.btn.btn-floating.right.hide-on-small-only.tooltipped{href: "#PitchPlease","data-tooltip": "view #{@startup.title}'s pitch decks","data-position":"top",style: "border-radius: 0;width: auto;padding: 0 1rem;"}
+				Your Pitch Decks
+			#PitchPlease.modal.black-text
+				.modal-content
+					- @startup.presentations do |ppt|
+						= ppt
+			-# = link_to edit_startup_path do
+			-# 	Your Pitch Decks
 
 	%section.section
 		.container
@@ -42,7 +50,7 @@
 							Sorry No New Posts to show
 					- if current_user and @startup.founder_ids.include? current_user.id
 						.fixed-action-btn.click-to-toggle
-							%a.btn-floating.btn-large.waves-effect.waves-light.modal-trigger.tooltipped{href: "#create_post_modal","data-tooltip": "Add Post","data-position":"top"}
+							%a.btn-floating.btn-large.waves-effect.waves-light.modal-trigger.tooltipped{href: "#create_post_modal","data-tooltip": "Announce!","data-position":"top"}
 								%i.large.material-icons add
 						#create_post_modal.modal
 							.modal-content
