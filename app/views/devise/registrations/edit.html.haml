@@ -26,6 +26,14 @@
                   = f.file_field :avatar
                 .file-path-wrapper
                   %input.file-path.validate{type: "text", value: "Choose File"}/
+            .row.field
+              = image_tag @user.covph.url(:landscape),class: "responsive-img col s4"
+              .file-field.input-field.col.s8
+                .btn
+                  %span Image
+                  = f.file_field :covph
+                .file-path-wrapper
+                  %input.file-path.validate{type: "text", value: "Choose File"}/
             .input-field.col.s12
               = f.label :password
               = f.password_field :password, autocomplete: "off"
