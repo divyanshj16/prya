@@ -25,5 +25,6 @@ Rails.application.routes.draw do
 
   resources :founderships
   resources :users
+  resources :presentations
   get "tag/tokens"
 end

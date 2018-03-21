@@ -12,6 +12,7 @@
 				.modal-content
 					- @startup.presentations do |ppt|
 						= ppt
+					= link_to 'new pitch', new_presentation_path
 			-# = link_to edit_startup_path do
 			-# 	Your Pitch Decks
 
