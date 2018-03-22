@@ -17,6 +17,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem "paperclip", "~> 6.0.0"
 gem 'haml'
+gem 'loofah', '~> 2.2.1'
 gem 'simple_form'
 
 group :development, :test do
