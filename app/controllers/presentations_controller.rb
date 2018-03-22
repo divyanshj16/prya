@@ -66,5 +66,3 @@ class PresentationsController < ApplicationController
       params.require(:ppt).permit(:content, :pallete_id, :startup_id)
     end
 end
-
-end
