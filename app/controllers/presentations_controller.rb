@@ -4,7 +4,10 @@ class PresentationsController < ApplicationController
 
   def show
   end
-
+  
+  def index
+    
+  end
   # GET /presentations/new
   def new
     @ppt = Presentation.new
