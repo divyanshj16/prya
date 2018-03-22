@@ -6,7 +6,7 @@ class PresentationsController < ApplicationController
   end
   
   def index
-    
+    @p = [{id: 1,title: "Secul",description: "Nothing about People and Culture",deafult: false}]
   end
   # GET /presentations/new
   def new
