@@ -1,0 +1,31 @@
+.page-header.secondary-color
+	.container
+		%h3.white-text Your Pitch Decks
+		=link_to "/",{class: "btn btn-floating btn-large right orange tooltipped","data-tooltip": "Create new Pitch Deck","data-position": "top"} do
+			%i.material-icons add
+
+-# show Presentations
+.container
+	.row
+		-if @presentations
+			- @presentations.each do|presentation|
+				.col.s12.m4.l3
+					-if presentation.default
+						.card.default
+					-else
+						.card
+						.card-image
+							%img.card-img.responsive-img{:src => "http://via.placeholder.com/200x200", :alt => ""}/
+							.card-title
+								%strong
+									=presentation.title
+							=link_to "#",{class: "btn-floating halfway-fab red tooltipped green","data-tooltip": "Make this as Default","data-position": "top"} do
+								%i.material-icons star
+						.card-content
+							%span.text-muted
+								=presentation.description
+						.card-action
+							=link_to "View","#" 
+							=link_to "Edit","#"
+
+			
