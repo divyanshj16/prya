@@ -2,16 +2,21 @@
 	var elem = document.querySelector('.fixed-action-btn');
 	var instance = M.FloatingActionButton.init(elem, options);
 
-.container{style: "background:#f9f9f9;"}
-	.row
-		.col.s12.low-margin-bottom
-			%h4
-				Name
-	.row.large-height.slide-class
-		.relative-cl
-			%i.small.material-icons.icon-white.top-right aspect_ratio
-		.col.s12
-			%h3 SLIDES
+.page-header.primary-color
+	.container
+		.row
+			%h4.white-text Name
+	.container
+		=link_to edit_presentation_path,{class: "btn btn-floating right tooltipped amber","data-tooltip":"Edit this Presentation","data-position": "top"} do
+			%i.material-icons create
+
+.container
+	.reveal
+		.slides
+			%section
+				%h1 Slide 1
+			%section
+				%h1 Slide 2
 	.row
 		.col.s12
 			.fixed-action-btn
@@ -19,9 +24,9 @@
 					%i.large.material-icons share
 				%ul
 					%li
-						%a.btn-floating.red
-							%i.material-icons insert_chart
+						%a.btn-floating.orange-red.tooltipped{"data-tooltip":"Download this pitch deck","data-position":"left"}
+							%i.material-icons file_download
 					%li
-						%a.btn-floating.yellow.darken-1
-							%i.material-icons format_quote
+						%a.btn-floating.yellow.darken-1.tooltipped{"data-tooltip":"Share Link","data-position":"left"}
+							%i.material-icons share
 
