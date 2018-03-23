@@ -1,1 +1,26 @@
+.row{style: 'height:88vh'}
+  .center.col.s10.offset-s1
+    .col.s4.input-field
+      %input#first_name.validate{type: "text"}/
+      %label{for: "first_name"} First Name
+    .col.s4.input-field
+      %select
+        %option{disabled: "disabled", selected: "selected", value: ""} Choose your option
+        %option{value: "1"} Option 1
+        %option{value: "2"} Option 2
+        %option{value: "3"} Option 3
+      %label Slide Transition
+  .container-fluid
+    .row
+      .col.s2{style: 'margin-left:2rem'}
+        .slide-index.card{style: 'min-height: 75vh'}
+          .card-content.row
+            .slide.col.s12{style: 'height: 100px; border:2px solid skyblue; box-shadow: 0px 1px 20px skyblue'}
+      .col.s9{style: 'margin-top:1.5rem'}
+        .container
+          .slide-prew.card{style: 'height:450px'}
+            .card-content.row
+              dadasas
+#preslide
+  %section
 = render 'form'
