@@ -1,0 +1,27 @@
+:javascript
+	var elem = document.querySelector('.fixed-action-btn');
+	var instance = M.FloatingActionButton.init(elem, options);
+
+.container{style: "background:#f9f9f9;"}
+	.row
+		.col.s12.low-margin-bottom
+			%h4
+				Name
+	.row.large-height.slide-class
+		.relative-cl
+			%i.small.material-icons.icon-white.top-right aspect_ratio
+		.col.s12
+			%h3 SLIDES
+	.row
+		.col.s12
+			.fixed-action-btn
+				%a.btn-floating.btn-large.red
+					%i.large.material-icons share
+				%ul
+					%li
+						%a.btn-floating.red
+							%i.material-icons insert_chart
+					%li
+						%a.btn-floating.yellow.darken-1
+							%i.material-icons format_quote
+
