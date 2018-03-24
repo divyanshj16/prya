@@ -1,0 +1,92 @@
+.row{style: 'height:88vh'}
+  .center.col.s10.offset-s1
+    .col.s4.input-field
+      %input#first_name.validate{type: "text"}/
+      %label{for: "first_name"} First Name
+    .col.s4.input-field
+      %select
+        %option{disabled: "disabled", selected: "selected", value: ""} Choose your option
+        %option{value: "1"} Option 1
+        %option{value: "2"} Option 2
+        %option{value: "3"} Option 3
+      %label Slide Transition
+  .container-fluid
+    .row
+      .col.s2{style: 'margin-left:2rem'}
+        .slide-index.card{style: 'max-height: 75vh;overflow-y: auto'}
+          .card-content.center
+            #slide_thumb_container
+            .btn.center.waves-effect.waves-light{onclick: 'addSlide();'}
+              %i.material-icons.left add
+              Add Slide
+      .col.s9{style: 'margin-top:1.5rem'}
+        .container
+          #slide_prew.card
+            .card-content
+#preslide.hide
+  %section.valign-wrapper.center.slideship
+    %h1 Title1
+    %h4 Small descriptions(about you)
+  %section.valign-wrapper.center.slideship
+    %h1 Title2
+    %h4 Small descriptions(about you)
+  %section.valign-wrapper.center.slideship
+    %h1 Title3
+    %h4 Small descriptions(about you)
+  %section.valign-wrapper.center.slideship
+    %h1 Title4
+    %h4 Small descriptions(about you)
+  %section.valign-wrapper.center.slideship
+    %h1 Title5
+    %h4 Small descriptions(about you)
+  %section.valign-wrapper.center.slideship
+    %section
+    %h1 Title6
+    %h4 Small descriptions(about you)
+= render 'form'
+
+:javascript
+  var addSlide = function(){};
+  $(window).ready(function(){
+    //$('#preslide').each(function(){
+    //alert($('#preslide > section').length);
+    function presentations_new_init(){
+      $('#slide_thumb_container').html('');
+      var sec_count = $('#preslide > section').length;
+      var i = sec_count;
+      while (i > 0) {
+        $('#slide_thumb_container').append('<div class="slide_thumb col s12'+' thumb_no_'+(sec_count-i)+'"></div>');
+        i--;
+      }
+      for(var i = 0; i < sec_count; i++){
+        $('.slide_thumb').eq(i).html($('#preslide > section')[i].outerHTML);
+        $('.slide_thumb > section').css('height','100px').css('-moz-transform','scale(0.2)');
+      }
+    }
+    presentations_new_init();
+    //$('.slide_thumb').click(function(){
+      //$('#slide_prew > .card-content').html('');
+      //var sid = parseInt($(this).attr('class').slice(-1),10);
+      //$('#slide_prew .card-content').html($('#preslide > section')[sid].outerHTML);
+      //$('.slide_thumb').removeClass('active');
+      //$(this).addClass('active');
+    //});
+    function  slide_thumb_adder(){
+      $('.slide_thumb').off('click');
+      $('.slide_thumb').click(function(){
+        $('#slide_prew > .card-content').html('');
+        var sid = parseInt($(this).attr('class').slice(-1),10);
+        $('#slide_prew .card-content').html($('#preslide > section')[sid].outerHTML);
+        $('.slide_thumb').removeClass('active');
+        $(this).addClass('active');
+      });
+    }
+    slide_thumb_adder();
+    addSlide = null;
+    addSlide = function(){
+      $('#preslide').append('<section class="valign-wrapper center slideship"><h1>Title</h1><h4>Description</h4></section>');
+      presentations_new_init();
+      slide_thumb_adder();
+    }
+
+  });
