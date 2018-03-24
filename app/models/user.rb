@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :username, presence: true, uniqueness: true
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/:style/user_missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
-  has_attached_file :covph, styles: { landscape: "700x300#" }, default_url: "/images/:style/missing.png"
+  has_attached_file :covph, styles: { landscape: "700x300#" }, default_url: "/assets/:style/cover_missing.png"
   validates_attachment_content_type :covph, content_type: /\Aimage\/.*\z/
 
   has_many :founderships, dependent: :destroy

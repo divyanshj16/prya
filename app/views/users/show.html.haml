@@ -1,40 +1,37 @@
 .container-fluid
-	%section.primary-color.page-header
-		-if current_user == @user
-			= link_to edit_user_registration_path, class: "btn btn-floating right" do
-				%i.material-icons create
-
-	.coverphoto{style: "height:300px;background-image: url('#{@user.covph.url(:landscape)}');background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;"}
-		.container.user-container
-			.row
-				.col.s12.m3
-					= image_tag current_user.avatar.url, class: "user-profile-image responsive-img", style: "border: 15px solid white; border-radius:5%;"
-				.col.s12.m6
-					.user-details
-						.row
-							.col.s12
-								.medium-weight.medium= @user.username
-							.col.s12
-								-if @user.isinvestor
-									.light-weight.text-muted Investor
-								-else
-									.light-weight.text-muted Founder
-							.col.s12
-								.small= "Email : #{@user.email}"
-						.divider.mb-1
-						.row
-							.col.s12
-								%span.medium.secondary-text-color= Startup.find(@user.founderships.pluck(:startup_id)).count
-								%span.text-muted= " Startups"
-							.col.s12
-								%span.medium.secondary-text-color= Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:startup_id))).pluck(:user_id).uniq.count
-								%span.text-muted= " Co-Founders"
-
-	%section.section
+	%section#user-container{style: ""}
+		.cover-photo{style: "background-image: url('#{@user.covph.url(:landscape)}'); background-position: center; background-repeat: no-repeat; background-size: cover;"}
+		= image_tag current_user.avatar.url, class: "user-profile-image"
+		.user-details
+			%span.bolder-weight.medium
+				-if @user.isinvestor
+					%span.new.badge.green{"data-badge-caption": "Investor"}
+				-else
+					%span.new.badge.primary-color{"data-badge-caption": "Founder"}
+				= @user.username
+			%span.normal= "Email : #{@user.email}"
+			%span.normal.secondary-text-color
+				%span.medium.bold-weight= Startup.find(@user.founderships.pluck(:startup_id)).count
+				%span.white-text= " Startups"
+			%span.normal.secondary-text-color
+				%span.medium.bold-weight= Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:startup_id))).pluck(:user_id).uniq.count
+				%span.white-text= " Co-Founders"
+	%section
+		.row{style: "background: white;"}
+			.container
+				%ul.tabs
+					%li.tab.col.s3
+						%a.active{:href => "#test1"} Your Startups
+					%li.tab.col.s3
+						%a{:href => "#test2"} Posts
+		
 		.container
-			.row{style: "margin-top:0px; margin-bottom:5px"}
-				.col.s12.primary-text-color.medium
-					Your Startups
 			.row
-				.col.s12
+				#test1.col.s12
 					= render "shared/user_startups"
+				#test2.col.s12 Posts
+
+%script
+	$(document).ready(function(){
+	$('.tabs').tabs();
+	});
