@@ -13,14 +13,47 @@
   .container-fluid
     .row
       .col.s2{style: 'margin-left:2rem'}
-        .slide-index.card{style: 'min-height: 75vh'}
-          .card-content.row
-            .slide.col.s12{style: 'height: 100px; border:2px solid skyblue; box-shadow: 0px 1px 20px skyblue'}
+        .slide-index.card{style: 'max-height: 75vh;overflow-y: auto'}
+          .card-content#slide_thumb_container
       .col.s9{style: 'margin-top:1.5rem'}
         .container
-          .slide-prew.card{style: 'height:450px'}
-            .card-content.row
-              dadasas
-#preslide
-  %section
+          .slide-prew.card
+            .card-content
+#preslide.hide
+  %section.valign-wrapper.center{style: 'height:450px; display: flex; justify-content: center;align-items: center;flex-direction: column;'}
+    %h1 Title
+    %h4 Small descriptions(about you)
+  %section.valign-wrapper.center{style: 'height:450px; display: flex; justify-content: center;align-items: center;flex-direction: column;'}
+    %h1 Title
+    %h4 Small descriptions(about you)
+  %section.valign-wrapper.center{style: 'height:450px; display: flex; justify-content: center;align-items: center;flex-direction: column;'}
+    %h1 Title
+    %h4 Small descriptions(about you)
+  %section.valign-wrapper.center{style: 'height:450px; display: flex; justify-content: center;align-items: center;flex-direction: column;'}
+    %h1 Title
+    %h4 Small descriptions(about you)
+  %section.valign-wrapper.center{style: 'height:450px; display: flex; justify-content: center;align-items: center;flex-direction: column;'}
+    %h1 Title
+    %h4 Small descriptions(about you)
+  %section.valign-wrapper.center{style: 'height:450px; display: flex; justify-content: center;align-items: center;flex-direction: column;'}
+    %section hi
+    %h1 Title
+    %h4 Small descriptions(about you)
 = render 'form'
+
+:javascript
+  $(window).load(function(){
+    //$('#preslide').each(function(){
+    //alert($('#preslide > section').length);
+    var sec_count = $('#preslide > section').length;
+    var i = sec_count;
+    while (i > 0) {
+      $('#slide_thumb_container').append('<div class="slide_thumb col s12" style="margin:4px; height: 100px; border:2px solid skyblue;"></div>');
+      // box-shadow: 0px 1px 20px skyblue
+      i--;
+    }
+    for(var i = 0; i < sec_count; i++){
+      $('.slide_thumb').eq(i).html($('#preslide > section')[i].outerHTML);
+      $('.slide_thumb > section').css('height','100px').css('-moz-transform','scale(0.2)');
+    }
+  });
