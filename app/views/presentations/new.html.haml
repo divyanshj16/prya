@@ -17,27 +17,27 @@
           .card-content#slide_thumb_container
       .col.s9{style: 'margin-top:1.5rem'}
         .container
-          .slide-prew.card
+          #slide_prew.card
             .card-content
 #preslide.hide
   %section.valign-wrapper.center{style: 'height:450px; display: flex; justify-content: center;align-items: center;flex-direction: column;'}
-    %h1 Title
+    %h1 Title1
     %h4 Small descriptions(about you)
   %section.valign-wrapper.center{style: 'height:450px; display: flex; justify-content: center;align-items: center;flex-direction: column;'}
-    %h1 Title
+    %h1 Title2
     %h4 Small descriptions(about you)
   %section.valign-wrapper.center{style: 'height:450px; display: flex; justify-content: center;align-items: center;flex-direction: column;'}
-    %h1 Title
+    %h1 Title3
     %h4 Small descriptions(about you)
   %section.valign-wrapper.center{style: 'height:450px; display: flex; justify-content: center;align-items: center;flex-direction: column;'}
-    %h1 Title
+    %h1 Title4
     %h4 Small descriptions(about you)
   %section.valign-wrapper.center{style: 'height:450px; display: flex; justify-content: center;align-items: center;flex-direction: column;'}
-    %h1 Title
+    %h1 Title5
     %h4 Small descriptions(about you)
   %section.valign-wrapper.center{style: 'height:450px; display: flex; justify-content: center;align-items: center;flex-direction: column;'}
-    %section hi
-    %h1 Title
+    %section
+    %h1 Title6
     %h4 Small descriptions(about you)
 = render 'form'
 
@@ -48,7 +48,7 @@
     var sec_count = $('#preslide > section').length;
     var i = sec_count;
     while (i > 0) {
-      $('#slide_thumb_container').append('<div class="slide_thumb col s12" style="margin:4px; height: 100px; border:2px solid skyblue;"></div>');
+      $('#slide_thumb_container').append('<div class="slide_thumb col s12'+' thumb_no_'+(sec_count-i)+'" style="margin:4px; height: 100px; border:2px solid skyblue;"></div>');
       // box-shadow: 0px 1px 20px skyblue
       i--;
     }
@@ -56,4 +56,11 @@
       $('.slide_thumb').eq(i).html($('#preslide > section')[i].outerHTML);
       $('.slide_thumb > section').css('height','100px').css('-moz-transform','scale(0.2)');
     }
+    $('.slide_thumb').click(function(){
+      $('#slide_prew > .card-content').html('');
+      var sid = parseInt($(this).attr('class').slice(-1),10);
+      $('#slide_prew .card-content').html($('#preslide > section')[sid].outerHTML);
+      $('.slide_thumb').removeClass('active');
+      $(this).addClass('active');
+    });
   });
