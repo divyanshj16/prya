@@ -36,5 +36,37 @@
 	}	
 }
 
+.startups-card{
+	.card-header{
+		position: relative;
+		.startup-img{
+			height: 100px;
+			width: 100px;
+			padding: 5px;
+			border-radius: 50%;
+			border: 3px solid white;
+		}
+	}
+}
+
+.cofounder{
+	.counder-img{
+
+	}
+	.cofounder-name{
+
+	}
+	.cofounder-link{
+		color: $secondary-color;
+		&:hover {
+			color: lighten($secondary-color, 10%);
+		}
+		.material-icons{
+			position: relative;
+			top: 5px;
+		}
+	}
+}
+
 
 
