@@ -17,7 +17,7 @@
           - User.find(Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:startup_id))).pluck(:user_id).uniq).first(3).each do |fndr|
             .col.s4.hor-auto
               %a{href: "/users/#{fndr.id}"}
-                = image_tag fndr.avatar.url
+                = image_tag(fndr.avatar.url, :class => "responsive-img")
               %a.small.text-muted{href: "/users/#{fndr.id}"} #{fndr.username}
       .card-action
         %a{:href => "/startups/#{st.id}"} View More

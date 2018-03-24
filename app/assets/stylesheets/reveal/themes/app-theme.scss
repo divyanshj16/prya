@@ -1,0 +1,38 @@
+/**
+ * Beige theme for reveal.js.
+ *
+ * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "./template/mixins";
+@import "./template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic");
+
+
+// Override theme settings (see ../template/settings.scss)
+$mainColor: $primary-text-color;
+$headingColor: $primary-color;
+$headingTextShadow: none;
+$backgroundColor: White;
+$linkColor: $secondary-color;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: $primary-color;
+$heading1TextShadow: none;
+
+// Background generator
+@mixin bodyBackground() {
+	@include radial-gradient( rgba(247,242,211,1), rgba(255,255,255,1) );
+}
+
+
+
+// Theme template ------------------------------
+@import "./template/theme";
+// ---------------------------------------------

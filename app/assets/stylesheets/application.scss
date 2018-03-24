@@ -17,6 +17,9 @@
 @import "materialize/materialize.min.css";
 @import "modules/palette";
 @import "modules/*";
+@import "reveal/reveal.css";
+@import "reveal/themes/app-theme";
+@import "reveal/reveal.scss";
 @import '*';/*
 *= require_tree .
 */
