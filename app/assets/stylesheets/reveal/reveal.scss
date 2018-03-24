@@ -1,0 +1,18 @@
+// Place all the styles related to the reveal controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.reveal{
+	.progress{
+		bottom: 65px;
+		height: 5px;
+		@include mobile{
+			bottom: 57px;
+		};
+	}
+	.controls{
+		bottom: 77px;
+	}
+	.backgrounds{
+		background: white;
+	}
+}
