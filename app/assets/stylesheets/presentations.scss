@@ -1,6 +1,7 @@
 // Place all the styles related to the presentations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 $green: #4caf50;
 
 .card.default{
@@ -11,6 +12,7 @@ $green: #4caf50;
 		z-index: 1;
 	}
 }
+
 #presentation-header{
 	&:full-sreen{
 		display: none;
@@ -31,4 +33,25 @@ $green: #4caf50;
 		transition: all 0.3s ease-in-out;
 		color: $secondary-color;
 	}
+}
+
+.slide_thumb{
+	cursor: pointer;
+  margin: 4px;
+  height: 100px;
+  border:2px solid skyblue;
+}
+.slide_thumb.active{
+  box-shadow: 0px 1px 20px skyblue
+}
+.slide_thumb .slideship{
+  height: 100px !important;
+  -moz-transform: scale(0.2);
+}
+.slideship{
+  height:450px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
 }
