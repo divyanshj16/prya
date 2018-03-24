@@ -11,3 +11,24 @@ $green: #4caf50;
 		z-index: 1;
 	}
 }
+#presentation-header{
+	&:full-sreen{
+		display: none;
+	}
+}
+
+#presentation-fullscreen{
+	z-index: 1;
+	position: absolute;
+	right: 23px;
+	color: $secondary-text-color;
+	cursor: pointer;
+	.material-icons{
+		font-size: 3rem;
+	}
+	&:hover{
+		transform: scale(0.7);
+		transition: all 0.3s ease-in-out;
+		color: $secondary-color;
+	}
+}

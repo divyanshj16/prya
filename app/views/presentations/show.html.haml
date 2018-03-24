@@ -1,32 +1,32 @@
-:javascript
-	var elem = document.querySelector('.fixed-action-btn');
-	var instance = M.FloatingActionButton.init(elem, options);
-
-.page-header.primary-color
-	.container
-		.row
+.container-fluid.box
+	#presentation-header.page-header.primary-color{style: "padding: 10px;"}
+		.container
 			%h4.white-text Name
-	.container
-		=link_to edit_presentation_path,{class: "btn btn-floating right tooltipped amber","data-tooltip":"Edit this Presentation","data-position": "top"} do
-			%i.material-icons create
+		.container
+			=link_to edit_presentation_path,{class: "btn btn-floating right tooltipped amber darken-2","data-tooltip":"Edit this Presentation","data-position": "top",style: "top: 25px;"} do
+				%i.material-icons create
 
-.container
-	.reveal
-		.slides
-			%section
-				%h1 Slide 1
-			%section
-				%h1 Slide 2
-	.row
-		.col.s12
-			.fixed-action-btn
-				%a.btn-floating.btn-large.red
-					%i.large.material-icons share
-				%ul
-					%li
-						%a.btn-floating.orange-red.tooltipped{"data-tooltip":"Download this pitch deck","data-position":"left"}
-							%i.material-icons file_download
-					%li
-						%a.btn-floating.yellow.darken-1.tooltipped{"data-tooltip":"Share Link","data-position":"left"}
-							%i.material-icons share
+	.content
+		.reveal
+			%a#presentation-fullscreen
+				%i.material-icons fullscreen
+			.slides
+				%section
+					%h1 Slide 1
+				%section
+					%h1 Slide 2
+
+	.fixed-action-btn{style: "right: auto; left: 23px;"}
+		%a.btn-floating.btn-large.red
+			%i.large.material-icons share
+		%ul
+			%li
+				%a.btn-floating.teal.tooltipped{"data-tooltip":"Download this pitch deck","data-position":"right"}
+					%i.material-icons file_download
+			%li
+				%a.btn-floating.blue.tooltipped{"data-tooltip":"Share Link","data-position":"right"}
+					%i.material-icons share
+
+%script
+	Reveal.initialize();
 
