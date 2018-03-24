@@ -10,7 +10,7 @@ class PresentationsController < ApplicationController
   end
   # GET /presentations/new
   def new
-    @ppt = Presentation.new
+    @presentation = Presentation.new
   end
 
   # GET /presentations/1/edit
@@ -38,12 +38,12 @@ class PresentationsController < ApplicationController
   # PATCH/PUT /presentations/1.json
   def update
     respond_to do |format|
-      if @ppt.update(ppt_params)
-        format.html { redirect_to @ppt, notice: 'Presentation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ppt }
+      if @presentation.update(ppt_params)
+        format.html { redirect_to @presentation, notice: 'Presentation was successfully updated.' }
+        format.json { render :show, status: :ok, location: @presentation }
       else
         format.html { render :edit }
-        format.json { render json: @ppt.errors, status: :unprocessable_entity }
+        format.json { render json: @presentation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -51,7 +51,7 @@ class PresentationsController < ApplicationController
   # DELETE /presentations/1
   # DELETE /Presentation/1.json
   def destroy
-    @post.destroy
+    @presentation.destroy
     respond_to do |format|
       format.html { redirect_to presentations_url, notice: 'Presentation was successfully destroyed.' }
       format.json { head :no_content }
@@ -61,11 +61,11 @@ class PresentationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ppt
-      @ppt = Presentation.find(params[:id])
+      @presentation = Presentation.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ppt_params
-      params.require(:ppt).permit(:content, :pallete_id, :startup_id)
+      params.require(:presentation).permit(:content, :pallete_id, :startup_id)
     end
 end

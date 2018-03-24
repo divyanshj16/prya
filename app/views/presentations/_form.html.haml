@@ -1,0 +1,10 @@
+.hide
+  = simple_form_for @presentation do |f|
+    %h3.primary-text.center Create presentation
+    %col.s12
+      .input-field.col.s12
+        = f.input :content, input_html: {class: 'materialize-textarea'},wrapper_html: {class: 'input-field'}
+      = f.hidden_field :pallete_id, value: 1
+      = f.hidden_field :startup_id, value: params[:startup_id]
+      .actions.col.s12
+      = f.button :submit,class: 'btn'
