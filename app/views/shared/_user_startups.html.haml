@@ -3,11 +3,11 @@
     .card-header.green.white-text
       .row{style: "margin-bottom: 0;"}
         .col.s12.m4.l3.d-flex
-          %img.startup-img{:src => "http://via.placeholder.com/32x32",style: "margin: auto;"}/
+          %img.startup-img{:src => "/assets/logo_missing.png",style: "margin: auto;"}/
         .col.s12.m8.l7
           %p.bold-weight.medium= st.title
           %p.medium-weight= st.about
-      =link_to startup_path(st),{class: "btn halfway-fab btn-floating"} do
+      =link_to startup_path(st),{class: "btn halfway-fab btn-floating tooltipped","data-tooltip": "Startup Page"} do
         %i.material-icons arrow_forward
     .card-content
       %p.flow-text= st.description
