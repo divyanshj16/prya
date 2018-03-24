@@ -5,6 +5,8 @@
     %title Praya
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    %link{href: "https://cdn.quilljs.com/1.3.6/quill.snow.css", rel: "stylesheet"}/
+    %script{src: "https://cdn.quilljs.com/1.3.6/quill.js"}
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render "shared/mainsidenav"

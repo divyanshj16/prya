@@ -23,7 +23,9 @@ $green: #4caf50;
 }
 .slide_thumb .slideship{
   height: 100px !important;
-  -moz-transform: scale(0.2);
+  -moz-transform: scale(0.1);
+	position: relative;
+	top: -35px;
 }
 .slideship{
   height:450px !important;
@@ -31,4 +33,7 @@ $green: #4caf50;
   justify-content: center !important;
   align-items: center !important;
   flex-direction: column !important;
+}
+.ql-editor{
+	overflow-y: inherit !important;
 }

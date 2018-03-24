@@ -22,11 +22,15 @@
       .col.s9{style: 'margin-top:1.5rem'}
         .container
           #slide_prew.card
-            .card-content
+            .card-content#slide_editor{style: 'padding:0px'}
 #preslide.hide
   %section.valign-wrapper.center.slideship
-    %h1 Title1
-    %h4 Small descriptions(about you)
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
+      %p.ql-align-center
+      %h1.ql-align-center
+        %u.ql-size-huge Title1
+      %h1.ql-align-center
+        %span.ql-size-large Small descriptions(about you)
   %section.valign-wrapper.center.slideship
     %h1 Title2
     %h4 Small descriptions(about you)
@@ -60,7 +64,6 @@
       }
       for(var i = 0; i < sec_count; i++){
         $('.slide_thumb').eq(i).html($('#preslide > section')[i].outerHTML);
-        $('.slide_thumb > section').css('height','100px').css('-moz-transform','scale(0.2)');
       }
     }
     presentations_new_init();
@@ -79,6 +82,32 @@
         $('#slide_prew .card-content').html($('#preslide > section')[sid].outerHTML);
         $('.slide_thumb').removeClass('active');
         $(this).addClass('active');
+        	var toolbarOptions = [
+                ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                ['blockquote', 'code-block'],
+                [{ 'list': 'bullet' }],
+                [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+                [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+                [{ 'direction': 'rtl' }],                         // text direction
+
+                [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                [ 'link', 'image', 'video' ],          // add's image support
+                [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                [{ 'font': [] }],
+                [{ 'align': [] }],
+
+                ['clean']                                         // remove formatting button
+            ];
+        	var quill = new Quill('#slide_editor section.valign-wrapper.center.slideship', {
+              modules: {
+              imageResize: {
+                displaySize: true
+              },
+              toolbar: toolbarOptions
+            },
+            theme: 'snow'
+          });
       });
     }
     slide_thumb_adder();
@@ -88,5 +117,4 @@
       presentations_new_init();
       slide_thumb_adder();
     }
-
   });
