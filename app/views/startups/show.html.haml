@@ -8,7 +8,7 @@
 			%img.profile-pic{src: "http://via.placeholder.com/400x400"}
 		.container
 			-# =link_to edit_startup_path,{class: "btn btn-floating right hide-on-small-only tooltipped","data-tooltip": "Edit Startup info","data-position":"top"} do
-			-# 	%i.material-icons create
+			-#  %i.material-icons create
 			%a.modal-trigger.btn.btn-floating.right.hide-on-small-only.tooltipped{href: "#PitchPlease","data-tooltip": "view #{@startup.title}'s pitch decks","data-position":"top",style: "border-radius: 0;width: auto;padding: 0 1rem;"}
 				Your Pitch Decks
 			#PitchPlease.modal.black-text
@@ -17,7 +17,7 @@
 						= ppt
 					= link_to 'new pitch', new_presentation_path(startup_id: @startup.id)
 			-# = link_to edit_startup_path do
-			-# 	Your Pitch Decks
+			-#  Your Pitch Decks
 
 	%section.section
 		.container
@@ -33,19 +33,27 @@
 						%li.tab.col.m3
 							/ %a{:href => "#test4"}
 			#test2.row
-				.col.s4
-					About
-				.col.s8
-					Nothing About Culture
+				.col.s12
+					%h3= @startup.title
+				.col.s12
+					%h6= @startup.about
+				.col.s12
+					%h7.text-muted= @startup.description
 				.row
 					.col.s12
-						%img{alt: "FOUNDER1"}
-					.col.s12
-						%img{alt: "FOUNDER2"}
-					.col.s12
-						%img{alt: "fOUNDER3"}
-					.col.s12
-						%img{alt: "FOUNDER4"}									
+						%br/
+						%br/
+						%h5
+							Co-Founders
+				.row
+					.col.s12						
+						%ul.collection
+							-  User.find(Foundership.where(startup_id: @startup.id).pluck(:user_id)).uniq.each do |fndr|
+								%li.collection-item.avatar
+									%img.circle{:alt => "", :src => fndr.avatar.url, :class => "responsive-img cofounder-img"}/
+									%span.title= fndr.username
+									%a.secondary-content{:href => "/users/#{fndr.id}"}
+										View Profile >
 			#test3.row
 				.col.s12
 					%input{type: "text"}
@@ -54,49 +62,49 @@
 
 
 	/ %section.section
-	/ 	.container
-	/ 		.row
-	/ 			.col.m4.l3.hide-on-small-only
-	/ 				.card
-	/ 					.card-content
-	/ 						.row
-	/ 							.col.s3.center
-	/ 								%img.profile-thumb{src: "http://via.placeholder.com/32x32"}
-	/ 							.col.s9
-	/ 								.row
-	/ 									.s12
-	/ 										%p.medium-weight.medium
-	/ 											= @startup.title
-	/ 										%p.text-muted
-	/ 											= @startup.about
-	/ 						.divider.mb-1
-	/ 						.row
-	/ 							%span.text-muted
-	/ 								= @startup.description
-	/ 							%p
-	/ 								- if @startup.tags.empty?
-	/ 									No tags right now.
-	/ 								- else
-	/ 									= render :partial => "tags/show", :locals => {:tags =>  @startup.tags }
-	/ 								- if current_user and @startup.founder_ids.include? current_user.id
-	/ 									= render :partial => "tags/new", :locals => {:what => @startup }
-	/ 			.col.s12.m8.l7
-	/ 				- if @startup.posts.size
-	/ 					= render @startup.posts
-	/ 				- else
-	/ 					%span.text-muted
-	/ 						Sorry No New Posts to show
-	/ 				- if current_user and @startup.founder_ids.include? current_user.id
-	/ 					.fixed-action-btn.click-to-toggle
-	/ 						%a.btn-floating.btn-large.waves-effect.waves-light.modal-trigger.tooltipped{href: "#create_post_modal","data-tooltip": "Announce!","data-position":"top"}
-	/ 							%i.large.material-icons add
-	/ 					#create_post_modal.modal
-	/ 						.modal-content
-	/ 							%h4 Let the world know
-	/ 							= simple_form_for Post.create do |f|
-	/ 								.input-field
-	/ 									= f.input :title
-	/ 								.input-field
-	/ 									= f.input :description,:input_html => {:class => "materialize-textarea wysiwyg_textarea" }
-	/ 								= hidden_field_tag(:startup_id, @startup.id)
-	/ 								= f.button :submit,:value=>"post!",:class=>"btn right"
+	/   .container
+	/     .row
+	/       .col.m4.l3.hide-on-small-only
+	/         .card
+	/           .card-content
+	/             .row
+	/               .col.s3.center
+	/                 %img.profile-thumb{src: "http://via.placeholder.com/32x32"}
+	/               .col.s9
+	/                 .row
+	/                   .s12
+	/                     %p.medium-weight.medium
+	/                       = @startup.title
+	/                     %p.text-muted
+	/                       = @startup.about
+	/             .divider.mb-1
+	/             .row
+	/               %span.text-muted
+	/                 = @startup.description
+	/               %p
+	/                 - if @startup.tags.empty?
+	/                   No tags right now.
+	/                 - else
+	/                   = render :partial => "tags/show", :locals => {:tags =>  @startup.tags }
+	/                 - if current_user and @startup.founder_ids.include? current_user.id
+	/                   = render :partial => "tags/new", :locals => {:what => @startup }
+	/       .col.s12.m8.l7
+	/         - if @startup.posts.size
+	/           = render @startup.posts
+	/         - else
+	/           %span.text-muted
+	/             Sorry No New Posts to show
+	/         - if current_user and @startup.founder_ids.include? current_user.id
+	/           .fixed-action-btn.click-to-toggle
+	/             %a.btn-floating.btn-large.waves-effect.waves-light.modal-trigger.tooltipped{href: "#create_post_modal","data-tooltip": "Announce!","data-position":"top"}
+	/               %i.large.material-icons add
+	/           #create_post_modal.modal
+	/             .modal-content
+	/               %h4 Let the world know
+	/               = simple_form_for Post.create do |f|
+	/                 .input-field
+	/                   = f.input :title
+	/                 .input-field
+	/                   = f.input :description,:input_html => {:class => "materialize-textarea wysiwyg_textarea" }
+	/                 = hidden_field_tag(:startup_id, @startup.id)
+	/                 = f.button :submit,:value=>"post!",:class=>"btn right"
