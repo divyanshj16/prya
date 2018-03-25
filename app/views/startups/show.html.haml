@@ -19,20 +19,20 @@
 			-# = link_to edit_startup_path do
 			-#  Your Pitch Decks
 
-	%section.section
+	%section
+		%section.white
+			.container
+				.row
+					.col.s12.my-tabs
+						%ul.tabs
+							%li.tab.col.m3
+							%li.tab.col.s6.m3
+								%a.active{:href => "#about"} About
+							%li.tab.col.s6.m3
+								%a{:href => "#posts"} Posts
+							%li.tab.col.m3
 		.container
-			.row
-				.col.s12.my-tabs
-					%ul.tabs
-						%li.tab.col.m3
-							/ %a{:href => "#test1"}
-						%li.tab.col.s6.m3
-							%a.active{:href => "#test2"} About
-						%li.tab.col.s6.m3
-							%a{:href => "#test3"} Posts
-						%li.tab.col.m3
-							/ %a{:href => "#test4"}
-			#test2.row
+			#about.row
 				.col.s12
 					%h3= @startup.title
 				.col.s12
@@ -54,7 +54,7 @@
 									%span.title= fndr.username
 									%a.secondary-content{:href => "/users/#{fndr.id}"}
 										View Profile >
-			#test3.row
+			#posts.row
 				.col.s12
 					%input{type: "text"}
 				.col.s12
