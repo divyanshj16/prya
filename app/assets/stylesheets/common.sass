@@ -1,3 +1,5 @@
+html,body
+	overflow: auto
 *
 	font-family: Roboto
 
@@ -11,11 +13,11 @@
 	color: $secondary-color
 
 .primary-color
-	background: $primary-color
+	background: $primary-color !important
 	color: white
 
 .secondary-color
-	background: $secondary-color
+	background: $secondary-color !important
 	color: white
 
 .text-muted
@@ -27,13 +29,13 @@
 	padding: 25px
 
 .big
-	font-size: 4rem
+	font-size: 4em
 .medium
-	font-size: 2rem
+	font-size: 2em
 .normal
-	font-size: 1rem
+	font-size: 1em
 .small
-	font-size: 0.8rem
+	font-size: 0.8em
 
 .ml-1
 	margin-left: 1rem
@@ -45,13 +47,13 @@
 	margin-bottom: 1rem
 
 .bolder-weight
-	font-family: bolder
+	font-weight: bolder
 
 .bold-weight
-	font-family: bold
+	font-weight: bold
 
 .medium-weight
-	font-family: medium
+	font-weight: medium
 
 .light-weight
 	font-weight: light
@@ -83,3 +85,14 @@ body
 			color: white
 			font-weight: normal
 
+.pos-relative
+	position: relative
+
+//flex box
+.box
+	display: flex
+	flex-flow: column
+	height: 100%
+
+	.content
+		flex: 1 1 auto

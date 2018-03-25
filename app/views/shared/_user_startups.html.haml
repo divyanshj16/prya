@@ -1,26 +1,29 @@
 - Startup.find(@user.founderships.pluck(:startup_id)).each do |st|
-  .card.card-horizontal.hoverable
-    .card-header{style: "padding:24px"}
-      .col.s2
-        %img{:src => "http://via.placeholder.com/32x32"}/
-      .col.s8
-        .medium-weight.medium= st.title
-      .col.s2.text-muted= st.about
-    .card-stacked
-      .row
-        .col.s12
-          .card-content
-            .text-muted= st.description
+  .card.startups-card
+    .card-header.green.white-text
+      .row{style: "margin-bottom: 0;"}
+        .col.s12.m4.l3.d-flex
+          %img.startup-img{:src => "/assets/logo_missing.png",style: "margin: auto;"}/
+        .col.s12.m8.l7
+          %p.bold-weight.medium= st.title
+          %p.medium-weight= st.about
+      =link_to startup_path(st),{class: "btn halfway-fab btn-floating tooltipped","data-tooltip": "Startup Page"} do
+        %i.material-icons arrow_forward
+    .card-content
+      %p.flow-text= st.description
+      %h3.primary-text-color.card-title Founders
       .divider.mb-1
-      .card-content
-        .row
-          - User.find(Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:startup_id))).pluck(:user_id).uniq).first(3).each do |fndr|
-            .col.s4.hor-auto
-              %a{href: "/users/#{fndr.id}"}
-                = image_tag fndr.avatar.url
-              %a.small.text-muted{href: "/users/#{fndr.id}"} #{fndr.username}
-      .card-action
-        %a{:href => "/startups/#{st.id}"} View More
+      .row
+        - User.find(Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:startup_id))).pluck(:user_id).uniq).first(3).each do |fndr|
+          .col.s12.m4.l3
+            .row.cofounder
+              .col.s4
+                = image_tag(fndr.avatar.url, :class => "responsive-img cofounder-img")
+              .col.s8
+                %p.medium-weight.medium.cofounder-name= fndr.username
+                %a.cofounder-link{href: "/users/#{fndr.id}"}
+                  View Profile
+                  %span.material-icons chevron_right
 
 
 

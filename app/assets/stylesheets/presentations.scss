@@ -13,6 +13,23 @@ $green: #4caf50;
 	}
 }
 
+#presentation-fullscreen{
+	z-index: 1;
+	position: absolute;
+	right: 23px;
+	top: 23px;
+	color: $secondary-text-color;
+	cursor: pointer;
+	.material-icons{
+		font-size: 3rem;
+	}
+	&:hover{
+		transform: scale(0.7);
+		transition: all 0.3s ease-in-out;
+		color: $secondary-color;
+	}
+}
+
 .slide_thumb{
 	cursor: pointer;
   margin: 4px;
