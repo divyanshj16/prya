@@ -4,7 +4,7 @@ class PresentationsController < ApplicationController
 
   def show
   end
-  
+
   def index
     @p = [{id: 1,title: "Secul",description: "Nothing about People and Culture",deafult: false}]
   end
@@ -22,6 +22,7 @@ class PresentationsController < ApplicationController
   def create
     @ppt = Presentation.new(ppt_params)
     if @ppt.save
+       flash[:notice] = 'Presentation was successfully Created.'
       # format.html { redirect_to @ppt, notice: 'Post was successfully created.' }
       # format.json { render :show, status: :created, location: @ppt }
     else
@@ -31,7 +32,7 @@ class PresentationsController < ApplicationController
       end
       # format.json { render json: @post.errors, status: :unprocessable_entity }
     end
-    redirect_back fallback_location: root_path
+    redirect_to startup_path(@ppt.startup_id), fallback_location: root_path
   end
 
   # PATCH/PUT /presentations/1
@@ -61,11 +62,11 @@ class PresentationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ppt
-      # @presentation = Presentation.find(params[:id])
+      @presentation = Presentation.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ppt_params
-      params.require(:presentation).permit(:content, :pallete_id, :startup_id)
+      params.require(:presentation).permit(:content, :pallete_id, :startup_id, :name)
     end
 end
