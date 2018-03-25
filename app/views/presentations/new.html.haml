@@ -22,31 +22,57 @@
       .col.s9{style: 'margin-top:1.5rem'}
         .container
           #slide_prew.card
-            .card-content
+            .card-content#slide_editor{style: 'padding:0px'}
+-# We will add tutorial slide's data at end(dont waste time)
 #preslide.hide
   %section.valign-wrapper.center.slideship
-    %h1 Title1
-    %h4 Small descriptions(about you)
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
+      %h1.ql-align-center
+        %u.ql-size-huge Title1
+      %h1.ql-align-center
+        %span.ql-size-large Small descriptions(about you)
   %section.valign-wrapper.center.slideship
-    %h1 Title2
-    %h4 Small descriptions(about you)
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
+      %h1.ql-align-center
+        %u.ql-size-huge Title2
+      %h1.ql-align-center
+        %span.ql-size-large Small descriptions(about you)
   %section.valign-wrapper.center.slideship
-    %h1 Title3
-    %h4 Small descriptions(about you)
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
+      %h1.ql-align-center
+        %u.ql-size-huge Title3
+      %h1.ql-align-center
+        %span.ql-size-large Small descriptions(about you)
   %section.valign-wrapper.center.slideship
-    %h1 Title4
-    %h4 Small descriptions(about you)
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
+      %h1.ql-align-center
+        %u.ql-size-huge Title4
+      %h1.ql-align-center
+        %span.ql-size-large Small descriptions(about you)
   %section.valign-wrapper.center.slideship
-    %h1 Title5
-    %h4 Small descriptions(about you)
-  %section.valign-wrapper.center.slideship
-    %section
-    %h1 Title6
-    %h4 Small descriptions(about you)
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
+      %h1.ql-align-center
+        %u.ql-size-huge Title5
+      %h1.ql-align-center
+        %span.ql-size-large Small descriptions(about you)
 = render 'form'
 
 :javascript
+  var slideid = 0;
   var addSlide = function(){};
+  (function ($) {
+      $.fn.wysiwygEvt = function () {
+          return this.each(function () {
+              var $this = $(this);
+              var htmlOld = $this.html();
+              $this.bind('blur keyup paste copy cut', function () {
+                  $('#preslide > section').eq(slideid).html($("#slide_editor > .slideship > .ql-editor").eq(0).html());
+                  console.log($(".slide_thumb:nth-child"+'('+(slideid+1)+')'+" .slideship .ql-editor " ).eq(0).html($("#slide_editor > .slideship > .ql-editor").eq(0).html()));
+                  //presentations_new_init();
+              })
+          })
+      }
+  })(jQuery);
   $(window).ready(function(){
     //$('#preslide').each(function(){
     //alert($('#preslide > section').length);
@@ -60,7 +86,6 @@
       }
       for(var i = 0; i < sec_count; i++){
         $('.slide_thumb').eq(i).html($('#preslide > section')[i].outerHTML);
-        $('.slide_thumb > section').css('height','100px').css('-moz-transform','scale(0.2)');
       }
     }
     presentations_new_init();
@@ -76,17 +101,46 @@
       $('.slide_thumb').click(function(){
         $('#slide_prew > .card-content').html('');
         var sid = parseInt($(this).attr('class').slice(-1),10);
+        slideid = sid;
         $('#slide_prew .card-content').html($('#preslide > section')[sid].outerHTML);
         $('.slide_thumb').removeClass('active');
         $(this).addClass('active');
+      	var toolbarOptions = [
+              [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+              ['bold', 'italic', 'underline'],        // toggled buttons
+              ['blockquote', 'code-block'],
+              [{ 'list': 'bullet' }],
+              [{ 'align': [] }],
+              [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+              [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+              [{ 'direction': 'rtl' }],                         // text direction
+
+              [ 'link', 'image', 'video' ],          // add's image support
+              [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+              [{ 'font': [] }],
+
+              ['clean']                                         // remove formatting button
+          ];
+        	var quill = new Quill('#slide_editor section.valign-wrapper.center.slideship', {
+              modules: {
+              imageResize: {
+                displaySize: true
+              },
+              toolbar: toolbarOptions
+            },
+            theme: 'snow'
+          });
+          var before;
+          $("#slide_editor > .slideship > .ql-editor").eq(0).wysiwygEvt();
       });
     }
+    //document.getElementById("editor")
     slide_thumb_adder();
     addSlide = null;
     addSlide = function(){
-      $('#preslide').append('<section class="valign-wrapper center slideship"><h1>Title</h1><h4>Description</h4></section>');
+      $('#preslide').append('<section class="valign-wrapper center slideship"><div class="ql-editor" contenteditable="true" data-gramm="false"><h1 class="ql-align-center"><u class="ql-size-huge">Title5</u></h1><p><br></p><h1 class="ql-align-center"><span class="ql-size-large">Small descriptions(about you)</span></h1></div></section>');
       presentations_new_init();
       slide_thumb_adder();
     }
-
   });

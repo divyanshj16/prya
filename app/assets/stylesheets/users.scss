@@ -1,14 +1,71 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-.user-container{
+#user-container{
+	display: flex;
+	flex-direction: column;
 	position: relative;
-	top: -50px;
+	padding: 10px;
+	.cover-photo{
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		filter: brightness(65%) blur(1px);
+	}
+
+	.user-profile-image{
+		border-radius: 50%;
+		height: 150px;
+		width: 150px;
+		border: 5px solid white;
+		margin: 20px auto;
+		z-index: 1;
+	}
+
+	.user-details{
+		margin: auto;
+		color: white;
+		text-align: center;
+		line-height: 1.3;
+		z-index: 1;
+		> span{
+			display: block;
+		}
+	}	
 }
-.user-profile-image{
-	border: 5px solid white;
+
+.startups-card{
+	.card-header{
+		position: relative;
+		.startup-img{
+			height: 100px;
+			width: 100px;
+			padding: 5px;
+			background: white;
+		}
+	}
 }
-.user-details{
-	margin-top: 50px;
+
+.cofounder{
+	.counder-img{
+
+	}
+	.cofounder-name{
+
+	}
+	.cofounder-link{
+		color: $secondary-color;
+		&:hover {
+			color: lighten($secondary-color, 10%);
+		}
+		.material-icons{
+			position: relative;
+			top: 5px;
+		}
+	}
 }
+
+
+
