@@ -12,21 +12,25 @@ $green: #4caf50;
 		z-index: 1;
 	}
 }
+
 .slide_thumb{
 	cursor: pointer;
   margin: 4px;
   height: 100px;
   border:2px solid skyblue;
 }
+
 .slide_thumb.active{
   box-shadow: 0px 1px 20px skyblue
 }
+
 .slide_thumb .slideship{
   height: 100px !important;
   -moz-transform: scale(0.1);
 	position: relative;
 	top: -35px;
 }
+
 .slideship{
   height:450px !important;
   display: flex !important;
@@ -34,6 +38,13 @@ $green: #4caf50;
   align-items: center !important;
   flex-direction: column !important;
 }
+
 .ql-editor{
 	overflow-y: inherit !important;
+}
+
+.ql-toolbar.ql-snow{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
