@@ -12,12 +12,19 @@
 	position: relative;
 	height: 200px;
 	width: 200px;
-	top: 150px;
+	top: 65px;
 	border: 5px solid white;
+	z-index: 1;
 }
 .startup-profile-section{
 	position: relative;
 	.btn{
 		margin-left: 10px;
+	}
+}
+
+@media (min-width: 600px) and (orientation:landscape) {
+	.my-tabs{
+		margin-top: -15px;
 	}
 }
