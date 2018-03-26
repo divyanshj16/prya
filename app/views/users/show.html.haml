@@ -21,15 +21,18 @@
 			.container
 				%ul.tabs
 					%li.tab.col.s3
-						%a.active{:href => "#test1"} Your Startups
+						%a.active{:href => "#profile"} Profile
 					%li.tab.col.s3
-						%a{:href => "#test2"} Posts
+						%a{:href => "#startups"} Startups
 		
 		.container
 			.row
-				#test1.col.s12.m10.l9
-					= render "shared/user_startups"
-				#test2.col.s12 Posts
+				#profile
+					.col.s12.m10.l9
+						= render 'shared/user_profile'
+				#startups
+					.col.s12.m10.l9
+						= render "shared/user_startups"
 
 %script
 	$(document).ready(function(){
