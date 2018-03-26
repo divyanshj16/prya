@@ -2,16 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .reveal{
-	.progress{
-		bottom: 65px;
-		height: 5px;
-		@include mobile{
-			bottom: 57px;
-		};
-	}
-	.controls{
-		bottom: 77px;
-	}
+	border: 1px solid $divider-color;	
 	.backgrounds{
 		background: white;
 	}
