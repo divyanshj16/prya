@@ -9,12 +9,22 @@
 		.container
 			%a.modal-trigger.btn.btn-floating.right.hide-on-small-only.tooltipped{href: "#PitchPlease","data-tooltip": "view #{@startup.title}'s pitch decks","data-position":"top"}
 				%i.material-icons pageview
+			-#  Modal For Your Startups
 			#PitchPlease.modal.black-text
+				.page-header.secondary-color
+					%p.bold-weight.white-text Your Pitch Decks
+					= link_to new_presentation_path(startup_id: @startup.id),{class: 'btn btn-floating btn-large yellow darken-3 tooltipped right',"data-tooltip": "Add a Pitch Deck","data-position":"top"} do
+						%i.material-icons add
 				.modal-content
-					- @startup.presentations do |ppt|
-						= ppt
-					= link_to 'new pitch', new_presentation_path(startup_id: @startup.id)
-			-# = link_to edit_startup_path do
+					.row{overflow: "scroll"}
+						- @startup.presentations do |ppt|
+							.col.s12.m6.l4
+							.card
+								.card-content
+									%span.badge.new.green{'data-badge-caption': "Default"}
+									%p.card-title.medium-weight.primary-text-color ppt
+				.modal-footer
+					%a.modal-action.modal-close.waves-effect.waves-red.btn-flat Close
 			-#  Your Pitch Decks
 
 	%section

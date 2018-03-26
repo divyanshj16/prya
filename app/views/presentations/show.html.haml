@@ -1,13 +1,17 @@
+:css
+	html,body{
+		overflow: hidden;
+	}
 .container-fluid.box
-	#presentation-header.page-header.primary-color{style: "height: 100px;"}
+	#presentation-header.page-header.primary-color{style: "height: 64px;padding: 0px;padding-bottom: 10px;"}
 		.container
 			%h4.white-text Name
 		.container
-			=link_to edit_presentation_path,{class: "btn btn-floating right tooltipped amber darken-2","data-tooltip":"Edit this Presentation","data-position": "top",style: "top: -20px;"} do
+			=link_to edit_presentation_path,{class: "btn btn-floating right tooltipped amber darken-2","data-tooltip":"Edit this Presentation","data-position": "top",style: "top: -30px;"} do
 				%i.material-icons create
 
-	.content{style: "padding: 25px;"}
-		.reveal{style: "height: 845px;width: 480px;"}
+	.content{style: "padding: 25px;display: flex;"}
+		.reveal{style: "height: 480px;width: 845px;margin: auto;"}
 			%a#presentation-fullscreen
 				%i.material-icons fullscreen
 			.slides
@@ -21,10 +25,10 @@
 			%i.large.material-icons share
 		%ul
 			%li
-				%a.btn-floating.teal.tooltipped{"data-tooltip":"Download this pitch deck","data-position":"right"}
+				%a.btn-floating.teal.tooltipped{"data-tooltip":"Download this pitch deck","data-position":"left"}
 					%i.material-icons file_download
 			%li
-				%a.btn-floating.blue.tooltipped{"data-tooltip":"Share Link","data-position":"right"}
+				%a.btn-floating.blue.tooltipped{"data-tooltip":"Share Link","data-position":"left"}
 					%i.material-icons share
 
 :javascript
@@ -48,6 +52,10 @@
 	    }
 	    $('#presentation-header,nav,.fixed-action-btn').hide();
 	    $('.content').css('padding', '0px');
+	    $('.reveal').css({
+	    	height: '100%',
+	    	width: '100%'
+	    })
 	  } else {
 	    if (document.cancelFullScreen) {
 	      document.cancelFullScreen();
@@ -58,6 +66,10 @@
 	    }
 	    $('#presentation-header,nav,.fixed-action-btn').show();
 	    $('.content').css('padding', '50px');
+	    $('.reveal').css({
+	    	height: '480px',
+	    	width: '854px'
+	    })
 	  }
 	}
 
