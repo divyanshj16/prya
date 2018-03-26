@@ -15,6 +15,7 @@ class PresentationsController < ApplicationController
 
   # GET /presentations/1/edit
   def edit
+    params[:startup_id] = @presentation.startup_id
   end
 
   # POST /presentations
@@ -25,28 +26,34 @@ class PresentationsController < ApplicationController
        flash[:notice] = 'Presentation was successfully Created.'
       # format.html { redirect_to @ppt, notice: 'Post was successfully created.' }
       # format.json { render :show, status: :created, location: @ppt }
+      redirect_to @ppt, fallback_location: root_path
     else
       # format.html { render :new }
       @ppt.errors.full_messages.each do |message|
         flash[:notice] = message
       end
       # format.json { render json: @post.errors, status: :unprocessable_entity }
+      redirect_to startup_path(@ppt.startup_id), fallback_location: root_path
     end
-    redirect_to startup_path(@ppt.startup_id), fallback_location: root_path
   end
 
   # PATCH/PUT /presentations/1
   # PATCH/PUT /presentations/1.json
   def update
-    respond_to do |format|
       if @presentation.update(ppt_params)
-        format.html { redirect_to @presentation, notice: 'Presentation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @presentation }
+        flash[:notice] = 'Presentation was successfully Created.'
+        redirect_to @presentation, fallback_location: root_path
+        # format.html { redirect_to @presentation, notice: 'Presentation was successfully updated.' }
+        # format.json { render :show, status: :ok, location: @presentation }
       else
-        format.html { render :edit }
-        format.json { render json: @presentation.errors, status: :unprocessable_entity }
+        @presentation.errors.full_messages.each do |message|
+          flash[:notice] = message
+        end
+        redirect_back(fallback_location: root_path)
+
+        # format.html { render :edit }
+        # format.json { render json: @presentation.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # DELETE /presentations/1
