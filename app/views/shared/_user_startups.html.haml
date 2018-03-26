@@ -15,15 +15,14 @@
       .divider.mb-1
       .row
         - User.find(Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:startup_id))).pluck(:user_id).uniq).first(3).each do |fndr|
-          .col.s12.m4.l3
+          .col.s12.m6.l4
             .row.cofounder
               .col.s4
                 = image_tag(fndr.avatar.url, :class => "responsive-img cofounder-img")
               .col.s8
                 %p.medium-weight.medium.cofounder-name= fndr.username
                 %a.cofounder-link{href: "/users/#{fndr.id}"}
-                  View Profile
-                  %span.material-icons chevron_right
+                  View Profile >
 
 
 
