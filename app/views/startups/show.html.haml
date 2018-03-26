@@ -31,17 +31,15 @@
 							%li.tab.col.m3
 		.container
 			#about.row
-				.row
+				.col.s12.m4
 					.col.s12
 						%h3= @startup.title
 					.col.s12
 						%h6= @startup.about
 					.col.s12
 						%h7.text-muted= @startup.description
-				.row
+				.col.s12.m8
 					.col.s12
-						%br/
-						%br/
 						%h5
 							Co-Founders
 					.col.s12						
@@ -52,9 +50,9 @@
 									%span.primary-text-color.bold-weight.medium.title= fndr.username
 									%a.secondary-content{:href => "/users/#{fndr.id}"}
 										View Profile >
-			#posts.row
-				.col.s12
-					%p.flow-text All Feeds
+				#posts.row
+					.col.s12
+						%p.flow-text All Feeds
 
 
 	/ %section.section

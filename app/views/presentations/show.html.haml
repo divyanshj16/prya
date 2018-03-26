@@ -1,7 +1,3 @@
-:css
-	html,body{
-		overflow: hidden;
-	}
 .container-fluid.box
 	#presentation-header.page-header.primary-color{style: "height: 100px;"}
 		.container
@@ -10,8 +6,8 @@
 			=link_to edit_presentation_path,{class: "btn btn-floating right tooltipped amber darken-2","data-tooltip":"Edit this Presentation","data-position": "top",style: "top: -20px;"} do
 				%i.material-icons create
 
-	.content{style: "padding: 50px;"}
-		.reveal{style: "height: 80%;"}
+	.content{style: "padding: 25px;"}
+		.reveal{style: "height: 845px;width: 480px;"}
 			%a#presentation-fullscreen
 				%i.material-icons fullscreen
 			.slides
@@ -52,7 +48,6 @@
 	    }
 	    $('#presentation-header,nav,.fixed-action-btn').hide();
 	    $('.content').css('padding', '0px');
-	    $('.reveal').css('height', '100%');
 	  } else {
 	    if (document.cancelFullScreen) {
 	      document.cancelFullScreen();
@@ -63,7 +58,6 @@
 	    }
 	    $('#presentation-header,nav,.fixed-action-btn').show();
 	    $('.content').css('padding', '50px');
-	    $('.reveal').css('height', '80%');
 	  }
 	}
 

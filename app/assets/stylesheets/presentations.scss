@@ -43,7 +43,8 @@ $green: #4caf50;
 
 .slide_thumb .slideship{
   height: 100px !important;
-  dtransform: scale(0.1);
+  -moz-transform: scale(0.1);
+  transform: scale(0.1);
 	position: relative;
 	top: -35px;
 }
