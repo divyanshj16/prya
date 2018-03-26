@@ -4,13 +4,11 @@
 .container-fluid
 	%section.section.primary-color.page-header.startup-profile-section
 		.container
-			%img.responsive-img.cover{:src => "http://via.placeholder.com/400x400/00ffff", :alt => "", style: "height: 100%;"}/
-			%img.profile-pic{src: "http://via.placeholder.com/400x400"}
+			%img.responsive-img.cover{:src => "/assets/landscape/cover_missing.jpeg", :alt => "", style: "height: 100%;"}/
+			%img.profile-pic{src: "/assets/logo_missing.png"}
 		.container
-			-# =link_to edit_startup_path,{class: "btn btn-floating right hide-on-small-only tooltipped","data-tooltip": "Edit Startup info","data-position":"top"} do
-			-#  %i.material-icons create
-			%a.modal-trigger.btn.btn-floating.right.hide-on-small-only.tooltipped{href: "#PitchPlease","data-tooltip": "view #{@startup.title}'s pitch decks","data-position":"top",style: "border-radius: 0;width: auto;padding: 0 1rem;"}
-				Your Pitch Decks
+			%a.modal-trigger.btn.btn-floating.right.hide-on-small-only.tooltipped{href: "#PitchPlease","data-tooltip": "view #{@startup.title}'s pitch decks","data-position":"top"}
+				%i.material-icons pageview
 			#PitchPlease.modal.black-text
 				.modal-content
 					- @startup.presentations do |ppt|
@@ -33,32 +31,30 @@
 							%li.tab.col.m3
 		.container
 			#about.row
-				.col.s12
-					%h3= @startup.title
-				.col.s12
-					%h6= @startup.about
-				.col.s12
-					%h7.text-muted= @startup.description
+				.row
+					.col.s12
+						%h3= @startup.title
+					.col.s12
+						%h6= @startup.about
+					.col.s12
+						%h7.text-muted= @startup.description
 				.row
 					.col.s12
 						%br/
 						%br/
 						%h5
 							Co-Founders
-				.row
 					.col.s12						
 						%ul.collection
 							-  User.find(Foundership.where(startup_id: @startup.id).pluck(:user_id)).uniq.each do |fndr|
 								%li.collection-item.avatar
 									%img.circle{:alt => "", :src => fndr.avatar.url, :class => "responsive-img cofounder-img"}/
-									%span.title= fndr.username
+									%span.primary-text-color.bold-weight.medium.title= fndr.username
 									%a.secondary-content{:href => "/users/#{fndr.id}"}
 										View Profile >
 			#posts.row
 				.col.s12
-					%input{type: "text"}
-				.col.s12
-					All Feeds
+					%p.flow-text All Feeds
 
 
 	/ %section.section
