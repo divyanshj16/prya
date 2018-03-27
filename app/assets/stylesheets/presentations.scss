@@ -5,11 +5,13 @@
 $green: #4caf50;
 
 .card.default{
-	.badge{
-		position: absolute;
-		top: 0;
-		right: -10px;
-		z-index: 1;
+	.card-content{
+		.badge{
+			position: absolute;
+			top: 0;
+			right: -10px;
+			z-index: 1;
+		}
 	}
 }
 

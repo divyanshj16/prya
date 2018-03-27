@@ -1,6 +1,3 @@
-:javascript
-	var instance = M.Tabs.init(el, options);
-
 .container-fluid
 	%section.section.primary-color.page-header.startup-profile-section
 		.container
@@ -17,12 +14,19 @@
 						%i.material-icons add
 				.modal-content
 					.row{overflow: "scroll"}
+						.col.s12.m6.l4
 						- @startup.presentations do |ppt|
 							.col.s12.m6.l4
-							.card
-								.card-content
-									%span.badge.new.green{'data-badge-caption': "Default"}
-									%p.card-title.medium-weight.primary-text-color ppt
+								-if ppt.default
+									.card.default
+								-else
+									.card
+									.card-content
+										%span.badge.new.green{'data-badge-caption': "Default"}
+										%p.card-title.medium-weight.primary-text-color ppt
+									.card-action
+										=link_to "Edit",edit_presentation_path(ppt)
+										=link_to "Show",presentation_path(ppt)
 				.modal-footer
 					%a.modal-action.modal-close.waves-effect.waves-red.btn-flat Close
 			-#  Your Pitch Decks
@@ -43,81 +47,24 @@
 
 			.row
 				.col.s12.m4
-					.card
-						.card-content
-							%h3= @startup.title
-							.divider.mb-1
-							%h6.text-muted= @startup.about	
-				#about
-					.col.s12.m8
-						.row
-							.col.s12
-								.card.hoverable
-									.card-content
-										%h5 Description
-										.divider.mb-1
-										%p.grey-text.text-darken-3= @startup.description
-
-						.row					
-							.col.s12						
-								%ul.collection.hoverable
-									%li.collection-item
-										%h5 Founders
-									-  User.find(Foundership.where(startup_id: @startup.id).pluck(:user_id)).uniq.each do |fndr|
-										%li.collection-item.avatar
-											%img.circle{:alt => "", :src => fndr.avatar.url, :class => "responsive-img cofounder-img"}/
-											%span.primary-text-color.bold-weight.medium.title= fndr.username
-											%a.secondary-content{:href => "/users/#{fndr.id}"}
-												View Profile >
-					#posts.row
-						.col.s12
-							%p.flow-text All Feeds
-
-
-	/ %section.section
-	/   .container
-	/     .row
-	/       .col.m4.l3.hide-on-small-only
-	/         .card
-	/           .card-content
-	/             .row
-	/               .col.s3.center
-	/                 %img.profile-thumb{src: "http://via.placeholder.com/32x32"}
-	/               .col.s9
-	/                 .row
-	/                   .s12
-	/                     %p.medium-weight.medium
-	/                       = @startup.title
-	/                     %p.text-muted
-	/                       = @startup.about
-	/             .divider.mb-1
-	/             .row
-	/               %span.text-muted
-	/                 = @startup.description
-	/               %p
-	/                 - if @startup.tags.empty?
-	/                   No tags right now.
-	/                 - else
-	/                   = render :partial => "tags/show", :locals => {:tags =>  @startup.tags }
-	/                 - if current_user and @startup.founder_ids.include? current_user.id
-	/                   = render :partial => "tags/new", :locals => {:what => @startup }
-	/       .col.s12.m8.l7
-	/         - if @startup.posts.size
-	/           = render @startup.posts
-	/         - else
-	/           %span.text-muted
-	/             Sorry No New Posts to show
-	/         - if current_user and @startup.founder_ids.include? current_user.id
-	/           .fixed-action-btn.click-to-toggle
-	/             %a.btn-floating.btn-large.waves-effect.waves-light.modal-trigger.tooltipped{href: "#create_post_modal","data-tooltip": "Announce!","data-position":"top"}
-	/               %i.large.material-icons add
-	/           #create_post_modal.modal
-	/             .modal-content
-	/               %h4 Let the world know
-	/               = simple_form_for Post.create do |f|
-	/                 .input-field
-	/                   = f.input :title
-	/                 .input-field
-	/                   = f.input :description,:input_html => {:class => "materialize-textarea wysiwyg_textarea" }
-	/                 = hidden_field_tag(:startup_id, @startup.id)
-	/                 = f.button :submit,:value=>"post!",:class=>"btn right"
+					.col.s12
+						%h3= @startup.title
+					.col.s12
+						%h6= @startup.about
+					.col.s12
+						%h7.text-muted= @startup.description
+				.col.s12.m8
+					.col.s12
+						%h5
+							Co-Founders
+					.col.s12						
+						%ul.collection
+							-  User.find(Foundership.where(startup_id: @startup.id).pluck(:user_id)).uniq.each do |fndr|
+								%li.collection-item.avatar
+									%img.circle{:alt => "", :src => fndr.avatar.url, :class => "responsive-img cofounder-img"}/
+									%span.primary-text-color.bold-weight.medium.title= fndr.username
+									%a.secondary-content{:href => "/users/#{fndr.id}"}
+										View Profile >
+				#posts.row
+					.col.s12
+						%p.flow-text All Feeds

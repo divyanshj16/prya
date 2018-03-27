@@ -14,4 +14,5 @@ $(function () {
   $('.tooltipped').tooltip({delay: 50});
 	$('.chips-autocomplete').material_chip();
 	$('.modal').modal();
+  $('.tabs').tabs();
 })
