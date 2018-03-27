@@ -5,7 +5,8 @@
 .container-fluid.box
 	#presentation-header.page-header.primary-color{style: "height: 64px;padding: 0px;padding-bottom: 10px;"}
 		.container
-			%h4.white-text Name
+			%h4.white-text
+				= Startup.find(@presentation.startup_id).title
 		.container
 			=link_to edit_presentation_path,{class: "btn btn-floating right tooltipped amber darken-2","data-tooltip":"Edit this Presentation","data-position": "top",style: "top: -30px;"} do
 				%i.material-icons create
@@ -15,10 +16,7 @@
 			%a#presentation-fullscreen
 				%i.material-icons fullscreen
 			.slides
-				%section
-					%h1 Slide 1
-				%section
-					%h1 Slide 2
+				= raw @presentation.content
 
 	.fixed-action-btn
 		%a.btn-floating.btn-large.red
@@ -79,11 +77,10 @@
 	    toggleFullScreen();
 	  });
 
-	  var el = document.getElementById('presentation-header');
+	  var el = document.getElementsByClassname('presentation-header');
 
 	  // use necessary prefixed versions
 	  el.mozRequestFullScreen();
 	  // finally the standard version
 	  // el.requestFullscreen();
 	})
-	

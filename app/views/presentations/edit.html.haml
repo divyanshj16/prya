@@ -1,1 +1,140 @@
+.row{style: 'height:88vh'}
+  .center.col.s10.offset-s1
+    .col.s4.input-field
+      %input#first_name.validate{type: "text"}/
+      %label{for: "first_name"} Name
+    .col.s4.input-field
+      %select
+        %option{disabled: "disabled", selected: "selected", value: ""} Choose your option
+        %option{value: "1"} Option 1
+        %option{value: "2"} Option 2
+        %option{value: "3"} Option 3
+      %label Slide Transition
+  .container-fluid
+    .row
+      .col.s2{style: 'margin-left:2rem'}
+        .slide-index.card{style: 'max-height: 75vh;overflow-y: auto'}
+          .card-content.center
+            #slide_thumb_container
+            .btn.center.waves-effect.waves-light{onclick: 'addSlide();'}
+              %i.material-icons.left add
+              Add Slide
+      .col.s9{style: 'margin-top:1.5rem'}
+        .container
+          #slide_prew.card
+            .card-content#slide_editor{style: 'padding:0px'}
+  .btn.btn-large{style: 'position: absolute; bottom:20px;right:20px', onclick: 'post_presentation()'}
+    %i.material-icons.right send
+    Save
+
 = render 'form'
+
+#preslide.hide
+  = raw @presentation.content
+
+:javascript
+  var slideid = 0;
+  var addSlide = function(){};
+  var post_presentation = function(){};
+  (function ($) {
+      $.fn.wysiwygEvt = function () {
+          return this.each(function () {
+              var $this = $(this);
+              var htmlOld = $this.html();
+              $this.bind('blur keyup paste copy cut', function () {
+                  $('#preslide > section').eq(slideid).html($("#slide_editor > .slideship > .ql-editor").eq(0).html());
+                  console.log($(".slide_thumb:nth-child"+'('+(slideid+1)+')'+" .slideship .ql-editor " ).eq(0).html($("#slide_editor > .slideship > .ql-editor").eq(0).html()));
+                  //presentations_new_init();
+              })
+          })
+      }
+  })(jQuery);
+  $(window).ready(function(){
+    //$('#preslide').each(function(){
+    //alert($('#preslide > section').length);
+    function presentations_new_init(){
+      $('#slide_thumb_container').html('');
+      var sec_count = $('#preslide > section').length;
+      var i = sec_count;
+      while (i > 0) {
+        $('#slide_thumb_container').append('<div class="slide_thumb col s12'+' thumb_no_'+(sec_count-i)+'"></div>');
+        i--;
+      }
+      for(var i = 0; i < sec_count; i++){
+        $('.slide_thumb').eq(i).html($('#preslide > section')[i].outerHTML);
+      }
+    }
+    presentations_new_init();
+    //$('.slide_thumb').click(function(){
+      //$('#slide_prew > .card-content').html('');
+      //var sid = parseInt($(this).attr('class').slice(-1),10);
+      //$('#slide_prew .card-content').html($('#preslide > section')[sid].outerHTML);
+      //$('.slide_thumb').removeClass('active');
+      //$(this).addClass('active');
+    //});
+    function  slide_thumb_adder(){
+      $('.slide_thumb').off('click');
+      $('.slide_thumb').click(function(){
+        $('#slide_prew > .card-content').html('');
+        var sid = parseInt($(this).attr('class').slice(-1),10);
+        slideid = sid;
+        $('#slide_prew .card-content').html($('#preslide > section')[sid].outerHTML);
+        $('.slide_thumb').removeClass('active');
+        $(this).addClass('active');
+      	var toolbarOptions = [
+              [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+              ['bold', 'italic', 'underline'],        // toggled buttons
+              ['blockquote', 'code-block'],
+              [{ 'list': 'bullet' }],
+              [{ 'align': [] }],
+              [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+              [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+              [{ 'direction': 'rtl' }],                         // text direction
+
+              [ 'link', 'image', 'video' ],          // add's image support
+              [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+              [{ 'font': [] }],
+
+              ['clean']                                         // remove formatting button
+          ];
+        	var quill = new Quill('#slide_editor section.valign-wrapper.center.slideship', {
+              modules: {
+              imageResize: {
+                displaySize: true
+              },
+              toolbar: toolbarOptions
+            },
+            theme: 'snow'
+          });
+          var before;
+          $("#slide_editor > .slideship > .ql-editor").eq(0).wysiwygEvt();
+      });
+    }
+    //document.getElementById("editor")
+    slide_thumb_adder();
+    addSlide = null;
+    post_presentation = null;
+    addSlide = function(){
+      $('#preslide').append('<section class="valign-wrapper center slideship">'+
+                              '<div class="ql-editor" contenteditable="true" data-gramm="false">'+
+                                '<h1 class="ql-align-center">'+
+                                  '<u class="ql-size-huge">Title5</u>'+
+                                '</h1>'+
+                                '<p>'+
+                                  '<br>'+
+                                '</p>'+
+                                '<h1 class="ql-align-center">'+
+                                  '<span class="ql-size-large">Small descriptions(about you)</span>'+
+                                '</h1>'+
+                              '</div>'+
+                            '</section>');
+      presentations_new_init();
+      slide_thumb_adder();
+    }
+    post_presentation = function(){
+      $('#presentation_name').val($('#first_name').val());
+      $('#presentation_content').val($('#preslide').html());
+      $('#presentation_submitter').click();
+    }
+  });

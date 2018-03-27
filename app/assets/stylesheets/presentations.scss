@@ -57,6 +57,10 @@ $green: #4caf50;
   flex-direction: column !important;
 }
 
+.slides .slideship{
+	transform: scale(0.6);
+}
+
 .ql-editor{
 	overflow-y: inherit !important;
 }
