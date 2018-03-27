@@ -1,17 +1,13 @@
-:css
-	html,body{
-		overflow: hidden;
-	}
 .container-fluid.box
-	#presentation-header.page-header.primary-color{style: "padding: 10px;"}
+	#presentation-header.page-header.primary-color{style: "height: 100px;"}
 		.container
 			%h4.white-text Name
 		.container
-			=link_to edit_presentation_path,{class: "btn btn-floating right tooltipped amber darken-2","data-tooltip":"Edit this Presentation","data-position": "top",style: "top: 25px;"} do
+			=link_to edit_presentation_path,{class: "btn btn-floating right tooltipped amber darken-2","data-tooltip":"Edit this Presentation","data-position": "top",style: "top: -20px;"} do
 				%i.material-icons create
 
-	.content
-		.reveal
+	.content{style: "padding: 25px;"}
+		.reveal{style: "height: 100%;width: auto;"}
 			%a#presentation-fullscreen
 				%i.material-icons fullscreen
 			.slides
@@ -20,7 +16,7 @@
 				%section
 					%h1 Slide 2
 
-	.fixed-action-btn{style: "right: auto; left: 23px;"}
+	.fixed-action-btn
 		%a.btn-floating.btn-large.red
 			%i.large.material-icons share
 		%ul
@@ -32,6 +28,8 @@
 					%i.material-icons share
 
 :javascript
+	Reveal.initialize();
+
 	function errorHandler() {
 	   alert('mozfullscreenerror');
 	}
@@ -48,7 +46,8 @@
 	    } else if (document.documentElement.webkitRequestFullscreen) {
 	      document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
 	    }
-	    $('#presentation-header').hide();
+	    $('#presentation-header,nav,.fixed-action-btn').hide();
+	    $('.content').css('padding', '0px');
 	  } else {
 	    if (document.cancelFullScreen) {
 	      document.cancelFullScreen();
@@ -57,7 +56,8 @@
 	    } else if (document.webkitCancelFullScreen) {
 	      document.webkitCancelFullScreen();
 	    }
-	    $('#presentation-header').show();
+	    $('#presentation-header,nav,.fixed-action-btn').show();
+	    $('.content').css('padding', '50px');
 	  }
 	}
 
@@ -74,4 +74,4 @@
 	  // finally the standard version
 	  // el.requestFullscreen();
 	})
-	Reveal.initialize();
+	

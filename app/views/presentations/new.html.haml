@@ -2,7 +2,7 @@
   .center.col.s10.offset-s1
     .col.s4.input-field
       %input#first_name.validate{type: "text"}/
-      %label{for: "first_name"} First Name
+      %label{for: "first_name"} Name
     .col.s4.input-field
       %select
         %option{disabled: "disabled", selected: "selected", value: ""} Choose your option
@@ -23,6 +23,9 @@
         .container
           #slide_prew.card
             .card-content#slide_editor{style: 'padding:0px'}
+  .btn.btn-large{style: 'position: absolute; bottom:20px;right:20px', onclick: 'post_presentation()'}
+    %i.material-icons.right send
+    Save
 -# We will add tutorial slide's data at end(dont waste time)
 #preslide.hide
   %section.valign-wrapper.center.slideship
@@ -60,6 +63,7 @@
 :javascript
   var slideid = 0;
   var addSlide = function(){};
+  var post_presentation = function(){};
   (function ($) {
       $.fn.wysiwygEvt = function () {
           return this.each(function () {
@@ -138,9 +142,27 @@
     //document.getElementById("editor")
     slide_thumb_adder();
     addSlide = null;
+    post_presentation = null;
     addSlide = function(){
-      $('#preslide').append('<section class="valign-wrapper center slideship"><div class="ql-editor" contenteditable="true" data-gramm="false"><h1 class="ql-align-center"><u class="ql-size-huge">Title5</u></h1><p><br></p><h1 class="ql-align-center"><span class="ql-size-large">Small descriptions(about you)</span></h1></div></section>');
+      $('#preslide').append('<section class="valign-wrapper center slideship">'+
+                              '<div class="ql-editor" contenteditable="true" data-gramm="false">'+
+                                '<h1 class="ql-align-center">'+
+                                  '<u class="ql-size-huge">Title5</u>'+
+                                '</h1>'+
+                                '<p>'+
+                                  '<br>'+
+                                '</p>'+
+                                '<h1 class="ql-align-center">'+
+                                  '<span class="ql-size-large">Small descriptions(about you)</span>'+
+                                '</h1>'+
+                              '</div>'+
+                            '</section>');
       presentations_new_init();
       slide_thumb_adder();
+    }
+    post_presentation = function(){
+      $('#presentation_name').val($('#first_name').val());
+      $('#presentation_content').val($('#preslide').html());
+      $('#presentation_submitter').click();
     }
   });
