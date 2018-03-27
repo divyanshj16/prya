@@ -14,12 +14,19 @@
 						%i.material-icons add
 				.modal-content
 					.row{overflow: "scroll"}
+						.col.s12.m6.l4
 						- @startup.presentations do |ppt|
 							.col.s12.m6.l4
-							.card
-								.card-content
-									%span.badge.new.green{'data-badge-caption': "Default"}
-									%p.card-title.medium-weight.primary-text-color ppt
+								-if ppt.default
+									.card.default
+								-else
+									.card
+									.card-content
+										%span.badge.new.green{'data-badge-caption': "Default"}
+										%p.card-title.medium-weight.primary-text-color ppt
+									.card-action
+										=link_to "Edit",edit_presentation_path(ppt)
+										=link_to "Show",presentation_path(ppt)
 				.modal-footer
 					%a.modal-action.modal-close.waves-effect.waves-red.btn-flat Close
 			-#  Your Pitch Decks
