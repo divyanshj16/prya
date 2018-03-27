@@ -30,7 +30,10 @@
 					%i.material-icons share
 
 :javascript
-	Reveal.initialize();
+	console.log('#{@presentation.animation}');
+	Reveal.initialize({
+		transition: '#{@presentation.animation}'
+	});
 
 	function errorHandler() {
 	   alert('mozfullscreenerror');
@@ -77,7 +80,7 @@
 	    toggleFullScreen();
 	  });
 
-	  var el = document.getElementsByClassname('presentation-header');
+	  var el = document.getElementById('presentation-header');
 
 	  // use necessary prefixed versions
 	  el.mozRequestFullScreen();
