@@ -1,6 +1,3 @@
-:javascript
-	var instance = M.Tabs.init(el, options);
-
 .container-fluid
 	%section.section.primary-color.page-header.startup-profile-section
 		.container
@@ -63,52 +60,3 @@
 				#posts.row
 					.col.s12
 						%p.flow-text All Feeds
-
-
-	/ %section.section
-	/   .container
-	/     .row
-	/       .col.m4.l3.hide-on-small-only
-	/         .card
-	/           .card-content
-	/             .row
-	/               .col.s3.center
-	/                 %img.profile-thumb{src: "http://via.placeholder.com/32x32"}
-	/               .col.s9
-	/                 .row
-	/                   .s12
-	/                     %p.medium-weight.medium
-	/                       = @startup.title
-	/                     %p.text-muted
-	/                       = @startup.about
-	/             .divider.mb-1
-	/             .row
-	/               %span.text-muted
-	/                 = @startup.description
-	/               %p
-	/                 - if @startup.tags.empty?
-	/                   No tags right now.
-	/                 - else
-	/                   = render :partial => "tags/show", :locals => {:tags =>  @startup.tags }
-	/                 - if current_user and @startup.founder_ids.include? current_user.id
-	/                   = render :partial => "tags/new", :locals => {:what => @startup }
-	/       .col.s12.m8.l7
-	/         - if @startup.posts.size
-	/           = render @startup.posts
-	/         - else
-	/           %span.text-muted
-	/             Sorry No New Posts to show
-	/         - if current_user and @startup.founder_ids.include? current_user.id
-	/           .fixed-action-btn.click-to-toggle
-	/             %a.btn-floating.btn-large.waves-effect.waves-light.modal-trigger.tooltipped{href: "#create_post_modal","data-tooltip": "Announce!","data-position":"top"}
-	/               %i.large.material-icons add
-	/           #create_post_modal.modal
-	/             .modal-content
-	/               %h4 Let the world know
-	/               = simple_form_for Post.create do |f|
-	/                 .input-field
-	/                   = f.input :title
-	/                 .input-field
-	/                   = f.input :description,:input_html => {:class => "materialize-textarea wysiwyg_textarea" }
-	/                 = hidden_field_tag(:startup_id, @startup.id)
-	/                 = f.button :submit,:value=>"post!",:class=>"btn right"
