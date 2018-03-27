@@ -7,7 +7,7 @@
         .col.s12.m8.l7
           %p.bold-weight.medium= st.title
           %p.medium-weight= st.about
-      =link_to startup_path(st),{class: "btn halfway-fab btn-floating tooltipped","data-tooltip": "Startup Page"} do
+      =link_to startup_path(st),{class: "btn halfway-fab btn-floating tooltipped","data-tooltip": "Startup Page","data-position": "top"} do
         %i.material-icons arrow_forward
     .card-content
       %p.flow-text= st.description

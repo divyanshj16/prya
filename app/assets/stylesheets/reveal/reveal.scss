@@ -3,6 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .reveal{
 	border: 1px solid $divider-color;	
+	.progress{
+		height: 10px;
+	}
 	.backgrounds{
 		background: white;
 	}
