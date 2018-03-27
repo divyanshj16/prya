@@ -40,37 +40,38 @@
 								%a{:href => "#posts"} Posts
 							%li.tab.col.m3
 		.container
-			#about.row
-				.col.s12.m4
-					.row
-						.card
-							.card-content
-								%h3= @startup.title
-								.divider.mb-1
-								%h6.text-muted= @startup.about
-				.col.s12.m8
-					.row
-						.col.s12
-							.card.hoverable
-								.card-content
-									%h5 Description
-									.divider.mb-1
-									%p.grey-text.text-darken-3= @startup.description
 
-					.row					
-						.col.s12						
-							%ul.collection.hoverable
-								%li.collection-item
-									%h5 Founders
-								-  User.find(Foundership.where(startup_id: @startup.id).pluck(:user_id)).uniq.each do |fndr|
-									%li.collection-item.avatar
-										%img.circle{:alt => "", :src => fndr.avatar.url, :class => "responsive-img cofounder-img"}/
-										%span.primary-text-color.bold-weight.medium.title= fndr.username
-										%a.secondary-content{:href => "/users/#{fndr.id}"}
-											View Profile >
-				#posts.row
-					.col.s12
-						%p.flow-text All Feeds
+			.row
+				.col.s12.m4
+					.card
+						.card-content
+							%h3= @startup.title
+							.divider.mb-1
+							%h6.text-muted= @startup.about	
+				#about
+					.col.s12.m8
+						.row
+							.col.s12
+								.card.hoverable
+									.card-content
+										%h5 Description
+										.divider.mb-1
+										%p.grey-text.text-darken-3= @startup.description
+
+						.row					
+							.col.s12						
+								%ul.collection.hoverable
+									%li.collection-item
+										%h5 Founders
+									-  User.find(Foundership.where(startup_id: @startup.id).pluck(:user_id)).uniq.each do |fndr|
+										%li.collection-item.avatar
+											%img.circle{:alt => "", :src => fndr.avatar.url, :class => "responsive-img cofounder-img"}/
+											%span.primary-text-color.bold-weight.medium.title= fndr.username
+											%a.secondary-content{:href => "/users/#{fndr.id}"}
+												View Profile >
+					#posts.row
+						.col.s12
+							%p.flow-text All Feeds
 
 
 	/ %section.section
