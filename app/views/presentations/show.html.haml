@@ -1,30 +1,32 @@
+:css
+	html,body{
+		overflow: hidden;
+	}
 .container-fluid.box
-	#presentation-header.page-header.primary-color{style: "height: 100px;"}
+	#presentation-header.page-header.primary-color{style: "height: 64px;padding: 0px;padding-bottom: 10px;"}
 		.container
-			%h4.white-text Name
+			%h4.white-text
+				= Startup.find(@presentation.startup_id).title
 		.container
-			=link_to edit_presentation_path,{class: "btn btn-floating right tooltipped amber darken-2","data-tooltip":"Edit this Presentation","data-position": "top",style: "top: -20px;"} do
+			=link_to edit_presentation_path,{class: "btn btn-floating right tooltipped amber darken-2","data-tooltip":"Edit this Presentation","data-position": "top",style: "top: -30px;"} do
 				%i.material-icons create
 
-	.content{style: "padding: 25px;"}
-		.reveal{style: "height: 100%;width: auto;"}
+	.content{style: "padding: 25px;display: flex;"}
+		.reveal{style: "height: 480px;width: 845px;margin: auto;"}
 			%a#presentation-fullscreen
 				%i.material-icons fullscreen
 			.slides
-				%section
-					%h1 Slide 1
-				%section
-					%h1 Slide 2
+				= raw @presentation.content
 
 	.fixed-action-btn
 		%a.btn-floating.btn-large.red
 			%i.large.material-icons share
 		%ul
 			%li
-				%a.btn-floating.teal.tooltipped{"data-tooltip":"Download this pitch deck","data-position":"right"}
+				%a.btn-floating.teal.tooltipped{"data-tooltip":"Download this pitch deck","data-position":"left"}
 					%i.material-icons file_download
 			%li
-				%a.btn-floating.blue.tooltipped{"data-tooltip":"Share Link","data-position":"right"}
+				%a.btn-floating.blue.tooltipped{"data-tooltip":"Share Link","data-position":"left"}
 					%i.material-icons share
 
 :javascript
@@ -48,6 +50,10 @@
 	    }
 	    $('#presentation-header,nav,.fixed-action-btn').hide();
 	    $('.content').css('padding', '0px');
+	    $('.reveal').css({
+	    	height: '100%',
+	    	width: '100%'
+	    })
 	  } else {
 	    if (document.cancelFullScreen) {
 	      document.cancelFullScreen();
@@ -58,6 +64,10 @@
 	    }
 	    $('#presentation-header,nav,.fixed-action-btn').show();
 	    $('.content').css('padding', '50px');
+	    $('.reveal').css({
+	    	height: '480px',
+	    	width: '854px'
+	    })
 	  }
 	}
 
@@ -67,11 +77,10 @@
 	    toggleFullScreen();
 	  });
 
-	  var el = document.getElementById('presentation-header');
+	  var el = document.getElementsByClassname('presentation-header');
 
 	  // use necessary prefixed versions
 	  el.mozRequestFullScreen();
 	  // finally the standard version
 	  // el.requestFullscreen();
 	})
-	
