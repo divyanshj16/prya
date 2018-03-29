@@ -4,11 +4,14 @@
       %input#first_name.validate{type: "text"}/
       %label{for: "first_name"} Untitled
     .col.s4.input-field
-      %select
-        %option{disabled: "disabled", selected: "selected", value: ""} Choose your option
-        %option{value: "1"} Option 1
-        %option{value: "2"} Option 2
-        %option{value: "3"} Option 3
+      %select#anime-selector
+        %option{disabled: "disabled", selected: "selected", value: ""} Animation
+        %option{value: "None"} none
+        %option{value: "Fade"} fade
+        %option{value: "Slide"} Slide
+        %option{value: "Zoom"} Zoom
+        %option{value: "Concave"} Concave
+        %option{value: "Convex"} Convex
       %label Slide Transition
   .container-fluid
     .row
@@ -162,7 +165,9 @@
     post_presentation = function(){
       var first_name = 
       $('#presentation_name').val($('#first_name').val());
-      var content = $('#presentation_content').val($('#preslide').html());
+      $('#presentation_content').val($('#preslide').html());
+      $('#presentation_content').val($('#preslide').html());
+      $('#presentation_animation').val($('#anime-selector').val());
       $('#presentation_submitter').click();
     }
   });
