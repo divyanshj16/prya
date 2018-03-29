@@ -5,7 +5,7 @@
         .col.s12.m4.l3.d-flex
           %img.startup-img{:src => "/assets/logo_missing.png",style: "margin: auto;"}/
         .col.s12.m8.l7
-          %p.bold-weight.medium= st.title
+          %p.bold-weight.medium= st.title.split.map(&:capitalize)*' '
           %p.medium-weight= st.about
       =link_to startup_path(st),{class: "btn halfway-fab btn-floating tooltipped","data-tooltip": "Startup Page","data-position": "top"} do
         %i.material-icons arrow_forward
@@ -15,12 +15,12 @@
       .divider.mb-1
       .row
         - User.find(Foundership.where(startup_id: st).pluck(:user_id)).uniq.each do |fndr|
-          .col.s12.m4.l3
+          .col.s12.m4
             .row.cofounder
               .col.s4
                 = image_tag(fndr.avatar.url, :class => "responsive-img cofounder-img")
               .col.s8
-                %p.medium-weight.medium.cofounder-name= fndr.username
+                %p.medium-weight.medium.cofounder-name= fndr.username.split.map(&:capitalize)*' '
                 %a.cofounder-link{href: "/users/#{fndr.id}"}
                   View Profile >
 

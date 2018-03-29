@@ -44,16 +44,17 @@
 								%a{:href => "#posts"} Posts
 							%li.tab.col.m3
 		.container
-
+			
 			.row
 				.col.s12.m4
 					.col.s12
-						%h3= @startup.title
+						%h3= @startup.title.split.map(&:capitalize)*' '
 					.col.s12
 						%h6= @startup.about
 					.col.s12
 						%h7.text-muted= @startup.description
-				.col.s12.m8
+				
+				#about.col.s12.m8
 					.col.s12
 						%h5
 							Co-Founders
@@ -62,9 +63,10 @@
 							-  User.find(Foundership.where(startup_id: @startup.id).pluck(:user_id)).uniq.each do |fndr|
 								%li.collection-item.avatar
 									%img.circle{:alt => "", :src => fndr.avatar.url, :class => "responsive-img cofounder-img"}/
-									%span.primary-text-color.bold-weight.medium.title= fndr.username
+									%span.primary-text-color.bold-weight.medium.title= fndr.username.split.map(&:capitalize)*' '
 									%a.secondary-content{:href => "/users/#{fndr.id}"}
 										View Profile >
-				#posts.row
-					.col.s12
-						%p.flow-text All Feeds
+				#posts.col.s12.m8
+					.row
+						.col.s12
+							%p.flow-text All Feeds
