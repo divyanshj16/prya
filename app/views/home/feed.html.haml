@@ -21,32 +21,32 @@
 
 %section{style: "padding-top: 50px;"}
 	.section
-		.container.post-container
+		.container
 			.row
 				.col.m4.l3.hide-on-small-only
 					.card
 						.card-content
 							.row
-								.col.s3.center
-									%img.profile-thumb{src: "http://via.placeholder.com/32x32"}
-								.col.s9
+								.col.s5.valign-wrapper
+									%img.responsive-img.circle{src: "#{current_user.avatar.url}"}
+								.col.s7
 									.row
 										.s12
-											%p.medium-weight.medium= current_user.username
+											%p.medium-weight.medium= current_user.username.split.map(&:capitalize)*' '
 										.s12
-											= link_to "View Your Profile",current_user,class: "secondary-text-color"
+											= link_to "Your Profile",current_user,class: "secondary-text-color"
 							.divider.mb-1
-							- if @startups
+							- if not current_user.isinvestor
 								.row
-									%span.text-muted You are founder in
-									%br/
-									%span.medium-weight.medium= @startups.count
-									%span startups
+									%span.medium-weight.medium.secondary-text-color= Startup.find(current_user.founderships.pluck(:startup_id)).count
+									%span Startups
 								.row
-									%span.medium-weight.medium 0
-									%span investors
+									%span.medium-weight.medium.secondary-text-color= Foundership.where(startup_id:Startup.find(current_user.founderships.pluck(:startup_id))).pluck(:user_id).uniq.count - 1
+									%span Co-Founders
 									%br/
-									%span.text-muted viewed your profile
 
-				.col.s12.m8.l7
+				.col.m5.l6
 					= render @posts
+
+				.col.m3.l3
+					= render "shared/random"

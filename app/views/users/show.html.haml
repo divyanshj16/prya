@@ -8,8 +8,12 @@
 					%span.new.badge.green{"data-badge-caption": "Investor"}
 				-else
 					%span.new.badge.primary-color{"data-badge-caption": "Founder"}
-				= @user.username
-			%span.normal= "Email : #{@user.email}"
+				= @user.username.split.map(&:capitalize)*' '
+			%a.valign-wrapper.white-text{href: "mailto:#{@user.email}"}
+				%i.material-icons email
+				%span.normal
+					&nbsp;
+					= "#{@user.email}"
 			%span.normal.secondary-text-color
 				%span.medium.bold-weight= Startup.find(@user.founderships.pluck(:startup_id)).count
 				%span.white-text= " Startups"
