@@ -1,22 +1,17 @@
 .card.post
 	.card-header.post-header
-		%img.profile-thumb{:src => "http://via.placeholder.com/32x32", :alt => ""}/
+		%img.profile-thumb{:src => "#{post.user.avatar.url}", :alt => ""}/
 		= link_to "#{post.startup.title}",post.startup,class: 'post-by'
-		= link_to "@#{post.user.username}",post.user,class: "text-muted normal"
-	.card-image.post-image
-		%img{:src => "http://via.placeholder.com/400x400/FF5252/FFFFFF"}/
-		%span.card-title= post.title
-		-# TODO Link it to post path
-		-if current_user = post.user
-			=link_to edit_post_path(post),{class: "btn btn-floating halfway-fab amber tooltipped","data-position": "top", "data-tooltip": "Edit this post"} do
-				%i.material-icons create
+		= link_to "by @#{post.user.username}",post.user,class: "text-muted normal"
 	.card-content
+		.card-title= post.title
 		%p.post-text= post.description
 		%span.post-timestamp 13 hours ago
-	.card-action.post-footer
-		%span
-			%i.material-icons arrow_upward
-			Upvote
-		%span
-			%i.material-icons phone
-			Contact Startup
+	.card-action
+		.row.footer-pad
+			.col.s6.valign-wrapper
+				%i.material-icons arrow_upward
+				&nbsp; Upvote
+			.col.s6.valign-wrapper
+				%i.material-icons phone
+				&nbsp; Contact Startup
