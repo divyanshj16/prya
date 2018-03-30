@@ -2,18 +2,27 @@
 	- if current_user.isinvestor
 		%p.large.center
 			Trending Startups
-		-  User.where(isinvestor: false).order('RANDOM()').first(5).uniq.each do |fndr|
-			%li.collection-item.avatar
-				%a.valign-wrapper{:href => "/users/#{fndr.id}"}								
-					%img.circle{:alt => "", :src => fndr.avatar.url, :class => "responsive-img cofounder-img"}/
-					%span.primary-text-color.bold-weight.medium.title= fndr.username.split.map(&:capitalize)*' '
+		- if User.where(isinvestor: false).order('RANDOM()').first(5).uniq.each.count
+			- User.where(isinvestor: false).order('RANDOM()').first(5).uniq.each do |fndr|
+				%li.collection-item.avatar
+					%a.valign-wrapper{:href => "/users/#{fndr.id}"}								
+						%img.circle{:alt => "", :src => fndr.avatar.url, :class => "responsive-img cofounder-img"}/
+						%span.primary-text-color.bold-weight.medium.title= fndr.username.split.map(&:capitalize)*' '
+		- else
+			%li.collection-item.text-muted					
+				No trending startups currently							
 
 	- else
 		%p.large.center
-			Trending Investors			
-		-  User.where(isinvestor: true).order('RANDOM()').first(5).uniq.each do |fndr|
-			%li.collection-item.avatar.valign-wrapper
-				%a.valign-wrapper{:href => "/users/#{fndr.id}"}					
-					%img.circle{:alt => "", :src => fndr.avatar.url, :class => "responsive-img cofounder-img"}/
-					%span.primary-text-color.bold-weight.medium.title= fndr.username.split.map(&:capitalize)*' '	
+			Trending Investors	
+		- if User.where(isinvestor: true).order('RANDOM()').first(5).uniq.each.count
+			- User.where(isinvestor: true).order('RANDOM()').first(5).uniq.each do |fndr|
+				%li.collection-item.avatar.valign-wrapper
+					%a.valign-wrapper{:href => "/users/#{fndr.id}"}					
+						%img.circle{:alt => "", :src => fndr.avatar.url, :class => "responsive-img cofounder-img"}/
+						%span.primary-text-color.bold-weight.medium.title= fndr.username.split.map(&:capitalize)*' '
+		- else
+			%li.collection-item.text-muted			
+				No trending investors currently			
+
 
