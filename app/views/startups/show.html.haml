@@ -4,11 +4,12 @@
 			%img.responsive-img.cover{:src => "/assets/landscape/cover_missing.jpeg", :alt => "", style: "height: 100%;"}/
 			%img.profile-pic{src: "/assets/logo_missing.png"}
 		.container
-			%a.modal-trigger.btn.btn-floating.btn-large.hoverable.right.hide-on-small-only.tooltipped.waves-effect.waves-light{href: "#PitchPlease","data-tooltip": "View #{@startup.title}'s pitch decks","data-position":"top"}
-				%i.material-icons pageview
-
-			%a.modal-trigger.btn.btn-floating.btn-large.hoverable.right.hide-on-small-only.tooltipped.waves-effect.waves-light{href: "#addcf","data-tooltip": "View #{@startup.title}'s co-founders","data-position":"top"}
-				%i.material-icons add			
+			- if current_user.isinvestor or Foundership.where(user_id: current_user.id).pluck(:startup_id).include? @startup.id
+				%a.modal-trigger.btn.btn-floating.btn-large.hoverable.right.hide-on-small-only.tooltipped.waves-effect.waves-light{href: "#PitchPlease","data-tooltip": "View #{@startup.title}'s pitch decks","data-position":"top"}
+					%i.material-icons pageview
+			- else		
+				%a.modal-trigger.btn.btn-floating.btn-large.hoverable.right.hide-on-small-only.tooltipped.waves-effect.waves-light.invisibledj{href: "#"}
+					%i.material-icons pageview				
 
 			
 			-# Add co founder
