@@ -45,8 +45,9 @@
               = f.hidden_field :experience, value: 'nil'
               = f.hidden_field :details, value: 'nil'
               = f.hidden_field :ident, value: 'nil'
+              = f.hidden_field :invverif, value: true
               .actions.col.s12
-              = f.button :submit, class: 'btn',id: 'investor_detail_submitter'
+                = f.button :submit, class: 'btn',id: 'investor_detail_submitter'
 
           :javascript
             function post_inv_details(){
@@ -56,7 +57,7 @@
                 $('#user_accred').val('Firm');
               $('#user_experience').val($('#inv_startups_list').val());
               $('#user_details').val($('#phnum').val());
-              $('#user_ident').val($('#adhnum').val()+'|'$('#sebinum').val());
+              $('#user_ident').val($('#adhnum').val()+'|'+$('#sebinum').val());
               $('#investor_detail_submitter').click();
             }
 

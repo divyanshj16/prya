@@ -13,6 +13,7 @@ class User < ApplicationRecord
   validates :experience, presence: false
   validates :details, presence: false
   validates :ident, presence: false
+  validates :invverif, presence: false
 
   has_many :founderships, dependent: :destroy
   has_many :startups, through: :foundership
