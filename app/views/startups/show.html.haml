@@ -30,11 +30,21 @@
 			#PitchPlease.modal.black-text
 				.page-header.secondary-color
 					%p.bold-weight.white-text Your Pitch Decks
-					= link_to new_presentation_path(startup_id: @startup.id),{class: 'btn btn-floating btn-large yellow darken-3 tooltipped right',"data-tooltip": "Add a Pitch Deck","data-position":"top"} do
-						%i.material-icons add
+					- if Foundership.where(user_id: current_user.id).pluck(:startup_id).include? @startup.id
+						= link_to new_presentation_path(startup_id: @startup.id),{class: 'btn btn-floating btn-large yellow darken-3 tooltipped right',"data-tooltip": "Add a Pitch Deck","data-position":"top"} do
+							%i.material-icons add
 				.modal-content
 					.row{overflow: "scroll"}
-						.col.s12.m6.l4
+						- if current_user.is_investor
+							- Presentation.where(startup_id: @startup.id , publish:true).each do |ppt|
+								.col.s12.m6.l4
+									.card.default
+										.card-content
+											%span.badge.new.green{'data-badge-caption': "Default"}
+											%p.card-title.medium-weight.primary-text-color ppt
+										.card-action
+											=link_to "Edit",edit_presentation_path(ppt)
+											=link_to "Show",presentation_path(ppt)							
 						- @startup.presentations do |ppt|
 							.col.s12.m6.l4
 								-if ppt.default
