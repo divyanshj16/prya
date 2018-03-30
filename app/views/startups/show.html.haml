@@ -99,6 +99,7 @@
 				.col.s12.m4
 					.col.s12
 						%h3= @startup.title.split.map(&:capitalize)*' '
+						%span.top-right-startup.new.badge.left{"data-badge-caption": "#{Sustage.find(@startup.sustage_id).stage.split('_').map(&:capitalize)*' '}"}					
 					.col.s12
 						%h6= @startup.about
 					.col.s12
