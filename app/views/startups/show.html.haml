@@ -35,39 +35,40 @@
 							%i.material-icons add
 				.modal-content
 					.row{overflow: "scroll"}
-						- if current_user.is_investor
+						- if current_user.isinvestor
 							- Presentation.where(startup_id: @startup.id , publish:true).each do |ppt|
 								.col.s12.m6.l4
 									.card.default
 										.card-content
 											%span.badge.new.green{'data-badge-caption': "Default"}
-											%p.card-title.medium-weight.primary-text-color ppt
-										.card-action
-											=link_to "Edit",edit_presentation_path(ppt)
-											=link_to "Show",presentation_path(ppt)							
-						- @startup.presentations.each do |ppt|
-							.col.s12.m6.l4
-								-if ppt.publish
-									.card.default											
-										.card-content
-											%span.badge.new.green{'data-badge-caption': "Default"}
-											%p.card-title.medium-weight.primary-text-color 
-												= ppt.name
-											%a{class: 'btn-floating hafway-fab-content waves-effect waves-light green', style: 'position: absolute; right: 20px;', onclick: 'publishThis(this)',"data-id": "#{ppt.id}"}
-												%i.material-icons star_border
+											%p.card-title.medium-weight.primary-text-color= ppt.name
 										.card-action
 											=link_to "Edit",edit_presentation_path(ppt)
 											=link_to "Show",presentation_path(ppt)
-								-else
-									.card
-										.card-content
-											%p.card-title.medium-weight.primary-text-color 
-												=ppt.name
-											%a{class: 'btn-floating hafway-fab-content waves-effect waves-light green', style: 'position: absolute; right: 20px;', onclick: 'publishThis(this)',"data-id": "#{ppt.id}"}
-												%i.material-icons star_border
-										.card-action
-											=link_to "Edit",edit_presentation_path(ppt)
-											=link_to "Show",presentation_path(ppt)
+						- if not current_user.isinvestor							
+							- @startup.presentations.each do |ppt|
+								.col.s12.m6.l4
+									-if ppt.publish
+										.card.default											
+											.card-content
+												%span.badge.new.green{'data-badge-caption': "Default"}
+												%p.card-title.medium-weight.primary-text-color 
+													= ppt.name
+												%a{class: 'btn-floating hafway-fab-content waves-effect waves-light green', style: 'position: absolute; right: 20px;', onclick: 'publishThis(this)',"data-id": "#{ppt.id}"}
+													%i.material-icons star_border
+											.card-action
+												=link_to "Edit",edit_presentation_path(ppt)
+												=link_to "Show",presentation_path(ppt)
+									-else
+										.card
+											.card-content
+												%p.card-title.medium-weight.primary-text-color 
+													=ppt.name
+												%a{class: 'btn-floating hafway-fab-content waves-effect waves-light green', style: 'position: absolute; right: 20px;', onclick: 'publishThis(this)',"data-id": "#{ppt.id}"}
+													%i.material-icons star_border
+											.card-action
+												=link_to "Edit",edit_presentation_path(ppt)
+												=link_to "Show",presentation_path(ppt)
 								:javascript
 									function publishThis(e){
 										var $id = $(e).data('id')
