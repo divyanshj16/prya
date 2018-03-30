@@ -5,9 +5,9 @@
 			.row
 				.col.s12
 					= f.input :title, input_html: {"data-length": '30'},wrapper_html: {class: 'input-field'}
-				.col.s12
-					= f.input :description, input_html: {class: 'materialize-textarea', "data-length": '500'},wrapper_html: {class: 'input-field'}				
+				.col.s12{style: "padding-bottom:0;, margin:0;"}
+					= f.input :description, input_html: {class: 'materialize-textarea', rows: '2',"data-length": '500'},wrapper_html: {class: 'input-field'}				
 					= f.hidden_field :startup_id, value: @startup.id
 					= f.hidden_field :user_id, value: current_user.id
-			.card-action{style: "border-top: 0px;"}
+			.card-action{style: "border-top: 0px; padding:0;, margin:0;"}
 				= f.submit "Create",class: 'btn'

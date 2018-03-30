@@ -1,1 +1,24 @@
-%h5 my posts
+%br/
+%h5 Your Posts
+%br/
+%br/
+- @startup.posts.each do |post|
+	.card.post
+		.card-header.post-header
+			%img.profile-thumb{:src => "#{post.user.avatar.url}", :alt => ""}/
+			= link_to "#{post.startup.title}",post.startup,class: 'post-by'
+			= link_to "by @#{post.user.username}",post.user,class: "text-muted normal"
+		.card-content
+			.card-title= post.title
+			%p.post-text= post.description
+			%span.post-timestamp 13 hours ago
+		.card-action
+			.row.footer-pad
+				.col.s6
+					%a.valign-wrapper{href: "#"}
+						%i.material-icons arrow_upward
+						&nbsp; 4 Upvotes
+				.col.s6
+					%a.valign-wrapper{href: "/startups/#{post.startup.id}"}
+						%i.material-icons phone
+						&nbsp; Contact
