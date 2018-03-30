@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   resources :posts
   get 'users/show'
 
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: "registrations",
+  }
+
 
   unauthenticated :user do
     root to: 'home#index'
@@ -11,6 +15,8 @@ Rails.application.routes.draw do
   authenticated :user do
     root to: 'home#feed'
   end
+
+  get '/verifyInvestor', to: 'home#verifyInvestor'
 
   resources :startups do
      member do
