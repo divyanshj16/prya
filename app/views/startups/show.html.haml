@@ -1,17 +1,17 @@
 .container-fluid
 	%section.section.primary-color.page-header.startup-profile-section
 		.container
-			%img.responsive-img.cover{:src => "/assets/landscape/cover_missing.jpeg", :alt => "", style: "height: 100%;"}/
+			%img.responsive-img.cover{:src => "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fpragativadi.com%2Fwp-content%2Fuploads%2F2017%2F03%2Fbuilding_startup-1.jpg&f=1", :alt => "", style: "height: 100%;"}/
 			%img.profile-pic{src: "/assets/logo_missing.png"}
 		.container
 			- if current_user.isinvestor or Foundership.where(user_id: current_user.id).pluck(:startup_id).include? @startup.id
 				%a.modal-trigger.btn.btn-floating.btn-large.hoverable.right.hide-on-small-only.tooltipped.waves-effect.waves-light{href: "#PitchPlease","data-tooltip": "View #{@startup.title}'s pitch decks","data-position":"top"}
 					%i.material-icons pageview
-			- else		
+			- else
 				%a.modal-trigger.btn.btn-floating.btn-large.hoverable.right.hide-on-small-only.tooltipped.waves-effect.waves-light.invisibledj{href: "#"}
-					%i.material-icons pageview				
+					%i.material-icons pageview
 
-			
+
 			-# Add co founder
 			#addcf.modal
 				.modal-content
@@ -22,7 +22,7 @@
 							%label{for: "cfemail"} Email address
 						.col.s2
 							%button.btn{type: "submit"}
-								Add			
+								Add
 
 
 
@@ -45,14 +45,14 @@
 										.card-action
 											=link_to "Edit",edit_presentation_path(ppt)
 											=link_to "Show",presentation_path(ppt)
-						- if not current_user.isinvestor							
+						- if not current_user.isinvestor
 							- @startup.presentations.each do |ppt|
 								.col.s12.m6.l4
 									-if ppt.publish
-										.card.default											
+										.card.default
 											.card-content
 												%span.badge.new.green{'data-badge-caption': "Default"}
-												%p.card-title.medium-weight.primary-text-color 
+												%p.card-title.medium-weight.primary-text-color
 													= ppt.name
 												%a{class: 'btn-floating hafway-fab-content waves-effect waves-light green', style: 'position: absolute; right: 20px;', onclick: 'publishThis(this)',"data-id": "#{ppt.id}"}
 													%i.material-icons star_border
@@ -62,7 +62,7 @@
 									-else
 										.card
 											.card-content
-												%p.card-title.medium-weight.primary-text-color 
+												%p.card-title.medium-weight.primary-text-color
 													=ppt.name
 												%a{class: 'btn-floating hafway-fab-content waves-effect waves-light green', style: 'position: absolute; right: 20px;', onclick: 'publishThis(this)',"data-id": "#{ppt.id}"}
 													%i.material-icons star_border
@@ -94,7 +94,7 @@
 								%a{:href => "#posts"} Posts
 							%li.tab.col.m3
 		.container
-			
+
 			.row
 				.col.s12.m4
 					.col.s12
@@ -103,16 +103,16 @@
 						%h6= @startup.about
 					.col.s12
 						%h7.text-muted= @startup.description
-				
+
 				#about.col.s12.m8
 					.col.s4
 						%h5
 							Co-Founders
-					.col.s8	
+					.col.s8
 						%a.modal-trigger.btn.btn-floating.btn-large.hoverable.hide-on-small-only.tooltipped.waves-effect.waves-light.left{href: "#addcf","data-tooltip": "Add #{@startup.title}'s Co-Founders","data-position":"top"}
-							%i.material-icons add			
+							%i.material-icons add
 
-					.col.s12						
+					.col.s12
 						%ul.collection
 							-  User.find(Foundership.where(startup_id: @startup.id).pluck(:user_id)).uniq.each do |fndr|
 								%li.collection-item.avatar
