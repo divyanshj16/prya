@@ -9,6 +9,8 @@ class StartupsController < ApplicationController
   def show
     # for trial
     @post= Post.first
+    #new post
+    @post_new = Post.new
   end
 
   def new

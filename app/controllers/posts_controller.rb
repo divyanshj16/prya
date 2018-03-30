@@ -17,10 +17,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    if params[:startup_id]
-      @startup = Startup.find(params[:startup_id])
-      @post = @startup.posts.create(title: params[:post][:title], description: params[:post][:description],user_id: current_user.id )
-    end
+    @startup = Startup.find(post_params[:startup_id])
+    @post = @startup.posts.create(post_params)
     if @post.save
       # format.html { redirect_to @post, notice: 'Post was successfully created.' }
       # format.json { render :show, status: :created, location: @post }
