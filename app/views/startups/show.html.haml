@@ -4,8 +4,28 @@
 			%img.responsive-img.cover{:src => "/assets/landscape/cover_missing.jpeg", :alt => "", style: "height: 100%;"}/
 			%img.profile-pic{src: "/assets/logo_missing.png"}
 		.container
-			%a.modal-trigger.btn.btn-floating.btn-large.hoverable.right.hide-on-small-only.tooltipped.waves-effect.waves-light{href: "#PitchPlease","data-tooltip": "View #{@startup.title}'s pitch decks","data-position":"top"}
-				%i.material-icons pageview
+			- if current_user.isinvestor or Foundership.where(user_id: current_user.id).pluck(:startup_id).include? @startup.id
+				%a.modal-trigger.btn.btn-floating.btn-large.hoverable.right.hide-on-small-only.tooltipped.waves-effect.waves-light{href: "#PitchPlease","data-tooltip": "View #{@startup.title}'s pitch decks","data-position":"top"}
+					%i.material-icons pageview
+			- else		
+				%a.modal-trigger.btn.btn-floating.btn-large.hoverable.right.hide-on-small-only.tooltipped.waves-effect.waves-light.invisibledj{href: "#"}
+					%i.material-icons pageview				
+
+			
+			-# Add co founder
+			#addcf.modal
+				.modal-content
+					.row.valign-wrapper
+						.col.s10.input-field
+							%i.material-icons.prefix{style: "color:#f95051"} email
+							%input#cfemail.validate.black-text{type: "email"}
+							%label{for: "cfemail"} Email address
+						.col.s2
+							%button.btn{type: "submit"}
+								Add			
+
+
+
 			-#  Modal For Your Startups
 			#PitchPlease.modal.black-text
 				.page-header.secondary-color
@@ -73,9 +93,13 @@
 						%h7.text-muted= @startup.description
 				
 				#about.col.s12.m8
-					.col.s12
+					.col.s4
 						%h5
 							Co-Founders
+					.col.s8	
+						%a.modal-trigger.btn.btn-floating.btn-large.hoverable.hide-on-small-only.tooltipped.waves-effect.waves-light.left{href: "#addcf","data-tooltip": "Add #{@startup.title}'s Co-Founders","data-position":"top"}
+							%i.material-icons add			
+
 					.col.s12						
 						%ul.collection
 							-  User.find(Foundership.where(startup_id: @startup.id).pluck(:user_id)).uniq.each do |fndr|
@@ -87,4 +111,7 @@
 				#posts.col.s12.m8
 					.row
 						.col.s12
-							%p.flow-text All Feeds
+							= render "shared/create_post"
+					.row
+						.col.s12
+							= render "shared/startup_posts"

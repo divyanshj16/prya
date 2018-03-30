@@ -18,7 +18,10 @@
 				%span.medium.bold-weight= Startup.find(@user.founderships.pluck(:startup_id)).count
 				%span.white-text= " Startups"
 			%span.normal.secondary-text-color
-				%span.medium.bold-weight= Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:startup_id))).pluck(:user_id).uniq.count - 1
+				- if Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:startup_id))).pluck(:user_id).uniq.count != 0
+					%span.medium.bold-weight= Foundership.where(startup_id:Startup.find(@user.founderships.pluck(:startup_id))).pluck(:user_id).uniq.count - 1
+				- else
+					%span.medium.bold-weight 0
 				%span.white-text= " Co-Founders"
 	%section
 		.row{style: "background: white;"}

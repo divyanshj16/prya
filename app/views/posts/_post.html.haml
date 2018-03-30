@@ -9,9 +9,11 @@
 		%span.post-timestamp 13 hours ago
 	.card-action
 		.row.footer-pad
-			.col.s6.valign-wrapper
-				%i.material-icons arrow_upward
-				&nbsp; Upvote
-			.col.s6.valign-wrapper
-				%i.material-icons phone
-				&nbsp; Contact Startup
+			.col.s6
+				%a.valign-wrapper{href: "#"}
+					%i.material-icons arrow_upward
+					&nbsp; 4 Upvotes
+			.col.s6
+				%a.valign-wrapper{href: "/startups/#{post.startup.id}"}
+					%i.material-icons phone
+					&nbsp; Contact

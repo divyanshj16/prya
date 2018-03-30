@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180330080847) do
+=======
+ActiveRecord::Schema.define(version: 20180330085920) do
+>>>>>>> 5f695e745fd9485068eeddd13536e4e04f56e5be
 
   create_table "founderships", force: :cascade do |t|
     t.integer "user_id"
@@ -107,6 +111,11 @@ ActiveRecord::Schema.define(version: 20180330080847) do
     t.string "covph_content_type"
     t.integer "covph_file_size"
     t.datetime "covph_updated_at"
+    t.string "accred"
+    t.string "experience"
+    t.string "details"
+    t.string "ident"
+    t.boolean "invverif", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -1,0 +1,116 @@
+.row.container
+
+
+
+  .row.d-flex
+    .col.s12.m6.m-auto
+      .card.hoverable
+        .card-content.black-text
+          %h5 Accrediation
+          %br
+          %p
+            %label
+              %input{name: "group1", type: "radio", id: 'indi_inv'}/
+              %span Individual
+          %p
+            %label
+              %input{name: "group1", type: "radio", id: 'firm_inv'}/
+              %span Firm/Bank
+          %h5 Experience
+          %br
+          .input-field
+            %input#inv_startups_list.validate{type: "text", placeholder: 'seprated with commas'}/
+            %label{for: "inv_startups_list"} Start ups Invested
+          %h5 Details
+          %br
+          .input-field
+            %input#phnum.validate{type: "number", placeholder: 'to get in touch if req.',maxlength: "10"}/
+            %label{for: "phnum"} Contact No.
+          %h5 Identification
+          %br
+          .input-field
+            %input#adhnum.validate{type: "number", placeholder: 'Enter Your Adhar Card Number'}/
+            %label{for: "adhnum"} Adhar Card No.
+          .input-field
+            %input#sebinum.validate{type: "text", placeholder: 'Enter Your SEBI License Number'}/
+            %label{for: "sebinum"} SEBI License No.
+          .center
+            .btn.btn-large{onclick: 'post_inv_details()'}
+              %i.material-icons.right send
+              submit
+          .hide
+            = simple_form_for(current_user, url: registration_path(current_user), html: { method: :put }) do |f|
+              %h3.primary-text.center Create presentation
+              = f.hidden_field :accred, value: 'nil'
+              = f.hidden_field :experience, value: 'nil'
+              = f.hidden_field :details, value: 'nil'
+              = f.hidden_field :ident, value: 'nil'
+              = f.hidden_field :invverif, value: true
+              .actions.col.s12
+                = f.button :submit, class: 'btn',id: 'investor_detail_submitter'
+
+          :javascript
+            function post_inv_details(){
+              if($('#indi_inv:checked').val() == null)
+                $('#user_accred').val('Individual');
+              else
+                $('#user_accred').val('Firm');
+              $('#user_experience').val($('#inv_startups_list').val());
+              $('#user_details').val($('#phnum').val());
+              $('#user_ident').val($('#adhnum').val()+'|'+$('#sebinum').val());
+              $('#investor_detail_submitter').click();
+            }
+
+
+
+          -# = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+          -#   - if resource.errors
+          -#     .alert.alert-danger.alert-dismissable
+          -#       - if resource.errors
+          -#         - resource.errors.full_messages.each do |message|
+          -#           - flash[:alert] = message
+          -#   %h3.primary-text.center Edit #{resource_name.to_s.humanize}
+          -#   %col.s12
+          -#     .input-field.col.s12
+          -#       = f.label :email
+          -#       = f.email_field :email, autofocus: true, autocomplete: "email"
+          -#     .input-field.col.s12
+          -#       = f.text_field :username
+          -#     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          -#       %div
+          -#         Currently waiting confirmation for: #{resource.unconfirmed_email}
+          -#     .row.field
+          -#       = image_tag @user.avatar.url,class: "responsive-img col s4"
+          -#       .file-field.input-field.col.s8
+          -#         .btn
+          -#           %span Image
+          -#           = f.file_field :avatar
+          -#         .file-path-wrapper
+          -#           %input.file-path.validate{type: "text", value: "Choose File"}/
+          -#     .row.field
+          -#       = image_tag @user.covph.url(:landscape),class: "responsive-img col s4"
+          -#       .file-field.input-field.col.s8
+          -#         .btn
+          -#           %span Image
+          -#           = f.file_field :covph
+          -#         .file-path-wrapper
+          -#           %input.file-path.validate{type: "text", value: "Choose File"}/
+          -#     .input-field.col.s12
+          -#       = f.label :password
+          -#       = f.password_field :password, autocomplete: "off"
+          -#       - if @minimum_password_length
+          -#         %em
+          -#           want to change password?
+          -#           = @minimum_password_length
+          -#           characters minimum
+          -#     .input-field.col.s12
+          -#       = f.label :password_confirmation
+          -#       = f.password_field :password_confirmation, autocomplete: "off"
+          -#     .input-field.col.s12
+          -#       = f.label :current_password
+          -#       = f.password_field :current_password, autocomplete: "off"
+          -#       %i (we need your current password to confirm your changes)
+          -#       %br/
+          -#     .row
+          -#       .actions.col.s12{style: 'margin-top: 1.5rem;'}
+          -#         = f.button :submit,class: 'btn btn-large col m8 offset-m2'

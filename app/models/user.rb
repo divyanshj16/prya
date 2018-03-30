@@ -9,9 +9,15 @@ class User < ApplicationRecord
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   has_attached_file :covph, styles: { landscape: "700x300#" }, default_url: "/assets/:style/cover_missing.jpeg"
   validates_attachment_content_type :covph, content_type: /\Aimage\/.*\z/
+  validates :accred, presence: false
+  validates :experience, presence: false
+  validates :details, presence: false
+  validates :ident, presence: false
+  validates :invverif, presence: false
 
   has_many :founderships, dependent: :destroy
   has_many :startups, through: :foundership
 
   has_many :posts
+
 end
