@@ -10,8 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180330080847) do
 
+=======
+ActiveRecord::Schema.define(version: 20180330085920) do
+>>>>>>> 2dbb3a8fa8373a96870713483cca22bc4584082a
 
   create_table "founderships", force: :cascade do |t|
     t.integer "user_id"
