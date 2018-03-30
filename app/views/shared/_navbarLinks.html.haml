@@ -7,13 +7,17 @@
 			%i.material-icons arrow_drop_down
 		%ul.dropdown-content#settings_dropdown{style: 'min-width: 12.5%;'}
 			%li
-				= link_to edit_user_registration_path do
-					%i.material-icons settings
-					Settings
+				=link_to new_startup_path do
+					%i.material-icons add
+					Create Startups
+				.divider
 			%li
-				= link_to destroy_user_session_path,{method: :delete} do
-					%i.material-icons power_settings_new
-					Logout
+				- @mysu = Foundership.where(user_id: current_user.id).pluck(:startup_id)
+				- @mysu.each do |su|                    
+					- if su
+						= link_to "/startups/#{su}" do
+							%img.profile-thumb{:src => "http://via.placeholder.com/32x32",class: 'responsive-img', style:'max-width: 2.75rem;', :alt => ""}/
+							= Startup.find(su).title
 - else
 	%li
 		= link_to "Sign up",new_user_registration_path

@@ -45,18 +45,37 @@
 										.card-action
 											=link_to "Edit",edit_presentation_path(ppt)
 											=link_to "Show",presentation_path(ppt)							
-						- @startup.presentations do |ppt|
+						- @startup.presentations.each do |ppt|
 							.col.s12.m6.l4
-								-if ppt.default
-									.card.default
+								-if ppt.publish
+									.card.default											
+										.card-content
+											%span.badge.new.green{'data-badge-caption': "Default"}
+											%p.card-title.medium-weight.primary-text-color 
+												= ppt.name
+											%a{class: 'btn-floating hafway-fab-content waves-effect waves-light green', style: 'position: absolute; right: 20px;', onclick: 'publishThis(this)',"data-id": "#{ppt.id}"}
+												%i.material-icons star_border
+										.card-action
+											=link_to "Edit",edit_presentation_path(ppt)
+											=link_to "Show",presentation_path(ppt)
 								-else
 									.card
-									.card-content
-										%span.badge.new.green{'data-badge-caption': "Default"}
-										%p.card-title.medium-weight.primary-text-color ppt
-									.card-action
-										=link_to "Edit",edit_presentation_path(ppt)
-										=link_to "Show",presentation_path(ppt)
+										.card-content
+											%p.card-title.medium-weight.primary-text-color 
+												=ppt.name
+											%a{class: 'btn-floating hafway-fab-content waves-effect waves-light green', style: 'position: absolute; right: 20px;', onclick: 'publishThis(this)',"data-id": "#{ppt.id}"}
+												%i.material-icons star_border
+										.card-action
+											=link_to "Edit",edit_presentation_path(ppt)
+											=link_to "Show",presentation_path(ppt)
+								:javascript
+									function publishThis(e){
+										var $id = $(e).data('id')
+										var url = '/startups/#{@startup.id}/presentations/#{ppt.id}'
+										console.log(url)
+										$.get('/startups/#{@startup.id}/presentations/#{ppt.id}',function(data){
+										})
+									}
 				.modal-footer
 					%a.modal-action.modal-close.waves-effect.waves-red.btn-flat Close
 			-#  Your Pitch Decks

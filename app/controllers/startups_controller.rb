@@ -1,5 +1,5 @@
 class StartupsController < ApplicationController
-  before_action :find_startup, only: [:show, :edit, :update, :add_tag, :delete_tag]
+  before_action :find_startup, only: [:show, :edit, :update, :add_tag, :delete_tag, :publishThis]
   skip_before_action :verify_authenticity_token, only: [:add_tag, :delete_tag ]
 
   def index
@@ -56,6 +56,17 @@ class StartupsController < ApplicationController
 
     redirect_to startup_path(@startup), notice: "Tag removed successfully : #{tags.join(', ')}"
     #code
+  end
+
+  def publishThis
+    p_id = params[:p_id]
+    @startup.presentations.each do |ppts|
+      ppts.publish = false
+      ppts.save
+    end
+    this_ppt = Presentation.find(p_id)
+    this_ppt.publish= true
+    this_ppt.save
   end
 
   private

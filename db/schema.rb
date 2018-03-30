@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20180330080847) do
+=======
 ActiveRecord::Schema.define(version: 20180330085920) do
+>>>>>>> 5f695e745fd9485068eeddd13536e4e04f56e5be
 
   create_table "founderships", force: :cascade do |t|
     t.integer "user_id"
@@ -47,6 +51,7 @@ ActiveRecord::Schema.define(version: 20180330085920) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "animation"
+    t.boolean "publish", default: false
     t.index ["pallete_id"], name: "index_presentations_on_pallete_id"
     t.index ["startup_id"], name: "index_presentations_on_startup_id"
   end

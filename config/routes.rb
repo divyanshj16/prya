@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :posts
   get 'users/show'
+  get 'startups/:id/presentations/:p_id' => 'startups#publishThis', as: 'publish_this'
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
