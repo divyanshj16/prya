@@ -61,10 +61,16 @@
             %i.material-icons description
             Blog
         %li
-          = link_to edit_user_registration_path, class:'waves-effect' do
-            %i.material-icons settings
-            Settings
-        %li
           = link_to '#', class: "waves-effect" do
             %i.material-icons help
             Help
+        %li
+          .divider
+        %li
+          = link_to edit_user_registration_path do
+            %i.material-icons settings
+            Settings
+        %li
+          = link_to destroy_user_session_path,{method: :delete} do
+            %i.material-icons power_settings_new
+            Logout
