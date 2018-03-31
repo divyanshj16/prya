@@ -43,7 +43,6 @@
 											%span.badge.new.green{'data-badge-caption': "Default"}
 											%p.card-title.medium-weight.primary-text-color= ppt.name
 										.card-action
-											=link_to "Edit",edit_presentation_path(ppt)
 											=link_to "Show",presentation_path(ppt)
 						- if not current_user.isinvestor
 							- @startup.presentations.each do |ppt|
