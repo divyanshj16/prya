@@ -14,6 +14,6 @@
             .input-field.col.s12
               / = f.label :stage
               -# = f.input :sustage_id,as: :select,collection: Sustage.all.map{|stage| stage.stage}
-              = f.input :sustage_id,as: :select,collection: Sustage.all
+              = f.input :sustage_id,as: :select,placeholder: 'your startup\'s stage',collection: Sustage.select(:stage).map(&:stage)
             .actions.col.s12
             = f.button :submit,class: 'btn'
