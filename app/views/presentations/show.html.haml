@@ -19,11 +19,8 @@
 			%i.large.material-icons share
 		%ul
 			%li
-				%a.btn-floating.teal.tooltipped{"data-tooltip":"Download this pitch deck","data-position":"left"}
+				%a.btn-floating.teal.tooltipped{href: "/assets/pitch_deck.pdf",download: "pitch_deck", "data-tooltip":"Download this pitch deck","data-position":"left"}
 					%i.material-icons file_download
-			%li
-				%a.btn-floating.blue.tooltipped{"data-tooltip":"Share Link","data-position":"left"}
-					%i.material-icons share
 
 :javascript
 	var animation = '#{@presentation.animation}';
