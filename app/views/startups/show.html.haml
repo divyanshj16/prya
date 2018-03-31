@@ -1,12 +1,14 @@
 .container-fluid
+	.btn.btn-large.tooltipped{style: 'position: absolute; top:80px;right:20px;z-index:30', "data-tooltip": "Save your presentation","data-position":"top"}
+		Add Bookmark
 	%section.section.primary-color.page-header.startup-profile-section
 		.container
 			%img.responsive-img.cover{:src => "https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fpragativadi.com%2Fwp-content%2Fuploads%2F2017%2F03%2Fbuilding_startup-1.jpg&f=1", :alt => "", style: "height: 100%;"}/
 			%img.profile-pic{src: "/assets/logo_missing.png"}
 		.container
 			- if current_user.isinvestor or Foundership.where(user_id: current_user.id).pluck(:startup_id).include? @startup.id
-				%a.modal-trigger.btn.btn-floating.btn-large.hoverable.right.hide-on-small-only.tooltipped.waves-effect.waves-light{href: "#PitchPlease","data-tooltip": "View #{@startup.title}'s pitch decks","data-position":"top"}
-					%i.material-icons pageview
+				%a.modal-trigger.btn.btn-large.hoverable.right.hide-on-small-only.tooltipped.waves-effect.waves-light{href: "/presentations/4","data-tooltip": "View #{@startup.title}'s pitch decks","data-position":"top"}
+					show pitch deck
 			- else
 				%a.modal-trigger.btn.btn-floating.btn-large.hoverable.right.hide-on-small-only.tooltipped.waves-effect.waves-light.invisibledj{href: "#"}
 					%i.material-icons pageview
@@ -23,8 +25,6 @@
 						.col.s2
 							%button.btn{type: "submit"}
 								Add
-
-
 
 			-#  Modal For Your Startups
 			#PitchPlease.modal.black-text
@@ -43,7 +43,6 @@
 											%span.badge.new.green{'data-badge-caption': "Default"}
 											%p.card-title.medium-weight.primary-text-color= ppt.name
 										.card-action
-											=link_to "Edit",edit_presentation_path(ppt)
 											=link_to "Show",presentation_path(ppt)
 						- if not current_user.isinvestor
 							- @startup.presentations.each do |ppt|
