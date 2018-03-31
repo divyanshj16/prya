@@ -1,21 +1,22 @@
 - if user_signed_in?
-	%li
-		%a#settings_dropdown_trigger.dropdown-trigger{href:"#", "data-activates": "create-startup"}
-			Startups
-			%i.material-icons arrow_drop_down
-		%ul.dropdown-content#create-startup{style: 'min-width: 12.5%;'}
-			%li
-				=link_to new_startup_path do
-					%i.material-icons add
-					Create Startups
-				.divider
-				- @mysu = Foundership.where(user_id: current_user.id).pluck(:startup_id)
-				- @mysu.each do |su|                    
-					- if su
-						%li
-							= link_to "/startups/#{su}" do
-								%img.profile-thumb{:src => "http://via.placeholder.com/32x32",class: 'responsive-img', style:'max-width: 2.75rem;', :alt => ""}/
-								= Startup.find(su).title
+	-if not current_user.isinvestor
+		%li
+			%a#settings_dropdown_trigger.dropdown-trigger{href:"#", "data-activates": "create-startup"}
+				Startups
+				%i.material-icons arrow_drop_down
+			%ul.dropdown-content#create-startup{style: 'min-width: 12.5%;'}
+				%li
+					=link_to new_startup_path do
+						%i.material-icons add
+						Create Startups
+					.divider
+					- @mysu = Foundership.where(user_id: current_user.id).pluck(:startup_id)
+					- @mysu.each do |su|                    
+						- if su
+							%li
+								= link_to "/startups/#{su}" do
+									%img.profile-thumb{:src => "http://via.placeholder.com/32x32",class: 'responsive-img', style:'max-width: 2.75rem;', :alt => ""}/
+									= Startup.find(su).title
 	%li
 		%a#settings_dropdown_trigger.dropdown-trigger{href:"#", "data-activates": "settings_dropdown"}
 			= image_tag current_user.avatar.url, style: "border: 1.5px solid white"
