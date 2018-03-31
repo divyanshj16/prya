@@ -5,13 +5,11 @@
       %label{for: "first_name"} Name
     .col.s4.input-field
       %select#anime-selector
-        %option{disabled: "disabled", selected: "selected", value: ""} Animation
-        %option{value: "None"} none
-        %option{value: "Fade"} fade
-        %option{value: "Slide"} Slide
-        %option{value: "Zoom"} Zoom
-        %option{value: "Concave"} Concave
-        %option{value: "Convex"} Convex
+        %option{value: "fade-out"} fade-out
+        %option{value: "slide"} slide
+        %option{value: "zoom"} zoom
+        %option{value: "concave"} concave
+        %option{value: "convex"} convex
       %label Slide Transition
   .container-fluid
     .row
@@ -33,33 +31,118 @@
   %section.valign-wrapper.center.slideship
     .ql-editor{contenteditable: "true", "data-gramm" => "false"}
       %h1.ql-align-center
-        %u.ql-size-huge Title1
-      %h1.ql-align-center
-        %span.ql-size-large Small descriptions(about you)
+        %u.ql-size-large Name Of Your Startup 
+      %p.ql-align-center
+        %span.ql-size-normal What you do
+      %p.ql-align-center
+        %span.ql-size-normal Two-Three words description
+  
   %section.valign-wrapper.center.slideship
     .ql-editor{contenteditable: "true", "data-gramm" => "false"}
       %h1.ql-align-center
-        %u.ql-size-huge Title2
-      %h1.ql-align-center
-        %span.ql-size-large Small descriptions(about you)
+        %u.ql-size-normal “Make Impression with some AWESOME Quote”
+  
   %section.valign-wrapper.center.slideship
     .ql-editor{contenteditable: "true", "data-gramm" => "false"}
       %h1.ql-align-center
-        %u.ql-size-huge Title3
-      %h1.ql-align-center
-        %span.ql-size-large Small descriptions(about you)
+        %u.ql-size-large Problem Statement
+      %p.ql-align-center
+        %span.ql-size-normal A powerful and utterly interesting opening line can not only draw people into your work, but also hint at the overarching themes your work explores in a deep and lasting way.
+
   %section.valign-wrapper.center.slideship
     .ql-editor{contenteditable: "true", "data-gramm" => "false"}
       %h1.ql-align-center
-        %u.ql-size-huge Title4
-      %h1.ql-align-center
-        %span.ql-size-large Small descriptions(about you)
+        %u.ql-size-huge Your Solution
+      %p.ql-align-center
+        %span.ql-size-large Write your problem statement here.
+
   %section.valign-wrapper.center.slideship
     .ql-editor{contenteditable: "true", "data-gramm" => "false"}
       %h1.ql-align-center
-        %u.ql-size-huge Title5
+        %u.ql-size-large USP
+      %ul.ql-size-normal
+        %li.ql-size-normal Your Unique Selling Point that makes you worth investing.
+
+  %section.valign-wrapper.center.slideship
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
       %h1.ql-align-center
-        %span.ql-size-large Small descriptions(about you)
+        %u.ql-size-large Competition
+      %ul
+        %li.ql-size-normal Mention your competitors. Investor wants to know who else can compete you.
+
+  %section.valign-wrapper.center.slideship
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
+      %h1.ql-align-center
+        %u.ql-size-large The Expansion Plan
+      %ul
+        %li.ql-size-normal “A startup not scalable is not worth investing.”
+        %li.ql-size-normal Give a Briefing about how will you scale your startup.
+
+  %section.valign-wrapper.center.slideship
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
+      %h1.ql-align-center
+        %u.ql-size-large Market Size
+      %ul
+        %li.ql-size-normal Mention who you are targeting.
+        %li.ql-size-normal Numbers, about what percentage you are targeting.
+
+  %section.valign-wrapper.center.slideship
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
+      %h1.ql-align-center
+        %u.ql-size-large User Base Demographics
+      %figure
+        %img{:src => "", :alt => "Chart"}/
+        %figcaption Pie Chart Showing
+
+  %section.valign-wrapper.center.slideship
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
+      %h1.ql-align-center
+        %u.ql-size-large User growth rate
+      %ul
+        %li.ql-size-normal How do you plan to increase your users and in what ratio you see them grow in a particular amount of time.
+        %li.ql-size-normal How much traffic is expected.
+        %li.ql-size-normal Insert Graph if possible.
+
+  %section.valign-wrapper.center.slideship
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
+      %h1.ql-align-center
+        %u.ql-size-large Your Revenue Model
+      %ul
+        %li.ql-size-normal Who Pays
+        %li.ql-size-normal How Much Pays.
+        %li.ql-size-normal How?
+
+  %section.valign-wrapper.center.slideship
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
+      %h1.ql-align-center
+        %u.ql-size-large Our Team
+      %ul
+        %li.ql-size-normal How much?
+        %li.ql-size-normal Why? (your main expenses. Where will you be spending it.)
+
+  %section.valign-wrapper.center.slideship
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
+      %h1.ql-align-center
+        %u.ql-size-large Team Composition
+      .row
+        .col.s12.m4
+          %figure
+            %img{:src => "", :alt => "PIC"}/
+            %figcaption Member(Designation)
+        .col.s12.m4
+          %figure
+            %img{:src => "", :alt => "PIC"}/
+            %figcaption Member(Designation)
+        .col.s12.m4
+          %figure
+            %img{:src => "", :alt => "PIC"}/
+            %figcaption Member(Designation)
+
+  %section.valign-wrapper.center.slideship
+    .ql-editor{contenteditable: "true", "data-gramm" => "false"}
+      %h1.ql-align-center "Some touching closing quote." 
+
+
 = render 'form'
 
 :javascript

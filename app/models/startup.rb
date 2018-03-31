@@ -33,4 +33,5 @@ class Startup < ApplicationRecord
     end
   end
 
+  acts_as_followable
 end
