@@ -24,7 +24,7 @@
 									%span.medium-weight.medium.secondary-text-color= Startup.find(current_user.founderships.pluck(:startup_id)).count
 									%span Startups
 								.row
-									%span.medium-weight.medium.secondary-text-color= Foundership.where(startup_id:Startup.find(current_user.founderships.pluck(:startup_id))).pluck(:user_id).uniq.count - 1
+									%span.medium-weight.medium.secondary-text-color= Foundership.where(startup_id:Startup.find(current_user.founderships.pluck(:startup_id))).pluck(:user_id).uniq.count
 									%span Co-Founders
 									%br/
 

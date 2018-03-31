@@ -19,6 +19,7 @@ gem "paperclip", "~> 6.0.0"
 gem 'haml'
 gem 'loofah', '~> 2.2.1'
 gem 'simple_form'
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

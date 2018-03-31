@@ -61,7 +61,6 @@
 									function publishThis(e){
 										var $id = $(e).data('id')
 										var url = '/startups/#{@startup.id}/presentations/#{ppt.id}'
-										console.log(url)
 										$.get('/startups/#{@startup.id}/presentations/#{ppt.id}',function(data){
 										})
 									}
