@@ -1,3 +1,24 @@
+-# chatbot
+#chatbot.modal.modal-fixed-footer{style: 'overflow:hidden;'}
+	.modal-content#content
+	.modal-footer
+		.row.valign-wrapper
+			.col.s10.input-field
+				%i.material-icons.prefix{style: "color:#f95051"} email
+				%input#bot-input.validate.black-text.ipb{type: "text"}
+				%label{for: "cfemail"} Enter a Query?
+			.col.s2
+				%button.btn#submit-query{type: "submit"}
+					Send
+
+
+
+
+%a.modal-trigger.left{href:'#chatbot'}
+	Our Chatbot
+
+
+
 - if user_signed_in?
 	-if not current_user.isinvestor
 		%li
@@ -38,3 +59,49 @@
 		= link_to "Sign up",new_user_registration_path
 	%li
 		= link_to "Sign In",new_user_session_path
+
+
+:javascript
+	$('#submit-query').click(function () {
+		ques = $(".ipb").eq(0).val();
+		// console.log(ques);
+		console.log(ques.toLowerCase);
+		ans = q[ques.toLowerCase()]
+		if (ans) {
+			$('#chatbot .modal-content').eq(0).append('<div id="user" class="row"><div class="col s6"></div><div class="col s6 secondary-color rounden"><p class="right">'+ques+'</p></div></div>');
+			$('#chatbot .modal-content').eq(0).append(' <div id="loader1" class="preloader-wrapper small active"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>')
+			setTimeout(function(){
+				$('#loader1').remove()
+				$('#chatbot .modal-content').eq(0).append('<div id="bot" class="row"> <div class="col s6 primary-color rounden"> <p id="contb" class="left"> '+ ans +' </p> </div> <div class="col s6"></div> </div>')	
+			}, 2000);
+		}else{
+			let temp_ques = ques.split(' ').join('+');
+			$('#chatbot .modal-content').eq(0).append('<div id="user" class="row"><div class="col s6"></div><div class="col s6 secondary-color rounden"><p class="right">'+ques+'</p></div></div>');
+			$('#chatbot .modal-content').eq(0).append(' <div id="loader1" class="preloader-wrapper small active"><div class="spinner-layer spinner-green-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>')		
+			setTimeout(function(){
+				$('#loader1').remove()
+				$('#chatbot .modal-content').eq(0).append(`<div id="bot" class="row"> <div class="col s6 primary-color rounden"> <a id="contb" class="left" href=http://www.google.com/search?q=${temp_ques} target="_blank"> Click ME</a> </div> <div class="col s6"></div> </div>`)	
+			}, 2000);
+		}
+		$('#bot-input').val('')
+		// console.log(ans);
+		// console.log($('#chatbot .modal-content').eq(0).html('<div id="user" class="row">\
+		//   <div class="col s6"></div>\
+		//   <div class="col s6 secondary-color rounden">\
+		//     <p class="right">\
+		//       What is USP?\
+		//     </p>\
+		//   </div>\
+		// </div>\
+		// '));
+		
+
+		// user = $('#user').cloneNode()
+		// bot = $('#bot').cloneNode()
+		// content = $('#content')
+		// content.appendChild(user.find('#contu').text(ques))
+		// content.appendChild(bot.find('#contu').text(ans))
+
+
+			})
+
